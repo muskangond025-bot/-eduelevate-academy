@@ -1,0 +1,339 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { MessageSquare, Cpu, Activity, Sparkles } from 'lucide-react';
+
+const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: number }; colorClass: string }) => {
+  const [sparks, setSparks] = useState<{ x: number; y: number; id: number }[]>([]);
+
+  useEffect(() => {
+    if (coords.x === 0 && coords.y === 0) return;
+    setSparks((prev) => {
+      const next = [{ x: coords.x, y: coords.y, id: Math.random() }, ...prev];
+      return next.slice(0, 3);
+    });
+  }, [coords]);
+
+  return (
+    <>
+      {sparks.map((spark, idx) => (
+        <div
+          key={spark.id}
+          className={`absolute pointer-events-none rounded-full blur-[1px] transition-all duration-300 ${colorClass}`}
+          style={{
+            left: spark.x,
+            top: spark.y,
+            width: `${5 - idx * 1.2}px`,
+            height: `${5 - idx * 1.2}px`,
+            opacity: 0.6 - idx * 0.15,
+            transform: 'translate(-50%, -50%)',
+            zIndex: 20
+          }}
+        />
+      ))}
+    </>
+  );
+};
+
+const DriftingTelemetryBadge = ({
+  children,
+  className,
+  initialX,
+  initialY,
+  mouseCoords
+}: {
+  children: React.ReactNode;
+  className?: string;
+  initialX: string;
+  initialY: string;
+  mouseCoords: { x: number; y: number };
+}) => {
+  const [drift, setDrift] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const w = window.innerWidth || 1200;
+    const h = window.innerHeight || 800;
+    const dx = (mouseCoords.x - w / 2) / (w / 2);
+    const dy = (mouseCoords.y - h / 2) / (h / 2);
+
+    setDrift({
+      x: dx * -15,
+      y: dy * -15
+    });
+  }, [mouseCoords]);
+
+  return (
+    <motion.div
+      animate={{ x: drift.x, y: drift.y }}
+      transition={{ type: "spring", stiffness: 60, damping: 25 }}
+      style={{ left: initialX, top: initialY }}
+      className={`absolute hidden xl:flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-5 py-3 font-mono text-[9px] text-slate-400 select-none backdrop-blur-md shadow-md pointer-events-none z-20 ${className}`}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+const KineticWord = ({ 
+  word, 
+  className, 
+  delayOffset = 0, 
+  mouseCoords 
+}: { 
+  word: string; 
+  className: string; 
+  delayOffset: number;
+  mouseCoords: { x: number; y: number };
+}) => {
+  const letters = word.split('');
+  return (
+    <span className="flex flex-wrap gap-x-[0.02em] justify-center overflow-visible">
+      {letters.map((char, charIdx) => {
+        const letterRef = useRef<HTMLSpanElement>(null);
+        const [letterOffset, setLetterOffset] = useState({ x: 0, y: 0, scale: 1, skew: 0 });
+        const [isHovered, setIsHovered] = useState(false);
+
+        useEffect(() => {
+          if (!letterRef.current) return;
+          const rect = letterRef.current.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          
+          const dx = mouseCoords.x - centerX;
+          const dy = mouseCoords.y - centerY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 120) {
+            const pullFactor = (120 - distance) / 120;
+            setLetterOffset({
+              x: (dx / distance) * pullFactor * -15,
+              y: (dy / distance) * pullFactor * -15,
+              scale: 1 + pullFactor * 0.25,
+              skew: pullFactor * -15
+            });
+            setIsHovered(true);
+          } else {
+            setLetterOffset({ x: 0, y: 0, scale: 1, skew: 0 });
+            setIsHovered(false);
+          }
+        }, [mouseCoords]);
+
+        return (
+          <motion.span
+            ref={letterRef}
+            key={charIdx}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ 
+              opacity: 1, 
+              y: letterOffset.y,
+              x: letterOffset.x,
+              scale: letterOffset.scale,
+              skewX: letterOffset.skew,
+              color: isHovered ? '#fb923c' : 'inherit'
+            }}
+            transition={{
+              type: "spring",
+              stiffness: isHovered ? 250 : 120,
+              damping: isHovered ? 12 : 25,
+              delay: delayOffset + charIdx * 0.04
+            }}
+            className={`inline-block select-none origin-center cursor-pointer transition-colors duration-200 ${className}`}
+            style={{ display: 'inline-block', transformStyle: 'preserve-3d' }}
+          >
+            {char === ' ' ? '\u00A0' : char}
+          </motion.span>
+        );
+      })}
+    </span>
+  );
+};
+
+export const ContactHero = () => {
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [globalMouse, setGlobalMouse] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMoveGlobal = (e: MouseEvent) => {
+      setGlobalMouse({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMoveGlobal);
+    return () => window.removeEventListener('mousemove', handleMouseMoveGlobal);
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setCoords({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+    setIsHovered(true);
+  };
+
+  // Generate SVG Gravity Warp Mesh Grid Points
+  const meshCols = 12;
+  const meshRows = 6;
+  const gridPoints: { originalX: number; originalY: number; id: string }[] = [];
+
+  for (let r = 0; r <= meshRows; r++) {
+    for (let c = 0; c <= meshCols; c++) {
+      gridPoints.push({
+        originalX: (c / meshCols) * 100,
+        originalY: (r / meshRows) * 100,
+        id: `${r}-${c}`
+      });
+    }
+  }
+
+  return (
+    <section 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setIsHovered(false)}
+      className="pt-28 pb-28 bg-[#060813] relative overflow-hidden select-none min-h-[70vh] flex items-center"
+    >
+      {/* Gravity Warp Coordinates Mesh Grid Background */}
+      <svg className="absolute inset-0 w-full h-full opacity-[0.18] pointer-events-none z-0">
+        <defs>
+          <radialGradient id="meshSpotlight" r="30%" cx={`${(coords.x / (containerRef.current?.clientWidth || 1)) * 100}%`} cy={`${(coords.y / (containerRef.current?.clientHeight || 1)) * 100}%`}>
+            <stop offset="0%" stopColor="#fb923c" stopOpacity="1" />
+            <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        
+        {/* Draw horizontal lines warping toward cursor */}
+        {Array.from({ length: meshRows + 1 }).map((_, r) => {
+          let pathD = "";
+          for (let c = 0; c <= meshCols; c++) {
+            const px = (c / meshCols) * (containerRef.current?.clientWidth || 1200);
+            const py = (r / meshRows) * (containerRef.current?.clientHeight || 600);
+            
+            const dx = coords.x - px;
+            const dy = coords.y - py;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            let ox = px;
+            let oy = py;
+            if (dist < 300) {
+              const force = (300 - dist) / 300;
+              ox -= dx * force * 0.12;
+              oy -= dy * force * 0.12;
+            }
+            
+            pathD += `${c === 0 ? 'M' : 'L'} ${ox} ${oy}`;
+          }
+          return (
+            <path
+              key={`h-${r}`}
+              d={pathD}
+              fill="none"
+              stroke="url(#meshSpotlight)"
+              strokeWidth="0.8"
+            />
+          );
+        })}
+
+        {/* Draw vertical lines warping toward cursor */}
+        {Array.from({ length: meshCols + 1 }).map((_, c) => {
+          let pathD = "";
+          for (let r = 0; r <= meshRows; r++) {
+            const px = (c / meshCols) * (containerRef.current?.clientWidth || 1200);
+            const py = (r / meshRows) * (containerRef.current?.clientHeight || 600);
+            
+            const dx = coords.x - px;
+            const dy = coords.y - py;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            
+            let ox = px;
+            let oy = py;
+            if (dist < 300) {
+              const force = (300 - dist) / 300;
+              ox -= dx * force * 0.12;
+              oy -= dy * force * 0.12;
+            }
+            
+            pathD += `${r === 0 ? 'M' : 'L'} ${ox} ${oy}`;
+          }
+          return (
+            <path
+              key={`v-${c}`}
+              d={pathD}
+              fill="none"
+              stroke="url(#meshSpotlight)"
+              strokeWidth="0.8"
+            />
+          );
+        })}
+      </svg>
+
+      {/* Spotlight neon glow trail */}
+      <div
+        className="absolute pointer-events-none transition-opacity duration-150 blur-[140px] rounded-full z-0"
+        style={{
+          opacity: isHovered ? 0.35 : 0,
+          left: `${coords.x}px`,
+          top: `${coords.y}px`,
+          width: '500px',
+          height: '500px',
+          transform: 'translate(-50%, -50%)',
+          background: 'radial-gradient(circle, rgba(251, 146, 60, 0.15) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 100%)'
+        }}
+      />
+
+      {/* Spark Particle Trails */}
+      <SparkParticlesTrail coords={coords} colorClass="bg-orange-400" />
+
+      {/* Technical grid line guidelines */}
+      <div className="absolute left-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
+      <div className="absolute right-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 w-full">
+        {/* Orbited badge with rotating dash reticle */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-orange-400 font-black text-[10px] uppercase tracking-[0.2em] mb-6 relative overflow-hidden"
+        >
+          <div className="w-5 h-5 rounded-full border border-orange-500/30 relative flex items-center justify-center shrink-0">
+            <div className="absolute -inset-0.5 border border-dashed border-orange-400/50 rounded-full animate-spin" style={{ animationDuration: '6s' }} />
+            <MessageSquare size={10} className="text-orange-400" />
+          </div>
+          <span>Get In Touch</span>
+        </motion.div>
+        
+        {/* Title Header with Staggered Kinetic Splintered Characters Wave */}
+        <h1 className="text-5xl lg:text-[7.5rem] font-black text-white mb-10 tracking-tighter uppercase leading-[0.85] flex flex-col gap-3 justify-center items-center overflow-visible">
+          <div className="overflow-visible">
+            <KineticWord 
+              word="LET'S START" 
+              className="text-white font-black tracking-tighter"
+              delayOffset={0.1}
+              mouseCoords={globalMouse}
+            />
+          </div>
+          <div className="overflow-visible mt-2">
+            <KineticWord 
+              word="YOUR JOURNEY." 
+              className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-indigo-500 font-black italic tracking-tighter"
+              delayOffset={0.35}
+              mouseCoords={globalMouse}
+            />
+          </div>
+        </h1>
+        
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="text-slate-400 max-w-2xl mx-auto font-semibold leading-relaxed text-sm md:text-base px-4"
+        >
+          Have questions about our academic paths? Our counselors are ready to map out your personalized high-fidelity success roadmap.
+        </motion.p>
+      </div>
+      
+      {/* Bottom neon laser border grid segment */}
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-orange-500/25 to-transparent" />
+    </section>
+  );
+};
