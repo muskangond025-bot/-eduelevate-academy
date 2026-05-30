@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { BookOpen, Repeat, ClipboardCheck, Award, Shield } from 'lucide-react';
+import studyIngestionVideo from '../../assets/study_ingestion.mp4';
 
 const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: number }; colorClass: string }) => {
   const [sparks, setSparks] = useState<{ x: number; y: number; id: number }[]>([]);
@@ -295,9 +296,12 @@ export const StudySystem = () => {
                   style={{ top: '0%' }}
                 />
 
-                <img 
-                  src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Study Material" 
+                <video 
+                  src={studyIngestionVideo} 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-1000 pointer-events-none" 
                 />
                 

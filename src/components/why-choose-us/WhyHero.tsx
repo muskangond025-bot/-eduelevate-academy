@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, Shield, Activity } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: number }; colorClass: string }) => {
   const [sparks, setSparks] = useState<{ x: number; y: number; id: number }[]>([]);
@@ -31,45 +31,6 @@ const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: n
         />
       ))}
     </>
-  );
-};
-
-const DriftingTelemetryBadge = ({
-  children,
-  className,
-  initialX,
-  initialY,
-  mouseCoords
-}: {
-  children: React.ReactNode;
-  className?: string;
-  initialX: string;
-  initialY: string;
-  mouseCoords: { x: number; y: number };
-}) => {
-  const [drift, setDrift] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const w = window.innerWidth || 1200;
-    const h = window.innerHeight || 800;
-    const dx = (mouseCoords.x - w / 2) / (w / 2);
-    const dy = (mouseCoords.y - h / 2) / (h / 2);
-
-    setDrift({
-      x: dx * -15,
-      y: dy * -15
-    });
-  }, [mouseCoords]);
-
-  return (
-    <motion.div
-      animate={{ x: drift.x, y: drift.y }}
-      transition={{ type: "spring", stiffness: 60, damping: 25 }}
-      style={{ left: initialX, top: initialY }}
-      className={`absolute hidden xl:flex items-center gap-3 bg-white/70 border border-slate-200/50 rounded-2xl px-5 py-3 font-mono text-[9px] text-slate-555 select-none backdrop-blur-md shadow-md pointer-events-none z-20 ${className}`}
-    >
-      {children}
-    </motion.div>
   );
 };
 
@@ -124,21 +85,6 @@ export const WhyHero = () => {
       {/* Layout guidelines */}
       <div className="absolute left-[8%] top-0 bottom-0 w-[1px] bg-slate-200/40 pointer-events-none z-10" />
       <div className="absolute right-[8%] top-0 bottom-0 w-[1px] bg-slate-200/40 pointer-events-none z-10" />
-
-      {/* Drifting Telemetry Badges */}
-      <DriftingTelemetryBadge initialX="10%" initialY="45%" mouseCoords={sectionCoords}>
-        <Shield size={10} className="text-indigo-650 animate-pulse" />
-        <span className="font-bold text-indigo-650">[PILLARS: ACADEMIC_FOCUS]</span>
-        <span className="text-slate-300">//</span>
-        <span>[TIER_1_LOGIC]</span>
-      </DriftingTelemetryBadge>
-
-      <DriftingTelemetryBadge initialX="72%" initialY="65%" mouseCoords={sectionCoords}>
-        <Activity size={10} className="text-cyan-600 animate-bounce" style={{ animationDuration: '2s' }} />
-        <span className="font-bold text-cyan-600">[STUDENT_SUCCESS: VERIFIED]</span>
-        <span className="text-slate-300">//</span>
-        <span>[STABLE]</span>
-      </DriftingTelemetryBadge>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 select-none">
         

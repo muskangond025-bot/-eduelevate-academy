@@ -366,7 +366,7 @@ export const DemoExperience = () => {
                      </div>
                      <div>
                         <h4 className={`text-lg font-bold mb-1 transition-colors ${
-                          activeTab === i ? 'text-white' : 'text-slate-450 group-hover:text-slate-200'
+                          activeTab === i ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'
                         }`}>{step.title}</h4>
                         <p className={`text-xs transition-colors leading-relaxed ${
                           activeTab === i ? 'text-slate-300' : 'text-slate-500 group-hover:text-slate-400'

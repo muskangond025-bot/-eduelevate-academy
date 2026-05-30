@@ -277,9 +277,9 @@ export const HomeAcademicPaths = () => {
             {/* Header Row */}
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-10">
               <div className="max-w-3xl">
-                <h2 className="text-5xl md:text-7xl font-black leading-[1.05] uppercase tracking-tighter mb-8 font-sans text-slate-900">
-                  Architect Your <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 font-extrabold italic">
+                <h2 className="text-5xl md:text-7xl font-black leading-tight uppercase tracking-tighter mb-8 font-sans text-slate-900 overflow-visible py-1">
+                  Architect Your{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 font-extrabold italic px-1">
                     Academic Path.
                   </span>
                 </h2>
@@ -445,9 +445,9 @@ export const HomeAcademicPaths = () => {
           
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-24 gap-10">
             <div className="max-w-3xl">
-              <h2 className="text-5xl md:text-7xl font-black leading-[1.05] uppercase tracking-tighter mb-8 font-sans text-slate-900">
-                Architect Your <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 font-extrabold italic">
+              <h2 className="text-5xl md:text-7xl font-black leading-tight uppercase tracking-tighter mb-8 font-sans text-slate-900 overflow-visible py-1">
+                Architect Your{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 font-extrabold italic px-1">
                   Academic Path.
                 </span>
               </h2>

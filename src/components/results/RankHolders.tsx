@@ -228,7 +228,7 @@ export const RankHolders = () => {
       themeColor: "rgba(99, 102, 241, 0.12)",
       laserColor: "rgba(99, 102, 241, 0.4)",
       sparkColor: "bg-indigo-500",
-      pillBg: "bg-indigo-650 hover:bg-indigo-700 shadow-indigo-500/10"
+      pillBg: "bg-indigo-600 hover:bg-indigo-700 shadow-indigo-500/10"
     },
     {
       name: "Ananya G.",

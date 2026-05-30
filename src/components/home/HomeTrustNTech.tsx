@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence, useScroll, useTransform } from 'motion/react';
-import { Shield, Sparkles, Play, RotateCcw, Brain, CheckCircle2, MapPin, Smartphone, ArrowRight } from 'lucide-react';
+import { Shield, Sparkles, Play, RotateCcw, Brain, CheckCircle2, MapPin, Smartphone, ArrowRight, Pause, Folder } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const LOGOS = ['DPS', 'LOYOLA', 'DAV', 'IIT-B', 'AIIMS', 'BITS'];
@@ -234,9 +234,9 @@ export const HomeAdaptiveAssessment = () => {
                 <span className="text-[10px] font-bold tracking-widest uppercase text-slate-600">INTELLIGENT DIAGNOSTICS</span>
               </div>
 
-              <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.05] uppercase tracking-tighter mb-8 font-sans">
-                Adaptive <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 font-extrabold italic">
+              <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight uppercase tracking-tighter mb-8 font-sans overflow-visible py-1">
+                Adaptive{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 font-extrabold italic px-1">
                   Assessments.
                 </span>
               </h2>
@@ -530,6 +530,7 @@ export const HomeStudyEcosystem = () => {
   const [hoveredPane, setHoveredPane] = useState<'physical' | 'digital' | null>(null);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+  const [isPaused, setIsPaused] = useState(false);
 
   return (
     <section className="pt-12 pb-32 bg-white relative overflow-hidden border-b border-slate-100">
@@ -552,9 +553,9 @@ export const HomeStudyEcosystem = () => {
         <div className="text-center mb-20">
 
 
-          <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.05] uppercase tracking-tighter mb-6 font-sans">
-            The Hybrid <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-extrabold italic">
+          <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight uppercase tracking-tighter mb-6 font-sans overflow-visible py-1">
+            The Hybrid{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-extrabold italic px-1">
               Ecosystem.
             </span>
           </h2>
@@ -705,6 +706,7 @@ export const HomeStudyEcosystem = () => {
               <div className="mt-8">
                 <button 
                   onClick={() => {
+                    setIsPaused(false);
                     setToastMessage('📲 Setup initialized. Downloading quantum-encrypted dashboard console package...');
                     setShowToast(true);
                     // Reset toast after 4s
@@ -737,22 +739,44 @@ export const HomeStudyEcosystem = () => {
             }}
           >
             <div className="w-10 h-10 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
-              <Smartphone size={20} className="animate-pulse" />
+              <Smartphone size={20} className={isPaused ? "animate-none" : "animate-pulse"} />
             </div>
-            <div>
-              <h4 className="text-sm font-black tracking-tight text-white flex items-center gap-1.5">
-                Installation Initiated <Sparkles size={12} className="text-indigo-400" />
+            <div className="flex-1">
+              <h4 className="text-sm font-black tracking-tight text-white flex items-center gap-1.5 uppercase">
+                {isPaused ? "Installation Paused" : "Installation Initiated"} <Sparkles size={12} className="text-indigo-400" />
               </h4>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                {toastMessage}
+                {isPaused ? "Installation task suspended. Thread state preserved." : toastMessage}
               </p>
               <div className="w-full bg-slate-800 h-1 rounded-full overflow-hidden mt-3">
                 <motion.div 
                   initial={{ width: 0 }}
-                  animate={{ width: '100%' }}
-                  transition={{ duration: 3.5, ease: "easeInOut" }}
+                  animate={isPaused ? { width: "35%" } : { width: '100%' }}
+                  transition={isPaused ? { duration: 0 } : { duration: 3.5, ease: "easeInOut" }}
                   className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full"
                 />
+              </div>
+
+              {/* Pause & Folder controls */}
+              <div className="flex items-center gap-3 mt-3.5">
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsPaused(!isPaused);
+                  }}
+                  className="flex items-center gap-1 px-3 py-1 bg-white/10 hover:bg-white/20 border border-white/10 rounded-lg text-[9px] font-mono font-black tracking-wider uppercase transition-colors cursor-pointer select-none text-indigo-200"
+                >
+                  {isPaused ? <Play size={10} /> : <Pause size={10} />}
+                  {isPaused ? "Resume" : "Pause"}
+                </button>
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className="flex items-center gap-1 px-3 py-1 bg-white/10 hover:bg-white/20 border border-white/10 rounded-lg text-[9px] font-mono font-black tracking-wider uppercase transition-colors cursor-pointer select-none text-indigo-200"
+                >
+                  <Folder size={10} /> Folder
+                </button>
               </div>
             </div>
           </motion.div>

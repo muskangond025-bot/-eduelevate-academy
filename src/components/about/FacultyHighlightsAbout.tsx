@@ -253,7 +253,6 @@ const FacultyMemberCard = ({
             {React.cloneElement(member.icon as React.ReactElement, { size: 20, className: `relative z-10 ${colorMap[member.themeColor].split(' ')[0]}` })}
           </div>
           <div className="text-white font-black text-sm uppercase tracking-widest">[EXP: {member.exp.toUpperCase()}]</div>
-          <span className="font-mono text-[6px] text-slate-500 select-none mt-1">[{member.badgeCode}]</span>
         </div>
       </div>
 

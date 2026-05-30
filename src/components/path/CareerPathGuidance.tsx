@@ -341,9 +341,9 @@ export const CareerPathGuidance = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-8 uppercase leading-none select-none"
+            className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-8 uppercase leading-tight select-none overflow-visible py-1"
           >
-            LET'S DECRYPT <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-400 italic">YOUR VECTOR.</span>
+            LET'S DECRYPT <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-400 italic px-1">YOUR VECTOR.</span>
           </motion.h2>
 
           <motion.p 

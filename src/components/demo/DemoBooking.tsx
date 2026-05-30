@@ -184,7 +184,7 @@ const BookingSlotCard = ({
         <div className={`w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-300 shadow-inner shrink-0 ${
           isSelected || isSelfHovered
             ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-500/10' 
-            : 'bg-slate-50 border-slate-100 text-slate-450'
+            : 'bg-slate-50 border-slate-100 text-slate-500'
         }`}>
           <Calendar size={22} className={isSelected ? 'animate-pulse' : ''} />
         </div>
@@ -313,9 +313,9 @@ export const DemoBooking = () => {
                  <Sparkles size={11} className="text-indigo-500 animate-bounce" />
                  <span>Upcoming Sessions</span>
                </motion.div>
-               <h2 className="text-5xl font-black text-primary tracking-tighter mb-10 uppercase leading-none select-none">
-                 Available <br/> 
-                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-600 italic font-black">Slots.</span>
+               <h2 className="text-5xl font-black text-primary tracking-tighter mb-10 uppercase leading-tight select-none overflow-visible py-1">
+                 Available{" "}
+                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-600 italic font-black px-1">Slots.</span>
                </h2>
                
                <div className="grid grid-cols-1 gap-5 mb-12">
@@ -474,7 +474,7 @@ export const DemoBooking = () => {
                                       isSelected 
                                         ? 'bg-indigo-600 border-indigo-600 text-white shadow-xl shadow-indigo-500/20 scale-[1.03]' 
                                         : isDimmed
-                                          ? 'bg-white border-slate-100 text-slate-450 opacity-55 scale-[0.98]'
+                                          ? 'bg-white border-slate-100 text-slate-400 opacity-55 scale-[0.98]'
                                           : 'bg-white border-slate-150 text-slate-500 hover:border-indigo-300 hover:scale-[1.01]'
                                     }`}
                                   >
@@ -504,7 +504,7 @@ export const DemoBooking = () => {
                                'Secure Live Demo Seat'
                              )}
                           </button>
-                          <p className="text-center mt-4 text-[8px] font-black text-slate-450 uppercase tracking-widest opacity-60">Instant confirmation via SMS & WhatsApp desk.</p>
+                          <p className="text-center mt-4 text-[8px] font-black text-slate-500 uppercase tracking-widest opacity-60">Instant confirmation via SMS & WhatsApp desk.</p>
                        </div>
                     </motion.form>
                   )}

@@ -326,11 +326,11 @@ export const FeaturedArticles = ({ onArticleClick }: { onArticleClick: (article:
               </div>
 
               {/* Title Header with gradient text reveal */}
-              <h3 className="text-4xl md:text-6xl font-black text-white mb-6 leading-none tracking-tighter uppercase select-none">
-                The 18-Hour Rule: <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-300 font-extrabold italic">
+              <h3 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight tracking-tighter uppercase select-none overflow-visible py-1">
+                The 18-Hour Rule:{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-300 font-extrabold italic px-1">
                   Mastering Focus
-                </span> <br/>
+                </span>{" "}
                 for JEE Advanced 2026.
               </h3>
               

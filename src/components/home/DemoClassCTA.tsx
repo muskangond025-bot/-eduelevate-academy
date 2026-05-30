@@ -16,9 +16,9 @@ export const DemoClassCTA = () => {
               <div className="inline-flex items-center gap-2 bg-white/10 text-secondary px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-8 border border-white/5">
                 Limited Slots Available
               </div>
-              <h2 className="text-4xl lg:text-6xl font-black text-white tracking-tighter mb-8 leading-tight">
-                Experience the Difference.<br/>
-                <span className="text-secondary italic">Book a Demo Class.</span>
+              <h2 className="text-4xl lg:text-6xl font-black text-white tracking-tighter mb-8 leading-tight overflow-visible py-1">
+                Experience the Difference.{" "}
+                <span className="text-secondary italic px-1">Book a Demo Class.</span>
               </h2>
               <p className="text-indigo-100 text-lg opacity-80 mb-12 max-w-md mx-auto lg:mx-0">
                 Witness our unique pedagogy first-hand. See how we simplify complex concepts and build problem-solving muscle.

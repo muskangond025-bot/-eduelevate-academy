@@ -241,8 +241,8 @@ export const ContactWhatsApp = () => {
               <span>Always Online Synchronizer</span>
             </div>
 
-            <h2 className="text-5xl lg:text-7xl font-black mb-8 tracking-tighter leading-none italic uppercase">
-              Quick Support <br/>On <span className="text-slate-900 not-italic">WhatsApp.</span>
+            <h2 className="text-5xl lg:text-7xl font-black mb-8 tracking-tighter leading-tight italic uppercase overflow-visible py-1">
+              Quick Support On <span className="text-slate-900 not-italic px-1">WhatsApp.</span>
             </h2>
             <p className="text-lg text-emerald-50 max-w-xl font-semibold leading-relaxed mb-6">
               Need answers in real-time? Chat with our admissions and student support cell directly for instant parameter diagnostics.

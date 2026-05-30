@@ -82,7 +82,7 @@ const MagneticButton = ({ children, onClick }: { children: React.ReactNode; onCl
         onClick={onClick}
         animate={{ x: position.x, y: position.y }}
         transition={{ type: "spring", stiffness: 180, damping: 15 }}
-        className="px-14 py-6 bg-indigo-650 hover:bg-indigo-700 text-white font-black uppercase tracking-[0.3em] rounded-2xl relative overflow-hidden shadow-xl shadow-indigo-500/10 border border-indigo-500 cursor-pointer"
+        className="px-14 py-6 bg-indigo-600 hover:bg-indigo-700 text-white font-black uppercase tracking-[0.3em] rounded-2xl relative overflow-hidden shadow-xl shadow-indigo-500/10 border border-indigo-500 cursor-pointer"
       >
         {/* Glow cursor sweep light */}
         <div

@@ -17,7 +17,7 @@ export const FinalCourseCTA = () => {
              <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 skew-x-12 translate-x-1/4 pointer-events-none" />
              <div className="relative z-10">
                 <CalendarCheck size={40} className="text-secondary mb-8" />
-                <h3 className="text-4xl font-black text-white tracking-tighter mb-6 leading-tight">Book Your <br/><span className="text-secondary italic">Demo Session</span></h3>
+                <h3 className="text-4xl font-black text-white tracking-tighter mb-6 leading-tight overflow-visible py-1">Book Your{" "}<span className="text-secondary italic px-1">Demo Session</span></h3>
                 <p className="text-slate-400 mb-10 leading-relaxed font-medium">Experience our unique pedagogy first-hand and see how we build conceptual muscle.</p>
                 <Link to="/book-demo" className="btn-accent px-10 py-5 text-xl font-black uppercase tracking-widest inline-flex items-center gap-3">
                    Book Demo <ArrowRight size={20} />
@@ -35,7 +35,7 @@ export const FinalCourseCTA = () => {
              <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/5 -skew-x-12 translate-x-1/4 pointer-events-none" />
              <div className="relative z-10">
                 <FileText size={40} className="text-primary mb-8" />
-                <h3 className="text-4xl font-black text-primary tracking-tighter mb-6 leading-tight">Scholarship <br/><span className="text-secondary italic">Diagnostic</span></h3>
+                <h3 className="text-4xl font-black text-primary tracking-tighter mb-6 leading-tight overflow-visible py-1">Scholarship{" "}<span className="text-secondary italic px-1">Diagnostic</span></h3>
                 <p className="text-slate-500 mb-10 leading-relaxed font-medium">Take our national-level aptitude test and win up to 100% scholarship fee waivers.</p>
                 <Link to="/scholarship" className="btn-primary px-10 py-5 text-xl font-black uppercase tracking-widest inline-flex items-center gap-3">
                    Free Test <ArrowRight size={20} />

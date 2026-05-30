@@ -191,116 +191,127 @@ const AboutStatItem = ({
 
   return (
     <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`p-8 rounded-[3rem] border transition-all duration-500 relative overflow-hidden backdrop-blur-xl flex flex-col bg-white/45 border-white/40 shadow-[0_8px_32px_rgba(31,38,135,0.03)] ${
-        isSelfHovered
-          ? `scale-[1.02] shadow-[0_20px_50px_rgba(99,102,241,0.08)] bg-white/60 border-indigo-500/25`
-          : isDimmed
-            ? 'opacity-45 scale-[0.985] blur-[0.5px] border-slate-200/20'
-            : 'shadow-lg'
-      }`}
-      style={{
-        transform: isDesktop
-          ? `perspective(1000px) rotateX(${-tilt.y * 6}deg) rotateY(${tilt.x * 6}deg) scale3d(${isSelfHovered ? 1.02 : 1}, ${isSelfHovered ? 1.02 : 1}, 1)`
-          : 'none',
-        transformStyle: "preserve-3d"
+      initial={{ opacity: 0, rotateY: 90, z: -100 }}
+      whileInView={{ opacity: 1, rotateY: 0, z: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 60, 
+        damping: 14,
+        delay: index * 0.15 
       }}
+      style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+      className="w-full h-full"
     >
-      {/* Glowing neon aura backing card */}
-      <div 
-        className={`absolute inset-0 rounded-[3rem] blur-2xl opacity-0 group-hover/card:opacity-20 transition-opacity duration-500 -z-10 ${
-          stat.themeColor === 'indigo' ? 'bg-indigo-500' :
-          stat.themeColor === 'emerald' ? 'bg-emerald-500' :
-          stat.themeColor === 'violet' ? 'bg-violet-500' : 'bg-amber-500'
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className={`p-8 rounded-[3rem] border transition-all duration-500 relative overflow-hidden backdrop-blur-xl flex flex-col bg-white/45 border-white/40 shadow-[0_8px_32px_rgba(31,38,135,0.03)] h-full ${
+          isSelfHovered
+            ? `scale-[1.02] shadow-[0_20px_50px_rgba(99,102,241,0.08)] bg-white/60 border-indigo-500/25`
+            : isDimmed
+              ? 'opacity-45 scale-[0.985] blur-[0.5px] border-slate-200/20'
+              : 'shadow-lg'
         }`}
-      />
-
-      {/* Border laser sweep trailing cursor */}
-      <div
-        className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 z-30"
         style={{
-          background: `radial-gradient(120px circle at ${coords.x}px ${coords.y}px, ${stat.laserColor}, transparent 80%)`,
-          padding: '1.2px',
-          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'xor',
-          maskComposite: 'exclude'
+          transform: isDesktop
+            ? `perspective(1000px) rotateX(${-tilt.y * 6}deg) rotateY(${tilt.x * 6}deg) scale3d(${isSelfHovered ? 1.02 : 1}, ${isSelfHovered ? 1.02 : 1}, 1)`
+            : 'none',
+          transformStyle: "preserve-3d"
         }}
-      />
+      >
+        {/* Glowing neon aura backing card */}
+        <div 
+          className={`absolute inset-0 rounded-[3rem] blur-2xl opacity-0 group-hover/card:opacity-20 transition-opacity duration-500 -z-10 ${
+            stat.themeColor === 'indigo' ? 'bg-indigo-500' :
+            stat.themeColor === 'emerald' ? 'bg-emerald-500' :
+            stat.themeColor === 'violet' ? 'bg-violet-500' : 'bg-amber-500'
+          }`}
+        />
 
-      {/* Sparks trail */}
-      <SparkParticlesTrail coords={coords} colorClass={stat.sparkClass} />
+        {/* Border laser sweep trailing cursor */}
+        <div
+          className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 z-30"
+          style={{
+            background: `radial-gradient(120px circle at ${coords.x}px ${coords.y}px, ${stat.laserColor}, transparent 80%)`,
+            padding: '1.2px',
+            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+            WebkitMaskComposite: 'xor',
+            maskComposite: 'exclude'
+          }}
+        />
 
-      {/* Rotating Concentric HUD Icon Orbits */}
-      <div className="relative w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center mb-8 shadow-sm group-hover/card:scale-110 transition-transform z-10 shrink-0" style={{ transform: isDesktop ? "translateZ(60px)" : "none" }}>
-        <div className="absolute inset-[-6px] border border-dashed border-slate-200 rounded-full animate-spin pointer-events-none group-hover/card:border-slate-350" style={{ animationDuration: '8s' }} />
-        {React.cloneElement(stat.icon as React.ReactElement, { size: 24, className: `relative z-10 ${colorMap[stat.themeColor].split(' ')[1]}` })}
-      </div>
+        {/* Sparks trail */}
+        <SparkParticlesTrail coords={coords} colorClass={stat.sparkClass} />
 
-      <div className="text-3xl lg:text-4xl font-black text-slate-800 mb-2 tracking-tighter" style={{ transform: isDesktop ? "translateZ(45px)" : "none" }}>
-        <CountUpValue value={stat.value} />
-      </div>
+        {/* Rotating Concentric HUD Icon Orbits */}
+        <div className="relative w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center mb-8 shadow-sm group-hover/card:scale-110 transition-transform z-10 shrink-0" style={{ transform: isDesktop ? "translateZ(60px)" : "none" }}>
+          <div className="absolute inset-[-6px] border border-dashed border-slate-200 rounded-full animate-spin pointer-events-none group-hover/card:border-slate-350" style={{ animationDuration: '8s' }} />
+          {React.cloneElement(stat.icon as React.ReactElement, { size: 24, className: `relative z-10 ${colorMap[stat.themeColor].split(' ')[1]}` })}
+        </div>
 
-      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest" style={{ transform: isDesktop ? "translateZ(30px)" : "none" }}>
-        {stat.label}
-      </div>
+        <div className="text-3xl lg:text-4xl font-black text-slate-800 mb-2 tracking-tighter" style={{ transform: isDesktop ? "translateZ(45px)" : "none" }}>
+          <CountUpValue value={stat.value} />
+        </div>
 
-      {/* SVG Sparkline growth curve */}
-      <div className="w-full h-14 mt-4 opacity-40 group-hover/card:opacity-90 transition-opacity duration-500 z-10 select-none pointer-events-none" style={{ transform: isDesktop ? "translateZ(15px)" : "none" }}>
-        <svg className="w-full h-full" viewBox="0 0 110 80" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id={`glowGrad-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop 
-                offset="0%" 
-                stopColor={
-                  stat.themeColor === 'indigo' ? '#6366f1' : 
-                  stat.themeColor === 'emerald' ? '#10b981' : 
-                  stat.themeColor === 'violet' ? '#8b5cf6' : '#f59e0b'
-                } 
-                stopOpacity="0.25" 
-              />
-              <stop 
-                offset="100%" 
-                stopColor={
-                  stat.themeColor === 'indigo' ? '#6366f1' : 
-                  stat.themeColor === 'emerald' ? '#10b981' : 
-                  stat.themeColor === 'violet' ? '#8b5cf6' : '#f59e0b'
-                } 
-                stopOpacity="0.0" 
-              />
-            </linearGradient>
-          </defs>
-          {/* Shaded Area Under Sparkline */}
-          <path
-            d={`${stat.sparklinePath} L100,80 L10,80 Z`}
-            fill={`url(#glowGrad-${index})`}
-            className="transition-all duration-500"
-          />
-          {/* Stroke Line */}
-          <motion.path
-            initial={{ pathLength: 0 }}
-            whileInView={{ pathLength: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.6, delay: index * 0.15 + 0.3, ease: "easeOut" }}
-            d={stat.sparklinePath}
-            fill="none"
-            stroke={
-              stat.themeColor === 'indigo' ? '#6366f1' : 
-              stat.themeColor === 'emerald' ? '#10b981' : 
-              stat.themeColor === 'violet' ? '#8b5cf6' : '#f59e0b'
-            }
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
+        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest" style={{ transform: isDesktop ? "translateZ(30px)" : "none" }}>
+          {stat.label}
+        </div>
 
-      {/* Monospaced badge code */}
-      <span className="absolute bottom-4 right-6 font-mono text-[6px] text-slate-400 select-none z-10" style={{ transform: isDesktop ? "translateZ(12px)" : "none" }}>
-        [{stat.badgeCode}]
-      </span>
+        {/* SVG Sparkline growth curve */}
+        <div className="w-full h-14 mt-4 opacity-40 group-hover/card:opacity-90 transition-opacity duration-500 z-10 select-none pointer-events-none" style={{ transform: isDesktop ? "translateZ(15px)" : "none" }}>
+          <svg className="w-full h-full" viewBox="0 0 110 80" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id={`glowGrad-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop 
+                  offset="0%" 
+                  stopColor={
+                    stat.themeColor === 'indigo' ? '#6366f1' : 
+                    stat.themeColor === 'emerald' ? '#10b981' : 
+                    stat.themeColor === 'violet' ? '#8b5cf6' : '#f59e0b'
+                  } 
+                  stopOpacity="0.25" 
+                />
+                <stop 
+                  offset="100%" 
+                  stopColor={
+                    stat.themeColor === 'indigo' ? '#6366f1' : 
+                    stat.themeColor === 'emerald' ? '#10b981' : 
+                    stat.themeColor === 'violet' ? '#8b5cf6' : '#f59e0b'
+                  } 
+                  stopOpacity="0.0" 
+                />
+              </linearGradient>
+            </defs>
+            {/* Shaded Area Under Sparkline */}
+            <path
+              d={`${stat.sparklinePath} L100,80 L10,80 Z`}
+              fill={`url(#glowGrad-${index})`}
+              className="transition-all duration-500"
+            />
+            {/* Stroke Line */}
+            <motion.path
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.6, delay: index * 0.15 + 0.3, ease: "easeOut" }}
+              d={stat.sparklinePath}
+              fill="none"
+              stroke={
+                stat.themeColor === 'indigo' ? '#6366f1' : 
+                stat.themeColor === 'emerald' ? '#10b981' : 
+                stat.themeColor === 'violet' ? '#8b5cf6' : '#f59e0b'
+              }
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
+
+
+      </motion.div>
     </motion.div>
   );
 };
@@ -440,8 +451,6 @@ export const AboutHero = () => {
           <circle cx="100" cy="100" r="66" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="12 4" className="animate-spin" style={{ animationDuration: '20s', animationDirection: 'reverse' }} />
           <line x1="100" y1="0" x2="100" y2="200" stroke="currentColor" strokeWidth="0.4" strokeDasharray="3 3" />
           <line x1="0" y1="100" x2="200" y2="100" stroke="currentColor" strokeWidth="0.4" strokeDasharray="3 3" />
-          <text x="105" y="15" className="fill-indigo-500 font-mono text-[6px] opacity-75">RADIAN // 0.85</text>
-          <text x="105" y="192" className="fill-indigo-500 font-mono text-[6px] opacity-75">LIMIT // SEC_01</text>
         </svg>
       </FloatingBackgroundShape>
 
@@ -452,25 +461,6 @@ export const AboutHero = () => {
             <polygon points="50,15 90,40 90,80 50,95 10,80 10,40" fill="none" stroke="currentColor" strokeWidth="1.2" />
             <circle cx="50" cy="53" r="22" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="2 2" />
           </svg>
-          <span className="absolute bottom-3 left-1/2 -translate-x-1/2 font-mono text-[5px] text-slate-400 select-none uppercase tracking-widest">[CORE: SYS]</span>
-        </div>
-      </FloatingBackgroundShape>
-
-      <FloatingBackgroundShape initialX="78%" initialY="12%" mouseCoords={sectionCoords} parallaxFactor={15} isDesktop={isDesktop}>
-        <div className="w-48 h-36 rounded-3xl bg-slate-900/5 border border-slate-200/50 backdrop-blur-[2px] shadow-sm relative overflow-hidden p-4 font-mono text-[6px] text-indigo-400/55 flex flex-col justify-between opacity-35" style={{ transform: "perspective(800px) rotateX(15deg) rotateY(-20deg)" }}>
-          <div className="flex justify-between border-b border-indigo-200/30 pb-2 mb-2">
-            <span>MATRIX_VECTOR</span>
-            <span className="animate-pulse">● SYNC</span>
-          </div>
-          <svg className="w-full h-16 opacity-45" viewBox="0 0 160 80">
-            <path d="M 0 40 Q 20 10, 40 40 T 80 40 T 120 40 T 160 40" fill="none" stroke="currentColor" strokeWidth="1" />
-            <path d="M 0 50 Q 30 20, 60 50 T 120 50 T 160 50" fill="none" stroke="currentColor" strokeWidth="0.8" strokeDasharray="3 3" />
-            <line x1="0" y1="40" x2="160" y2="40" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
-          </svg>
-          <div className="flex justify-between border-t border-indigo-200/30 pt-2 mt-2">
-            <span>GROWTH: +24.8%</span>
-            <span>[X: 18.2]</span>
-          </div>
         </div>
       </FloatingBackgroundShape>
 
@@ -503,25 +493,19 @@ export const AboutHero = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           style={{ perspective: 1200, transformStyle: "preserve-3d" }}
-          className="text-5xl lg:text-7xl font-black text-slate-800 tracking-tighter mb-8 uppercase leading-none max-w-4xl mx-auto flex flex-col items-center justify-center gap-1.5"
+          className="text-5xl lg:text-7xl font-black text-slate-800 tracking-tighter mb-8 uppercase leading-tight max-w-4xl mx-auto flex flex-col items-center justify-center gap-1.5"
         >
           <div className="overflow-hidden block" style={{ transformStyle: "preserve-3d" }}>
             <motion.span variants={wordVariants} className="block origin-top">
               Legacy of
             </motion.span>
           </div>
-          <div className="overflow-hidden flex flex-wrap justify-center gap-x-4 mt-2" style={{ transformStyle: "preserve-3d" }}>
+          <div className="overflow-hidden block mt-2" style={{ transformStyle: "preserve-3d" }}>
             <motion.span
               variants={wordVariants}
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-cyan-500 italic font-black origin-top"
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-emerald-400 italic font-black origin-top whitespace-nowrap overflow-visible py-1 px-2"
             >
-              Academic
-            </motion.span>
-            <motion.span
-              variants={wordVariants}
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-cyan-500 to-emerald-400 italic font-black origin-top"
-            >
-              Brilliance.
+              Academic Brilliance.
             </motion.span>
           </div>
         </motion.h1>

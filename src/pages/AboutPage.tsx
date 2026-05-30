@@ -236,7 +236,7 @@ export const AboutPage = () => {
               <div 
                 className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
                   activeSection === idx 
-                    ? 'bg-indigo-650 scale-150 ring-4 ring-indigo-100' 
+                    ? 'bg-indigo-600 scale-150 ring-4 ring-indigo-100' 
                     : 'bg-slate-300 hover:bg-slate-500 hover:scale-125'
                 }`}
               />

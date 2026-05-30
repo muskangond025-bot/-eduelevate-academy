@@ -2,35 +2,148 @@ import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Play, Sparkles, Target, TrendingUp, Users, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import pixverseVideo from '../../assets/pixverse.mp4';
+import teacherClassroomVideo from '../../assets/teacher_classroom.mp4';
 
 export const HomeHero = () => {
   const navigate = useNavigate();
   const [isVideoOpen, setIsVideoOpen] = React.useState(false);
+  const [bookState, setBookState] = React.useState<'closed' | 'open' | 'zoomed' | 'fullscreen'>('closed');
+
+  React.useEffect(() => {
+    // Stage transition timers
+    const timer1 = setTimeout(() => {
+      setBookState('open');
+    }, 1200); // Closed state duration
+
+    const timer2 = setTimeout(() => {
+      setBookState('zoomed');
+    }, 2900); // 1.7s after opening, zoom in
+
+    const timer3 = setTimeout(() => {
+      setBookState('fullscreen');
+    }, 4200); // 1.3s after zoom, dissolve to full screen video
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
+  }, []);
 
   return (
-    <section className="relative min-h-[90vh] lg:min-h-screen flex items-center bg-[#070a13] text-white overflow-hidden pt-24 pb-16">
-      {/* Background Graphic Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.15),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.1),transparent_50%)]" />
-      
-      {/* Abstract Glowing Blobs */}
-      <div className="absolute top-1/4 right-10 w-96 h-96 bg-primary-light/10 rounded-full blur-[120px] animate-pulse duration-[8000ms]" />
-      <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-secondary/15 rounded-full blur-[100px] animate-pulse duration-[6000ms]" />
+    <section className="relative min-h-[calc(100vh-5rem)] flex items-center bg-black text-white overflow-hidden pt-24 pb-16">
+      {/* Golden Book Cinematic Entrance Overlay */}
+      {bookState !== 'fullscreen' && (
+        <motion.div 
+          initial={{ opacity: 1 }}
+          animate={{ opacity: bookState === 'zoomed' ? 0 : 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950"
+        >
+          {/* Subtle ambient light */}
+          <div className="absolute w-[500px] h-[500px] bg-yellow-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
 
-      {/* Subtle Grid Pattern Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f29370a_1px,transparent_1px),linear-gradient(to_bottom,#1f29370a_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+          <motion.div
+            initial={{ scale: 0.55, rotateX: 10, rotateY: 5 }}
+            animate={{
+              scale: bookState === 'closed' ? 0.55 : bookState === 'open' ? 0.95 : 3.5,
+              x: bookState === 'closed' ? 150 : 0,
+              rotateX: bookState === 'zoomed' ? 0 : 10,
+              rotateY: bookState === 'zoomed' ? 0 : 5,
+            }}
+            transition={{ duration: 1.5, ease: [0.25, 1, 0.5, 1] }}
+            style={{ perspective: 1800, transformStyle: "preserve-3d" }}
+            className="relative w-[600px] h-[380px] max-w-[90vw] aspect-[1.58/1] select-none pointer-events-none"
+          >
+             {/* Left Page (Inside Book) */}
+             <motion.div 
+               style={{ transform: "translateZ(1px)" }}
+               animate={{ opacity: bookState === 'closed' ? 0 : 1 }}
+               transition={{ duration: 0.5, delay: 0.2 }}
+               className="absolute left-0 top-0 w-1/2 h-full bg-gradient-to-r from-amber-50/95 via-amber-100/95 to-amber-50/95 rounded-l-2xl border-l-4 border-amber-900 shadow-2xl overflow-hidden flex flex-col justify-between p-8"
+             >
+                <div className="border-b border-amber-900/10 pb-4">
+                  <div className="text-[8px] font-black text-amber-800 tracking-widest uppercase">SECTION I</div>
+                  <h4 className="font-display font-black text-amber-950 text-sm italic-small tracking-tight leading-none mt-1">THE ROADMAP OF PRECISION</h4>
+                </div>
+                <div className="flex-grow flex items-center justify-center my-4 opacity-15">
+                  <Sparkles className="text-amber-950 animate-pulse" size={80} />
+                </div>
+                <div className="text-[7.5px] text-amber-850/80 font-serif leading-relaxed italic">
+                  "Engineering the next generation of academic excellence through rigorous analytics, target modules, and elite teaching frameworks."
+                </div>
+             </motion.div>
+
+             {/* Right Page (Inside Book - playing the video) */}
+             <div 
+               style={{ transform: "translateZ(1px)" }}
+               className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-amber-50/95 via-amber-100/95 to-amber-50/95 rounded-r-2xl border-r-4 border-amber-900 shadow-2xl overflow-hidden"
+             >
+                <div className="absolute inset-4 rounded-xl overflow-hidden bg-black shadow-inner border border-amber-900/15">
+                  <video 
+                    src={teacherClassroomVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+             </div>
+
+             {/* Page spine shadow */}
+             <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-4 bg-gradient-to-r from-black/20 via-black/45 to-black/20 z-10" />
+             <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-[1px] bg-amber-950/40 z-10" />
+
+             {/* Front Cover (Gold finish, folds open to the left) */}
+             <motion.div
+               initial={{ rotateY: 0 }}
+               animate={{ rotateY: bookState === 'closed' ? 0 : -180 }}
+               transition={{ duration: 1.6, ease: [0.25, 1, 0.5, 1] }}
+               style={{ 
+                 transformOrigin: "left center", 
+                 transformStyle: "preserve-3d", 
+                 backfaceVisibility: "hidden" 
+               }}
+               className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-br from-amber-600 via-yellow-400 to-amber-700 rounded-r-2xl border-l border-amber-600/50 shadow-2xl flex flex-col items-center justify-center p-8 text-center z-20"
+             >
+                <div className="absolute inset-3 border border-yellow-300/30 rounded-xl pointer-events-none" />
+                <div className="absolute inset-4 border-2 border-yellow-300/15 rounded-lg pointer-events-none" />
+
+                <div className="w-16 h-16 bg-yellow-300/10 rounded-full border border-yellow-300/40 flex items-center justify-center mb-6 text-yellow-300 font-black text-2xl rotate-6 shadow-inner">A</div>
+                <h2 className="font-display font-black text-2xl text-yellow-100 tracking-tight leading-none uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">EDUELEVATE</h2>
+                <span className="text-[8px] text-yellow-300 font-black uppercase tracking-[0.3em] mt-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">Academy Pro</span>
+             </motion.div>
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* Loop full-screen background video */}
+      <video 
+        src={teacherClassroomVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-95 pointer-events-none z-0"
+      />
+      {/* Cinematic dark overlays to guarantee legibility */}
+      <div className="absolute inset-0 bg-black/15 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent pointer-events-none z-0" />
+
+      {/* Background Graphic Elements - Subtle premium purple glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(124,58,237,0.08),transparent_50%)] z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="flex justify-start items-center">
           
-          {/* Left Column: Text & CTAs */}
-          <div className="lg:col-span-7 text-left">
+          {/* Left Column: Text & CTAs (Left Aligned) */}
+          <div className="max-w-3xl text-left flex flex-col items-start">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/30 to-secondary/30 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider text-primary-light mb-8 shadow-lg"
+              className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider text-primary-light mb-8 shadow-lg"
             >
               <Sparkles size={14} className="text-accent animate-spin-slow" />
               <span>Admissions Open 2026-27</span>
@@ -41,7 +154,7 @@ export const HomeHero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.95] mb-8"
+              className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-tight md:leading-[1.1] mb-8"
             >
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
                 PRECISION
@@ -55,7 +168,7 @@ export const HomeHero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg md:text-xl text-slate-400 max-w-xl font-normal leading-relaxed mb-10"
+              className="text-lg md:text-xl text-slate-300 max-w-xl font-normal leading-relaxed mb-10 text-left"
             >
               Engineering the next generation of toppers through <span className="text-white font-semibold underline decoration-accent/60 decoration-2 underline-offset-4">AI-driven analytics</span> and elite teaching methods.
             </motion.p>
@@ -64,11 +177,11 @@ export const HomeHero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-5 mb-12"
+              className="flex flex-wrap justify-start items-center gap-5 mb-12"
             >
               <button 
                 onClick={() => navigate('/path')}
-                className="group relative px-8 py-4 bg-gradient-to-r from-primary-light to-secondary text-white rounded-xl font-bold uppercase tracking-wider text-xs shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-[0_0_40px_rgba(79,70,229,0.5)] transition-all duration-300 flex items-center gap-3 overflow-hidden"
+                className="group relative px-8 py-4 bg-gradient-to-r from-primary-light to-secondary text-white rounded-xl font-bold uppercase tracking-wider text-xs shadow-[0_0_30px_rgba(124,58,237,0.3)] hover:shadow-[0_0_40px_rgba(109,40,217,0.5)] transition-all duration-300 flex items-center gap-3 overflow-hidden"
               >
                 <span className="relative z-10">Start Your Journey</span>
                 <ArrowRight className="relative z-10 group-hover:translate-x-1.5 transition-transform duration-300" size={16} />
@@ -91,90 +204,29 @@ export const HomeHero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="grid grid-cols-3 gap-6 pt-8 border-t border-white/10 max-w-lg"
+              className="grid grid-cols-3 gap-12 pt-8 border-t border-white/10 w-full max-w-lg"
             >
               <div>
-                <div className="text-2xl font-bold text-white flex items-center gap-1.5">
+                <div className="text-2xl font-bold text-white flex items-center justify-start gap-1.5">
                   <Target size={16} className="text-accent" />
                   <span>99.8%</span>
                 </div>
-                <div className="text-xs text-slate-500 mt-1">Percentile Focus</div>
+                <div className="text-xs text-slate-500 mt-1 text-left">Percentile Focus</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-white flex items-center gap-1.5">
+                <div className="text-2xl font-bold text-white flex items-center justify-start gap-1.5">
                   <Users size={16} className="text-primary-light" />
                   <span>1-on-1</span>
                 </div>
-                <div className="text-xs text-slate-500 mt-1">Elite Mentorship</div>
+                <div className="text-xs text-slate-500 mt-1 text-left">Elite Mentorship</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-white flex items-center gap-1.5">
+                <div className="text-2xl font-bold text-white flex items-center justify-start gap-1.5">
                   <TrendingUp size={16} className="text-emerald-400" />
                   <span>AI-Path</span>
                 </div>
-                <div className="text-xs text-slate-500 mt-1">Adaptive Engine</div>
+                <div className="text-xs text-slate-500 mt-1 text-left">Adaptive Engine</div>
               </div>
-            </motion.div>
-          </div>
-
-          {/* Right Column: Visual Deck & Cards */}
-          <div className="lg:col-span-5 relative mt-12 lg:mt-0">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9, rotate: 1 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative mx-auto max-w-[400px] lg:max-w-none"
-            >
-              {/* Decorative behind-glow */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-primary-light to-secondary rounded-[2.5rem] opacity-30 blur-2xl animate-pulse" />
-              
-              {/* Main Video Card */}
-              <div className="relative aspect-[4/5] w-full rounded-[2.5rem] overflow-hidden border-2 border-white/10 shadow-2xl bg-slate-900 group">
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 z-10 pointer-events-none" />
-                <video 
-                  src={pixverseVideo}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                />
-              </div>
-
-              {/* Floating Badge: Selection Rate */}
-              <motion.div 
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                className="absolute -bottom-6 -left-6 bg-slate-950/80 backdrop-blur-xl border border-white/10 p-5 rounded-2xl shadow-2xl flex items-center gap-4 hover:scale-105 transition-transform duration-300"
-              >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-light to-secondary flex items-center justify-center font-black text-lg text-white">
-                  94%
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Selection Rate</div>
-                  <div className="text-xs font-semibold text-white">National Toppers</div>
-                </div>
-              </motion.div>
-
-              {/* Floating Badge: Analytics Graph Mock */}
-              <motion.div 
-                initial={{ opacity: 0, y: -40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.6 }}
-                className="absolute -top-6 -right-6 bg-slate-950/80 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300 hidden sm:flex items-center gap-3"
-              >
-                <div className="p-2 bg-emerald-500/10 rounded-lg text-emerald-400">
-                  <TrendingUp size={20} />
-                </div>
-                <div>
-                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">AI Diagnostics</div>
-                  <div className="text-xs font-semibold text-emerald-400 flex items-center gap-1">
-                    <span>Active Tracking</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                  </div>
-                </div>
-              </motion.div>
             </motion.div>
           </div>
 
@@ -206,9 +258,9 @@ export const HomeHero = () => {
                 <X size={18} />
               </button>
 
-              {/* Local HTML5 Video Player playing Pixverse Video */}
+              {/* Local HTML5 Video Player playing local stock video */}
               <video 
-                src={pixverseVideo}
+                src={teacherClassroomVideo}
                 autoPlay
                 controls
                 className="w-full h-full object-contain bg-slate-950 z-10"

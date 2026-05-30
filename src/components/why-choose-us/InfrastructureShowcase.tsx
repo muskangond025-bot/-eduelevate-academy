@@ -114,10 +114,6 @@ const FacilityCard = ({
       </div>
 
       <div className="relative z-10 flex-grow" style={{ transform: "translateZ(15px)" }}>
-        <div className="flex items-center justify-between gap-2 mb-1.5 font-mono text-[7px] text-slate-500 select-none">
-          <span className="font-bold uppercase">INFRA_TIER // STABLE</span>
-          <span>[{themeConfig.badgeCode}]</span>
-        </div>
         <h4 className="font-black text-white mb-2 uppercase text-sm tracking-tight group-hover/card:text-indigo-300 transition-colors">
           {fac.name}
         </h4>
@@ -357,11 +353,7 @@ export const InfrastructureShowcase = () => {
                 <div className="w-1.5 h-1.5 rounded-full bg-amber-500/70" />
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/70" />
               </div>
-              <div className="w-full text-center pb-2 border-b border-white/5 mb-3 select-none">
-                <span className="font-mono text-[6.5px] tracking-widest text-slate-500 uppercase">
-                  [VP_L // CAMPUS_01]
-                </span>
-              </div>
+              <div className="w-full pb-2 border-b border-white/5 mb-3 select-none h-4" />
               <div className="relative rounded-[2.2rem] overflow-hidden aspect-[4/5] bg-slate-900 group">
                 <div className="absolute left-0 right-0 h-[1.5px] bg-cyan-400/30 shadow-[0_0_10px_rgba(34,211,238,0.5)] z-20 pointer-events-none group-hover:top-[100%] transition-all duration-[3000ms] ease-linear" style={{ top: '0%' }} />
                 <img 
@@ -379,11 +371,7 @@ export const InfrastructureShowcase = () => {
                 <div className="w-1.5 h-1.5 rounded-full bg-amber-500/70" />
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/70" />
               </div>
-              <div className="w-full text-center pb-2 border-b border-white/5 mb-3 select-none">
-                <span className="font-mono text-[6.5px] tracking-widest text-slate-500 uppercase">
-                  [VP_R // CAMPUS_02]
-                </span>
-              </div>
+              <div className="w-full pb-2 border-b border-white/5 mb-3 select-none h-4" />
               <div className="relative rounded-[2.2rem] overflow-hidden aspect-[4/5] bg-slate-900 group">
                 <div className="absolute left-0 right-0 h-[1.5px] bg-cyan-400/30 shadow-[0_0_10px_rgba(34,211,238,0.5)] z-20 pointer-events-none group-hover:top-[100%] transition-all duration-[3000ms] ease-linear" style={{ top: '0%' }} />
                 <img 

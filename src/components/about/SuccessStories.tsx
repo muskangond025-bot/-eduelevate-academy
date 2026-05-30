@@ -79,7 +79,7 @@ const MagneticActionButton = ({
       onClick={onClick}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 180, damping: 15 }}
-      className={`px-8 py-4 rounded-xl font-black text-[9px] uppercase tracking-[0.2em] relative overflow-hidden transition-all duration-300 flex items-center justify-center gap-2 bg-indigo-650 text-white hover:bg-indigo-700 shadow-xl shadow-indigo-500/20 ${className}`}
+      className={`px-8 py-4 rounded-xl font-black text-[9px] uppercase tracking-[0.2em] relative overflow-hidden transition-all duration-300 flex items-center justify-center gap-2 bg-indigo-600 text-white hover:bg-indigo-700 shadow-xl shadow-indigo-500/20 ${className}`}
     >
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-0"
@@ -182,37 +182,13 @@ const VideoHUDModal = ({
             </div>
 
             {/* Video Bezel Screen Viewport */}
-            <div className="bg-slate-950/60 rounded-[2rem] border border-white/5 p-6 mb-6 relative overflow-hidden flex flex-col justify-between h-72">
+            <div className="bg-slate-950/60 rounded-[2rem] border border-white/5 p-6 mb-6 relative overflow-hidden flex flex-col justify-center h-72">
               {/* Scanline laser line */}
               <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-indigo-500/20 shadow-[0_0_8px_rgba(99,102,241,0.5)] animate-pulse pointer-events-none" style={{ animationDuration: '3s' }} />
 
-              {/* Header Status Row */}
-              <div className="flex items-center justify-between text-[8px] font-mono tracking-widest text-slate-500 select-none">
-                <div className="flex items-center gap-1.5">
-                  <Radio size={8} className="text-rose-500 animate-pulse" />
-                  <span>[PLAYBACK: OUTCOME_REVIEW]</span>
-                </div>
-                <div>[SOURCE_ID: {story.name.replace(/[^A-Za-z0-9]/g, '_')}]</div>
-              </div>
-
               {/* Center Equalizer & Telemetry */}
-              <div className="flex-1 flex flex-col justify-center">
+              <div className="flex flex-col justify-center">
                 <AudioWaveVisualizer />
-                <p className="text-center font-mono text-[9px] text-indigo-400 uppercase tracking-wider select-none animate-pulse">
-                  &lt; DECODING SUCCESS STREAMS &gt;
-                </p>
-              </div>
-
-              {/* Bottom Telemetry Metrics */}
-              <div className="flex items-end justify-between font-mono text-[8px] text-slate-500 mt-4 select-none">
-                <div className="flex flex-col items-start gap-1">
-                  <span>[OUTCOME: {story.result.toUpperCase()}]</span>
-                  <span>[STREAM_FPS: 60.00]</span>
-                </div>
-                <div className="text-right flex flex-col items-end gap-1">
-                  <span>[VOLUME: 100% // VERIFIED]</span>
-                  <span>[DECODE: SECURE_LINK]</span>
-                </div>
               </div>
             </div>
 
@@ -341,7 +317,7 @@ const SuccessCard = ({
         {/* Bouncing Play Button Badge */}
         <button 
           onClick={onPlayClick}
-          className="absolute -bottom-3 -right-3 w-10 h-10 bg-indigo-650 hover:bg-indigo-700 text-white rounded-2xl flex items-center justify-center shadow-xl group-hover/card:scale-110 transition-transform pointer-events-auto cursor-pointer border border-indigo-500 z-20"
+          className="absolute -bottom-3 -right-3 w-10 h-10 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl flex items-center justify-center shadow-xl group-hover/card:scale-110 transition-transform pointer-events-auto cursor-pointer border border-indigo-500 z-20"
         >
           <Play size={16} fill="white" className="text-white animate-pulse" />
         </button>
@@ -359,10 +335,6 @@ const SuccessCard = ({
         "{story.quote}"
       </p>
 
-      {/* Monospaced indicator badge */}
-      <span className="absolute bottom-4 right-6 font-mono text-[7px] text-slate-500 select-none z-10">
-        [ALUMNI_STORY // VERIFIED]
-      </span>
     </motion.div>
   );
 };

@@ -38,49 +38,6 @@ const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: n
     </>
   );
 };
-
-const DriftingTelemetryBadge = ({
-  children,
-  className,
-  initialX,
-  initialY,
-  mouseCoords
-}: {
-  children: React.ReactNode;
-  className?: string;
-  initialX: string;
-  initialY: string;
-  mouseCoords: { x: number; y: number };
-}) => {
-  const [drift, setDrift] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const w = window.innerWidth || 1200;
-    const h = window.innerHeight || 800;
-    const dx = (mouseCoords.x - w / 2) / (w / 2);
-    const dy = (mouseCoords.y - h / 2) / (h / 2);
-
-    setDrift({
-      x: dx * -18,
-      y: dy * -18
-    });
-  }, [mouseCoords]);
-
-  return (
-    <motion.div
-      animate={{ x: drift.x, y: drift.y }}
-      transition={{ type: "spring", stiffness: 70, damping: 22 }}
-      style={{ left: initialX, top: initialY }}
-      className={`absolute hidden xl:flex items-center gap-2.5 bg-[#060813]/85 border border-indigo-500/25 rounded-xl px-4.5 py-2.5 font-mono text-[8px] text-slate-300 select-none backdrop-blur-lg shadow-xl pointer-events-none z-20 ${className}`}
-    >
-      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse relative shrink-0">
-        <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-75" />
-      </span>
-      {children}
-    </motion.div>
-  );
-};
-
 const MagneticBackButton = ({
   children,
   to,

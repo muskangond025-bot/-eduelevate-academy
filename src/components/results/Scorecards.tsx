@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { FileText, ExternalLink, Download, Star, Cpu } from 'lucide-react';
+import { FileText, ExternalLink, Download, Star, Cpu, Pause, Play, Folder } from 'lucide-react';
 
 const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: number }; colorClass: string }) => {
   const [sparks, setSparks] = useState<{ x: number; y: number; id: number }[]>([]);
@@ -104,12 +104,16 @@ const ScorecardItem = ({
   card,
   index,
   hoveredIndex,
-  setHoveredIndex
+  setHoveredIndex,
+  onView,
+  onDownload
 }: {
   card: { name: string; id: string; student: string; sparkColor: string; laserColor: string; themeColor: string; tag: string };
   index: number;
   hoveredIndex: number | null;
   setHoveredIndex: (i: number | null) => void;
+  onView: () => void;
+  onDownload: () => void;
 }) => {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -224,10 +228,10 @@ const ScorecardItem = ({
 
         {/* Magnetic Action Buttons */}
         <div className="flex gap-4 relative z-20">
-          <MagneticActionButton>
+          <MagneticActionButton onClick={onView}>
             <ExternalLink size={12} className="shrink-0" /> View
           </MagneticActionButton>
-          <MagneticActionButton isSecondary>
+          <MagneticActionButton isSecondary onClick={onDownload}>
             <Download size={12} className="shrink-0 animate-bounce" style={{ animationDuration: '2.5s' }} /> Download
           </MagneticActionButton>
         </div>
@@ -241,6 +245,9 @@ const ScorecardItem = ({
 };
 
 export const Scorecards = () => {
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [isPaused, setIsPaused] = useState(false);
   const [sectionCoords, setSectionCoords] = useState({ x: 0, y: 0 });
   const [isSectionHovered, setIsSectionHovered] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -255,6 +262,17 @@ export const Scorecards = () => {
       y: e.clientY - rect.top
     });
     setIsSectionHovered(true);
+  };
+
+  const handleAction = (type: 'view' | 'download', examName: string, studentName: string) => {
+    setIsPaused(false);
+    if (type === 'view') {
+      setToastMessage(`🌐 Launching secure cryptographic viewer for ${examName} (${studentName})...`);
+    } else {
+      setToastMessage(`📥 Compilation complete! Downloading verified ${examName} scorecard PDF package...`);
+    }
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 4000);
   };
 
   const cards = [
@@ -334,10 +352,69 @@ export const Scorecards = () => {
               index={i}
               hoveredIndex={hoveredIndex}
               setHoveredIndex={setHoveredIndex}
+              onView={() => handleAction('view', card.name, card.student)}
+              onDownload={() => handleAction('download', card.name, card.student)}
             />
           ))}
         </div>
       </div>
+
+      {/* Premium Floating Notification Toast */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            className="fixed bottom-8 right-8 z-50 p-6 bg-slate-950/95 border border-indigo-500/30 backdrop-blur-xl rounded-3xl shadow-[0_25px_60px_-15px_rgba(99,102,241,0.5)] max-w-sm flex items-start gap-4 text-white"
+            style={{
+              boxShadow: '0 20px 50px -10px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)'
+            }}
+          >
+            <div className="w-10 h-10 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
+              <Cpu size={20} className={isPaused ? "animate-none" : "animate-spin"} style={{ animationDuration: '6s' }} />
+            </div>
+            <div className="flex-1">
+              <h4 className="text-sm font-black tracking-tight text-white flex items-center gap-1.5 uppercase">
+                {isPaused ? "Download Paused" : "System Authorized"} <Star size={12} className="text-indigo-400 fill-indigo-400 animate-pulse" />
+              </h4>
+              <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                {isPaused ? "Task paused by user command. Thread state preserved." : toastMessage}
+              </p>
+              <div className="w-full bg-slate-800 h-1 rounded-full overflow-hidden mt-3">
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={isPaused ? { width: "45%" } : { width: '100%' }}
+                  transition={isPaused ? { duration: 0 } : { duration: 3.5, ease: "easeInOut" }}
+                  className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full"
+                />
+              </div>
+              
+              {/* Dynamic Action Buttons */}
+              <div className="flex items-center gap-3 mt-3.5">
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsPaused(!isPaused);
+                  }}
+                  className="flex items-center gap-1 px-3 py-1 bg-white/10 hover:bg-white/20 border border-white/10 rounded-lg text-[9px] font-mono font-black tracking-wider uppercase transition-colors cursor-pointer select-none text-indigo-200"
+                >
+                  {isPaused ? <Play size={10} /> : <Pause size={10} />}
+                  {isPaused ? "Resume" : "Pause"}
+                </button>
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className="flex items-center gap-1 px-3 py-1 bg-white/10 hover:bg-white/20 border border-white/10 rounded-lg text-[9px] font-mono font-black tracking-wider uppercase transition-colors cursor-pointer select-none text-indigo-200"
+                >
+                  <Folder size={10} /> Folder
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

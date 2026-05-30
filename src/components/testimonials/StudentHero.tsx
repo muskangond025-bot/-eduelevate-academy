@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Zap, Activity, Terminal, ArrowDown } from 'lucide-react';
+import { Zap, ArrowDown } from 'lucide-react';
 
 const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: number }; colorClass: string }) => {
   const [sparks, setSparks] = useState<{ x: number; y: number; id: number }[]>([]);
@@ -31,45 +31,6 @@ const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: n
         />
       ))}
     </>
-  );
-};
-
-const DriftingTelemetryBadge = ({
-  children,
-  className,
-  initialX,
-  initialY,
-  mouseCoords
-}: {
-  children: React.ReactNode;
-  className?: string;
-  initialX: string;
-  initialY: string;
-  mouseCoords: { x: number; y: number };
-}) => {
-  const [drift, setDrift] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const w = window.innerWidth || 1200;
-    const h = window.innerHeight || 800;
-    const dx = (mouseCoords.x - w / 2) / (w / 2);
-    const dy = (mouseCoords.y - h / 2) / (h / 2);
-
-    setDrift({
-      x: dx * -15, // Drift in opposite direction for parallax depth
-      y: dy * -15
-    });
-  }, [mouseCoords]);
-
-  return (
-    <motion.div
-      animate={{ x: drift.x, y: drift.y }}
-      transition={{ type: "spring", stiffness: 60, damping: 25 }}
-      style={{ left: initialX, top: initialY }}
-      className={`absolute hidden xl:flex items-center gap-3 bg-slate-900/60 border border-white/10 rounded-2xl px-5 py-3 font-mono text-[9px] text-slate-400 select-none backdrop-blur-md shadow-lg pointer-events-none z-20 ${className}`}
-    >
-      {children}
-    </motion.div>
   );
 };
 
@@ -201,21 +162,6 @@ export const StudentHero = () => {
       <div className="absolute left-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
       <div className="absolute right-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
 
-      {/* Drifting Parallax Telemetry Tokens */}
-      <DriftingTelemetryBadge initialX="10%" initialY="30%" mouseCoords={sectionCoords}>
-        <Activity size={10} className="text-indigo-400 animate-pulse" />
-        <span className="font-bold text-indigo-400">[JOURNEY_DB: MOUNTED]</span>
-        <span className="text-slate-600">//</span>
-        <span>[ACTIVE_ALUMNI: 2.4k+]</span>
-      </DriftingTelemetryBadge>
-
-      <DriftingTelemetryBadge initialX="70%" initialY="60%" mouseCoords={sectionCoords}>
-        <Terminal size={10} className="text-cyan-400 animate-bounce" style={{ animationDuration: '2s' }} />
-        <span className="font-bold text-cyan-400">[TELEMETRY: SCANNING]</span>
-        <span className="text-slate-600">//</span>
-        <span>[SUCCESS_RATE: 99.8%]</span>
-      </DriftingTelemetryBadge>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 select-none">
         
         {/* The Student Journey Badge with rotating orbit indicator */}
@@ -271,26 +217,11 @@ export const StudentHero = () => {
         </motion.p>
       </div>
 
-      {/* Bottom Diagnostics Console Bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-10 border-t border-white/5 bg-slate-950/40 backdrop-blur-md flex items-center justify-between px-8 text-[8px] font-mono text-slate-500 z-20 select-none">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-emerald-450 font-bold">[SYSTEM: NOMINAL]</span>
-          </div>
-          <span className="hidden md:inline text-slate-600">|</span>
-          <span className="hidden md:inline">[GRID_RESOLUTION: 13x7_WARP]</span>
-        </div>
-        
-        <div className="flex items-center gap-1">
-          <ArrowDown size={10} className="text-indigo-400 animate-bounce" />
-          <span className="text-indigo-400 font-bold">SCROLL FOR STORIES</span>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <span className="hidden md:inline">[WARP_FORCE: {isSectionHovered ? '20.00' : '0.00'}_mN]</span>
-          <span className="hidden md:inline text-slate-600">|</span>
-          <span>[SYS_X: {Math.round(sectionCoords.x)}px] [SYS_Y: {Math.round(sectionCoords.y)}px]</span>
+      {/* Bottom Scroll Indicator Bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-10 border-t border-white/5 bg-slate-950/20 backdrop-blur-md flex items-center justify-center text-[9px] font-bold text-indigo-400 uppercase tracking-widest z-20 select-none">
+        <div className="flex items-center gap-1.5">
+          <ArrowDown size={10} className="animate-bounce" />
+          <span>Scroll For Stories</span>
         </div>
       </div>
     </section>

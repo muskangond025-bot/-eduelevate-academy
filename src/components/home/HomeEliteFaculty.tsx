@@ -85,9 +85,9 @@ export const HomeEliteFaculty = () => {
         {/* Header Section */}
         <div className="text-center mb-24">
 
-          <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.05] uppercase tracking-tighter mb-6 font-sans">
-            The Elite <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-rose-600 font-extrabold italic">
+          <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight uppercase tracking-tighter mb-6 font-sans overflow-visible py-1">
+            The Elite{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-rose-600 font-extrabold italic px-1">
               Faculty.
             </span>
           </h2>

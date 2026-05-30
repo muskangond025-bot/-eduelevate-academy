@@ -88,9 +88,9 @@ export const HomeSuccessWall = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8">
            <div>
 
-              <h2 className="text-5xl md:text-7xl font-black leading-[1.05] text-slate-900 uppercase tracking-tighter mb-8 font-sans">
-                Hall Of <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-extrabold italic">
+              <h2 className="text-5xl md:text-7xl font-black leading-tight text-slate-900 uppercase tracking-tighter mb-8 font-sans overflow-visible py-1">
+                Hall Of{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-extrabold italic px-1">
                   Victory.
                 </span>
               </h2>

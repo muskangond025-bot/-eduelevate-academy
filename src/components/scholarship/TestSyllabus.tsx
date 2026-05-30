@@ -325,7 +325,7 @@ export const TestSyllabus = () => {
                        </div>
                        
                        <div className="mt-8 pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-6">
-                          <p className="text-[10px] font-black text-slate-450 uppercase tracking-widest text-left">NST syllabus aligned // BATCH 2026</p>
+                          <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest text-left">NST syllabus aligned // BATCH 2026</p>
                           <button 
                              onMouseMove={handleButtonMove}
                              onMouseLeave={handleButtonLeave}

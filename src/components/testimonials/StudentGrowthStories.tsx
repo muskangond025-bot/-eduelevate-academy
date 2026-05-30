@@ -132,18 +132,16 @@ const GrowthStoryCard = ({
 
       {/* Right side: Transformation details */}
       <div className="flex-grow w-full" style={{ transform: "translateZ(15px)" }}>
-        {/* Monospaced tag */}
+        {/* Path tag */}
         <div className="flex items-center justify-between gap-2 mb-4 font-mono text-[8px] text-slate-400">
           <span className="inline-block px-3 py-1 bg-slate-100 border border-slate-200 rounded-full font-black text-slate-500 uppercase tracking-widest leading-none">
             {story.path}
           </span>
-          <span>[{themeConfig.badgeCode}]</span>
         </div>
 
         <div className="flex flex-col gap-5">
           {/* Point A console */}
           <div className="p-5 bg-slate-100/50 rounded-2xl border border-slate-200/30 relative overflow-hidden select-none">
-            <div className="text-[8px] font-mono font-black uppercase text-slate-400 mb-1 tracking-wider">[POINT_A // INITIAL_STATE]</div>
             <div className="text-base font-black text-slate-500 line-through decoration-rose-500/60 decoration-2">
               {story.before}
             </div>
@@ -155,7 +153,7 @@ const GrowthStoryCard = ({
               animate={isSelfHovered ? { x: [0, 6, 0] } : {}}
               transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
             >
-              <ArrowRight className="text-slate-355 rotate-90 md:rotate-0 opacity-40" size={18} />
+              <ArrowRight className="text-slate-400 rotate-90 md:rotate-0 opacity-40" size={18} />
             </motion.div>
           </div>
 
@@ -169,11 +167,6 @@ const GrowthStoryCard = ({
               <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
               <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            </div>
-
-            <div className="text-[8px] font-mono font-black uppercase text-slate-550 mb-1.5 tracking-widest flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping shrink-0" />
-              <span>[POINT_B // ACADEMYPRO_OUTCOME]</span>
             </div>
 
             <div className={`text-2xl font-black tracking-tight ${themeConfig.afterTextColor}`}>
@@ -241,7 +234,7 @@ export const StudentGrowthStories = () => {
       cardBorderColor: "group-hover/card:border-rose-500/20",
       iconBg: "bg-rose-600",
       iconText: "text-white",
-      afterTextColor: "text-transparent bg-clip-text bg-gradient-to-r from-rose-450 to-pink-300"
+      afterTextColor: "text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-pink-300"
     }
   };
 

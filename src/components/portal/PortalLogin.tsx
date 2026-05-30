@@ -381,7 +381,7 @@ export const PortalLogin = ({ onLogin }: { onLogin: () => void }) => {
           {/* Animated concentric HUD circles around active Shield icon */}
           <div 
             className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all relative ${
-              isCardHovered ? 'bg-indigo-650 text-indigo-400 border border-indigo-500/30' : 'bg-primary text-white rotate-12'
+              isCardHovered ? 'bg-indigo-600 text-indigo-400 border border-indigo-500/30' : 'bg-primary text-white rotate-12'
             }`}
           >
             <div 
@@ -419,7 +419,7 @@ export const PortalLogin = ({ onLogin }: { onLogin: () => void }) => {
               mouseCoords={globalMouse}
             />
           </h2>
-          <p className={`font-semibold text-xs transition-colors duration-300 ${isCardHovered ? 'text-slate-400' : 'text-slate-450'}`}>
+          <p className={`font-semibold text-xs transition-colors duration-300 ${isCardHovered ? 'text-slate-400' : 'text-slate-500'}`}>
             Enter your credentials to access your academic roadmap.
           </p>
         </div>
@@ -429,7 +429,7 @@ export const PortalLogin = ({ onLogin }: { onLogin: () => void }) => {
           {/* Enrollment ID with expanding bottom focus laser underline */}
           <div className="space-y-2 relative group/input">
             <label className={`inline-flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest ml-4 transition-colors duration-300 ${
-              isCardHovered ? 'text-slate-400' : 'text-slate-450'
+              isCardHovered ? 'text-slate-400' : 'text-slate-500'
             }`}>
               <User size={10} />
               <span>[Enrollment ID]</span>
@@ -441,7 +441,7 @@ export const PortalLogin = ({ onLogin }: { onLogin: () => void }) => {
               disabled={submitting}
               required
               placeholder="PRO-2026-88" 
-              className={`w-full px-8 py-5 rounded-2xl outline-none transition-all font-bold text-sm border focus:bg-white ${
+              className={`w-full px-8 py-5 rounded-2xl outline-none transition-all font-bold text-sm border focus:bg-white focus:text-black ${
                 isCardHovered 
                   ? 'bg-slate-900/60 border-slate-700/50 text-white focus:border-indigo-400' 
                   : 'bg-slate-50 border-transparent text-primary focus:border-secondary'
@@ -453,7 +453,7 @@ export const PortalLogin = ({ onLogin }: { onLogin: () => void }) => {
           {/* Access Code with expanding bottom focus laser underline */}
           <div className="space-y-2 relative group/input">
             <label className={`inline-flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest ml-4 transition-colors duration-300 ${
-              isCardHovered ? 'text-slate-400' : 'text-slate-450'
+              isCardHovered ? 'text-slate-400' : 'text-slate-500'
             }`}>
               <Lock size={10} />
               <span>[Access Code]</span>
@@ -465,7 +465,7 @@ export const PortalLogin = ({ onLogin }: { onLogin: () => void }) => {
               disabled={submitting}
               required
               placeholder="••••••••" 
-              className={`w-full px-8 py-5 rounded-2xl outline-none transition-all font-bold text-sm border focus:bg-white ${
+              className={`w-full px-8 py-5 rounded-2xl outline-none transition-all font-bold text-sm border focus:bg-white focus:text-black ${
                 isCardHovered 
                   ? 'bg-slate-900/60 border-slate-700/50 text-white focus:border-indigo-400' 
                   : 'bg-slate-50 border-transparent text-primary focus:border-secondary'
@@ -510,7 +510,7 @@ export const PortalLogin = ({ onLogin }: { onLogin: () => void }) => {
             disabled={submitting}
             className={`w-full py-5 text-white shadow-xl ${
               isCardHovered 
-                ? 'bg-indigo-650 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-cyan-400' 
+                ? 'bg-indigo-600 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-cyan-400' 
                 : 'bg-primary hover:bg-secondary hover:text-primary'
             }`}
             laserColor="rgba(99, 102, 241, 0.45)"
@@ -522,7 +522,7 @@ export const PortalLogin = ({ onLogin }: { onLogin: () => void }) => {
         </form>
 
         <div className="mt-10 pt-8 border-t border-slate-50/10 text-center select-none" style={{ transform: "translateZ(10px)" }}>
-          <p className={`text-xs font-bold ${isCardHovered ? 'text-slate-450' : 'text-slate-400'}`}>
+          <p className={`text-xs font-bold ${isCardHovered ? 'text-slate-500' : 'text-slate-400'}`}>
             New Student? <a href="#" className="text-secondary uppercase tracking-widest hover:underline ml-1 cursor-pointer">Register Here</a>
           </p>
         </div>

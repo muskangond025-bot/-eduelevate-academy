@@ -191,7 +191,7 @@ export const FounderMessage = () => {
               ref={stickerRef}
               onMouseMove={handleStickerMouseMove}
               onMouseLeave={() => setStickerTilt({ x: 0, y: 0 })}
-              className="absolute -bottom-10 -right-10 p-8 rounded-3xl shadow-2xl border bg-white/70 border-slate-200/50 max-w-[280px] backdrop-blur-xl z-20 overflow-hidden group/sticker cursor-help"
+              className="absolute -bottom-4 -right-4 p-4.5 rounded-[1.5rem] shadow-xl border bg-white/85 border-slate-200/60 max-w-[190px] backdrop-blur-xl z-20 overflow-hidden group/sticker cursor-help"
               style={{
                 transform: `perspective(800px) rotateX(${-stickerTilt.y * 12}deg) rotateY(${stickerTilt.x * 12}deg) translateZ(35px)`,
                 transformStyle: "preserve-3d",
@@ -206,10 +206,10 @@ export const FounderMessage = () => {
                 }}
               />
               
-              <BookOpen size={32} className="text-indigo-650 mb-4 animate-bounce" style={{ animationDuration: '2.5s' }} />
+              <BookOpen size={20} className="text-indigo-650 mb-2 animate-bounce" style={{ animationDuration: '2.5s' }} />
 
-              <p className="text-xl font-black text-slate-800 leading-tight">"Pedagogy is an art."</p>
-              <div className="text-[7px] font-mono text-slate-400 uppercase tracking-widest mt-2">// Founder & Chairman</div>
+              <p className="text-sm font-black text-slate-800 leading-tight">"Pedagogy is an art."</p>
+              <div className="text-[6.5px] font-mono text-slate-400 uppercase tracking-widest mt-1">// Founder & Chairman</div>
             </div>
           </div>
 
@@ -232,9 +232,9 @@ export const FounderMessage = () => {
 
               <Quote size={48} className="text-indigo-500/20 mb-8" />
               
-              <h2 className="text-4xl lg:text-5xl font-black text-slate-800 tracking-tighter mb-10 leading-none">
-                A Message from <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500 italic font-black">
+              <h2 className="text-4xl lg:text-5xl font-black text-slate-800 tracking-tighter mb-10 leading-tight overflow-visible py-1">
+                A Message from{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500 italic font-black px-1">
                   Our Founder.
                 </span>
               </h2>

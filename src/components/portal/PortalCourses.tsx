@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Play, FileText, CheckCircle } from 'lucide-react';
+import { Play, FileText, CheckCircle, BookOpen } from 'lucide-react';
 
 const COURSES = [
   { id: 1, title: 'Advanced Calculus', teacher: 'Dr. Rahul Verma', progress: 85, lessons: 24, completed: 20 },
@@ -8,7 +8,12 @@ const COURSES = [
   { id: 3, title: 'Quantum Mechanics for JEE', teacher: 'Vivek Kulkarni', progress: 12, lessons: 15, completed: 2 },
 ];
 
-export const PortalCourses = () => {
+export const PortalCourses = ({ searchQuery }: { searchQuery: string }) => {
+  const filteredCourses = COURSES.filter(course => 
+    course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    course.teacher.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="space-y-12">
       <div className="flex justify-between items-end">
@@ -18,8 +23,21 @@ export const PortalCourses = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {COURSES.map((course, i) => (
+      {filteredCourses.length === 0 ? (
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-[3rem] border border-slate-100 p-16 text-center max-w-xl mx-auto space-y-6 shadow-sm"
+        >
+          <div className="w-20 h-20 bg-slate-50 text-slate-400 rounded-3xl flex items-center justify-center mx-auto">
+             <BookOpen size={36} />
+          </div>
+          <h3 className="text-2xl font-black text-primary tracking-tight italic-small">No Courses Found</h3>
+          <p className="text-slate-500 font-medium text-sm">We couldn't find any courses matching "{searchQuery}". Check the spelling or browse our catalogs.</p>
+        </motion.div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredCourses.map((course, i) => (
           <motion.div
             key={course.id}
             initial={{ opacity: 0, y: 20 }}
@@ -71,6 +89,7 @@ export const PortalCourses = () => {
           </motion.div>
         ))}
       </div>
+      )}
     </div>
   );
 };

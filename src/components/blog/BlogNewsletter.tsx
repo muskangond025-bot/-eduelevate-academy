@@ -317,9 +317,9 @@ export const BlogNewsletter = () => {
                 </div>
 
                 {/* Headline word clip stagger reveals */}
-                <h3 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase leading-none mb-6" style={{ transform: "translateZ(30px)" }}>
-                  Stay Ahead in the <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-300 italic font-black">
+                <h3 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase leading-tight mb-6 overflow-visible py-1" style={{ transform: "translateZ(30px)" }}>
+                  Stay Ahead in the{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-300 italic font-black px-1">
                     Competitive
                   </span> Race.
                 </h3>

@@ -413,7 +413,7 @@ export const BranchDetails = () => {
                   <h3 className="text-3xl font-black text-slate-800 mb-2 tracking-tight select-none" style={{ transform: "translateZ(25px)" }}>
                     Visit the Center.
                   </h3>
-                  <p className="text-slate-450 font-medium mb-10 text-sm select-none" style={{ transform: "translateZ(15px)" }}>
+                  <p className="text-slate-500 font-medium mb-10 text-sm select-none" style={{ transform: "translateZ(15px)" }}>
                     Fill out the form to schedule a free counseling session at this branch.
                   </p>
                   

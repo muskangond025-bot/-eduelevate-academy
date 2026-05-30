@@ -150,8 +150,8 @@ export const RecommendedCourses = () => {
               <Compass size={14} className="animate-spin-slow" />
               Syllabus Blueprints
             </div>
-            <h2 className="text-5xl lg:text-7xl font-black text-slate-900 tracking-tighter mb-4 leading-none select-none uppercase">
-              Recommended <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 italic">Programs</span>
+            <h2 className="text-5xl lg:text-7xl font-black text-slate-900 tracking-tighter mb-4 leading-tight select-none uppercase overflow-visible py-1">
+              Recommended <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 italic px-1">Programs</span>
             </h2>
             <p className="text-slate-500 text-lg lg:text-xl font-medium mt-4">
               Bestselling courses based on current student trends and enrollment data.

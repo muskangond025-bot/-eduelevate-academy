@@ -351,7 +351,7 @@ export const RegistrationForm = () => {
                         </>
                       )}
                    </button>
-                   <p className="text-center mt-6 text-[9px] font-black text-slate-450 uppercase tracking-widest opacity-60">By registering, you agree to our Terms & Conditions of merit.</p>
+                   <p className="text-center mt-6 text-[9px] font-black text-slate-500 uppercase tracking-widest opacity-60">By registering, you agree to our Terms & Conditions of merit.</p>
                 </div>
               </motion.form>
             )}

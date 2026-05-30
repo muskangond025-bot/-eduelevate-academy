@@ -23,9 +23,9 @@ export const WhyChooseUs = () => {
             <div className="inline-flex items-center gap-2 text-secondary font-black text-xs uppercase tracking-[0.3em] mb-6">
               The AcademyPro Edge
             </div>
-            <h2 className="text-5xl font-black text-primary tracking-tight leading-[1.1] mb-8">
-              Why We Are The <br/>
-              <span className="text-secondary italic">Unrivaled Choice</span>
+            <h2 className="text-5xl font-black text-primary tracking-tight leading-tight mb-8 overflow-visible py-1">
+              Why We Are The{" "}
+              <span className="text-secondary italic px-1">Unrivaled Choice</span>
             </h2>
             <p className="text-lg text-slate-500 font-medium leading-relaxed mb-12 max-w-xl">
               We don't just teach; we mentor. Our holistic ecosystem is built around the single goal of ensuring your success in the most competitive environments.

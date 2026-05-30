@@ -148,7 +148,7 @@ export const TestSchedule = () => {
           <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter mb-4 uppercase leading-none select-none">
             TEST <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-400 italic font-black">SCHEDULE.</span>
           </h2>
-          <p className="text-slate-450 font-medium max-w-sm mx-auto">
+          <p className="text-white/70 font-medium max-w-sm mx-auto">
             Mark your calendars. Results declared within 48 hours of each slot.
           </p>
         </div>
@@ -209,7 +209,7 @@ export const TestSchedule = () => {
                       <h3 className={`text-2xl font-black mb-3 tracking-tight uppercase transition-colors ${
                         isSelfHovered ? 'text-white' : 'text-slate-200'
                       }`}>{item.event}</h3>
-                      <div className="flex flex-wrap gap-6 font-mono text-[9px] uppercase tracking-widest text-slate-450 font-bold">
+                      <div className="flex flex-wrap gap-6 font-mono text-[9px] uppercase tracking-widest text-white/70 font-bold">
                          <span className="flex items-center gap-1.5">
                             <Clock size={12} className="text-indigo-400" /> 
                             <span>{item.time}</span>
@@ -226,7 +226,7 @@ export const TestSchedule = () => {
                 <div className={`text-3xl font-black italic tracking-tighter shrink-0 relative z-10 transition-all duration-300 ${
                   isSelfHovered 
                     ? 'text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500 scale-105' 
-                    : 'text-slate-500'
+                    : 'text-slate-400'
                 }`}>
                    {item.date}
                 </div>

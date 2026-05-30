@@ -186,11 +186,18 @@ export const ScholarshipHero = () => {
                     }}
                     className={`inline-block ${
                       word === "Potential." 
-                        ? "text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-500 to-amber-300 italic font-black" 
+                        ? "italic font-black" 
                         : ""
                     }`}
                   >
-                    {word}
+                    {word === "Potential." ? (
+                      <>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-400 font-black">Potential</span>
+                        <span className="text-amber-400 font-black">.</span>
+                      </>
+                    ) : (
+                      word
+                    )}
                   </motion.span>
                 </span>
               ))}

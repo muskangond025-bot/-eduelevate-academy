@@ -102,10 +102,10 @@ export const FinalCTA = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase italic tracking-tighter mb-8 font-sans"
+            className="text-5xl md:text-7xl font-black text-slate-900 leading-tight uppercase italic tracking-tighter mb-8 font-sans overflow-visible py-1"
           >
-            Ready to Redefine <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 not-italic font-extrabold">
+            Ready to Redefine{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 not-italic font-extrabold px-1">
               Your Future?
             </span>
           </motion.h2>

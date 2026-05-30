@@ -218,9 +218,9 @@ export const AboutCTA = () => {
               <Calendar size={32} className="text-amber-400 relative z-10" />
             </div>
 
-            <h2 className="text-4xl lg:text-7xl font-black text-white tracking-tighter mb-8 leading-[0.9] uppercase" style={{ transform: "translateZ(15px)" }}>
-              Experience our <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400 italic font-black mt-2 block">
+            <h2 className="text-4xl lg:text-7xl font-black text-white tracking-tighter mb-8 leading-tight uppercase overflow-visible py-1" style={{ transform: "translateZ(15px)" }}>
+              Experience our{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400 italic font-black px-1">
                 Legacy.
               </span>
             </h2>
@@ -236,8 +236,7 @@ export const AboutCTA = () => {
                 <ArrowRight size={16} className="group-hover:translate-x-1.5 transition-transform" />
               </MagneticLinkButton>
             </div>
-            
-            <span className="font-mono text-[6px] text-slate-500 select-none mt-8 block">[CTA_SECURE // ROOT_LINK]</span>
+
           </div>
         </div>
       </div>

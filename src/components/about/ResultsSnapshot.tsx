@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { TrendingUp, Users, Trophy, Shield, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: number }; colorClass: string }) => {
   const [sparks, setSparks] = useState<{ x: number; y: number; id: number }[]>([]);
@@ -79,7 +80,7 @@ const MagneticActionButton = ({
       onClick={onClick}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 180, damping: 15 }}
-      className={`px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] relative overflow-hidden transition-all duration-300 flex items-center justify-center gap-3 bg-indigo-650 text-white hover:bg-indigo-700 shadow-xl shadow-indigo-500/20 ${className}`}
+      className={`px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] relative overflow-hidden transition-all duration-300 flex items-center justify-center gap-3 bg-indigo-600 text-white hover:bg-indigo-700 shadow-xl shadow-indigo-500/20 ${className}`}
     >
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-0"
@@ -178,7 +179,6 @@ const StatRowItem = ({
         </div>
         <div>
           <div className="text-lg font-bold text-slate-300">{stat.label}</div>
-          <span className="font-mono text-[6px] text-slate-500 select-none mt-1 block">[{stat.badgeCode}]</span>
         </div>
       </div>
 
@@ -190,6 +190,7 @@ const StatRowItem = ({
 };
 
 export const ResultsSnapshot = () => {
+  const navigate = useNavigate();
   const [sectionCoords, setSectionCoords] = useState({ x: 0, y: 0 });
   const [isSectionHovered, setIsSectionHovered] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -295,9 +296,9 @@ export const ResultsSnapshot = () => {
                 <span>Audited Outcomming Records</span>
               </motion.div>
 
-              <h2 className="text-5xl lg:text-7xl font-black text-white tracking-tighter mb-8 leading-[0.95] uppercase">
-                Results that <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 italic font-black">
+              <h2 className="text-5xl lg:text-7xl font-black text-white tracking-tighter mb-8 leading-tight uppercase overflow-visible py-1">
+                Results that{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 italic font-black px-1">
                   Speak.
                 </span>
               </h2>
@@ -305,7 +306,7 @@ export const ResultsSnapshot = () => {
                 We maintain a snapshot of our consistent performance across all major competitive streams.
               </p>
               
-              <MagneticActionButton className="group">
+              <MagneticActionButton className="group" onClick={() => navigate('/results')}>
                 Verify All Results 
                 <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform" />
               </MagneticActionButton>

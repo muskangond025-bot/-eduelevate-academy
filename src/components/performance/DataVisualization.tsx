@@ -176,9 +176,9 @@ export const DataVisualization = () => {
               <Sparkles size={11} className="text-indigo-500 animate-bounce" />
               <span>Growth Vectors</span>
             </motion.div>
-            <h2 className="text-5xl font-black text-primary tracking-tighter mb-6 uppercase leading-none select-none">
-              Progress <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-600 italic font-black">Trajectory.</span>
+            <h2 className="text-5xl font-black text-primary tracking-tighter mb-6 uppercase leading-tight select-none overflow-visible py-1">
+              Progress{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-600 italic font-black px-1">Trajectory.</span>
             </h2>
             <p className="text-slate-500 font-semibold mb-12 leading-relaxed text-sm md:text-base italic-small">
               Traditional coaching shows you a grade. We show you the velocity of your growth. Our system maps every mock test against your individual baseline to predict your rank with 94% accuracy.

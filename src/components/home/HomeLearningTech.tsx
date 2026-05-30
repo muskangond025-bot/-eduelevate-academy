@@ -466,9 +466,9 @@ export const HomeLearningTech = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               {/* Title */}
-              <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.05] uppercase tracking-tighter mb-8 font-sans">
-                Human IQ + <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-extrabold italic">
+              <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight uppercase tracking-tighter mb-8 font-sans overflow-visible py-1">
+                Human IQ +{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-extrabold italic px-1">
                   Machine ML.
                 </span>
               </h2>

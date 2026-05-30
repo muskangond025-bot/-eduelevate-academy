@@ -183,9 +183,9 @@ export const PerformanceHero = () => {
           <BarChart3 size={14} className="animate-pulse text-indigo-400" /> Data-Driven Achievement
         </motion.div>
         
-        <h1 className="text-5xl lg:text-8xl font-black mb-8 tracking-tighter uppercase leading-none select-none">
-          Precision <br/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-400 italic font-black">Analytics.</span>
+        <h1 className="text-5xl lg:text-8xl font-black mb-8 tracking-tighter uppercase leading-tight select-none overflow-visible py-1">
+          Precision{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-400 italic font-black px-1">Analytics.</span>
         </h1>
         
         <p className="text-slate-400 max-w-2xl mx-auto font-medium text-sm md:text-base leading-relaxed mb-12">

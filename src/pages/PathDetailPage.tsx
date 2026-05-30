@@ -219,7 +219,7 @@ export const PathDetailPage = () => {
               {config.tagline}
             </p>
             
-            <p className="text-slate-450 leading-relaxed text-sm md:text-base font-semibold max-w-2xl pt-4 border-t border-white/5">
+            <p className="text-slate-300 leading-relaxed text-sm md:text-base font-semibold max-w-2xl pt-4 border-t border-white/5">
               {config.overview}
             </p>
           </div>
@@ -302,7 +302,7 @@ export const PathDetailPage = () => {
                         </span>
                       </div>
                       
-                      <p className="text-slate-450 leading-relaxed text-xs md:text-sm font-bold mb-4">
+                      <p className="text-slate-300 leading-relaxed text-xs md:text-sm font-bold mb-4">
                         {item.desc}
                       </p>
 
@@ -412,7 +412,7 @@ export const PathDetailPage = () => {
             <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase leading-none select-none">
               CALIBRATE YOUR DIRECTION WITH A SENIOR ADVISOR
             </h2>
-            <p className="text-slate-450 leading-relaxed text-sm md:text-base font-semibold max-w-2xl mx-auto">
+            <p className="text-slate-300 leading-relaxed text-sm md:text-base font-semibold max-w-2xl mx-auto">
               Our academic counselors are ready to map out your custom vector roadmap. Initiate a virtual call session or visit our physical campus centers.
             </p>
           </div>

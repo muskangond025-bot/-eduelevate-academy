@@ -205,18 +205,7 @@ const FAQRow = ({
             >
               <div className="border-t border-slate-100/80 pt-5 mt-1 font-sans text-sm md:text-base leading-relaxed text-slate-500">
                 
-                {/* Cyber-Badge details */}
-                <div className="flex flex-wrap gap-3 font-mono text-[9px] uppercase tracking-widest text-indigo-500/80 font-bold mb-4 select-none">
-                  <span className="bg-indigo-50 px-2 py-0.5 rounded-md border border-indigo-100/60">
-                    [QA_ENTRY: 00{index + 1}]
-                  </span>
-                  <span className="bg-amber-50 text-amber-600 px-2 py-0.5 rounded-md border border-amber-100/60">
-                    [STATUS: SECURE // VERIFIED]
-                  </span>
-                  <span className="bg-slate-50 text-slate-500 px-2 py-0.5 rounded-md border border-slate-150">
-                    [SYS_LOCK: BYPASS_OK]
-                  </span>
-                </div>
+
 
                 {/* Main answer text with gradient left line accent */}
                 <div className="pl-4 border-l-2 border-indigo-500/30 font-semibold italic text-slate-650">

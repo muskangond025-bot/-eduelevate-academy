@@ -392,9 +392,9 @@ export const FacultyIntroduction = () => {
                 <span>Mentorship science</span>
               </motion.div>
 
-              <h2 className="text-4xl lg:text-5xl font-black text-primary tracking-tighter uppercase leading-none mb-6">
-                Experienced Minds, <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-650 italic font-black">
+              <h2 className="text-4xl lg:text-5xl font-black text-primary tracking-tighter uppercase leading-tight mb-6 overflow-visible py-1">
+                Experienced Minds,{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-650 italic font-black px-1">
                   Exceptional Mentorship.
                 </span>
               </h2>

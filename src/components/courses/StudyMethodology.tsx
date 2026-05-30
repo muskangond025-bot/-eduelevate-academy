@@ -105,9 +105,9 @@ export const StudyMethodology = () => {
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-100 text-slate-500 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm">
               The Engine Room
             </div>
-            <h2 className="text-5xl font-black text-primary tracking-tighter leading-[1.1] mb-8 uppercase">
-              Study <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-600 italic">Methodology</span>
+            <h2 className="text-5xl font-black text-primary tracking-tighter leading-tight mb-8 uppercase overflow-visible py-1">
+              Study{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-600 italic px-1">Methodology</span>
             </h2>
             <p className="text-slate-500 text-base font-medium leading-relaxed mb-10 max-w-sm">
               Our 6-step methodology is designed to eliminate academic uncertainty and build peak performance muscle.

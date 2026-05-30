@@ -97,9 +97,9 @@ export const HomePlatformPreview = () => {
            <div className="max-w-3xl">
 
 
-              <h2 className="text-5xl md:text-7xl font-black leading-[1.05] text-slate-900 uppercase tracking-tighter mb-8 font-sans">
-                Live Digital <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-extrabold italic">
+              <h2 className="text-5xl md:text-7xl font-black leading-tight text-slate-900 uppercase tracking-tighter mb-8 font-sans overflow-visible py-1">
+                Live Digital{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 font-extrabold italic px-1">
                   Infrastructure.
                 </span>
               </h2>

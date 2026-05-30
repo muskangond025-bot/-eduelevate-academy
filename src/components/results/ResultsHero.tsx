@@ -251,7 +251,7 @@ export const ResultsHero = () => {
       <motion.div
         animate={{ x: leftFloaterX, y: leftFloaterY + 5 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="absolute left-[10%] top-[45%] hidden xl:flex flex-col bg-white/[0.02] border border-white/5 p-4 rounded-2xl backdrop-blur-md shadow-2xl pointer-events-none select-none z-20"
+        className="absolute left-[3%] top-[30%] hidden xl:flex flex-col bg-white/[0.02] border border-white/5 p-4 rounded-2xl backdrop-blur-md shadow-2xl pointer-events-none select-none z-20"
       >
         <div className="flex items-center gap-2 mb-1.5 font-mono text-[7px] text-slate-400">
           <Activity size={8} className="text-emerald-500 animate-pulse" />
@@ -265,7 +265,7 @@ export const ResultsHero = () => {
       <motion.div
         animate={{ x: rightFloaterX, y: rightFloaterY - 5 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="absolute right-[10%] top-[45%] hidden xl:flex flex-col bg-white/[0.02] border border-white/5 p-4 rounded-2xl backdrop-blur-md shadow-2xl pointer-events-none select-none z-20"
+        className="absolute right-[3%] top-[30%] hidden xl:flex flex-col bg-white/[0.02] border border-white/5 p-4 rounded-2xl backdrop-blur-md shadow-2xl pointer-events-none select-none z-20"
       >
         <div className="flex items-center gap-2 mb-1.5 font-mono text-[7px] text-slate-400">
           <Award size={8} className="text-amber-500" />

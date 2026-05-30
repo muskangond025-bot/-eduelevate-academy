@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useSpring } from 'motion/react';
-import { Globe, Smartphone, Users, Gift, ArrowRight, Sparkles, Award, Activity, Briefcase, GraduationCap, ChevronRight, Flame, Check, Lock } from 'lucide-react';
+import { Globe, Smartphone, Users, Gift, ArrowRight, Sparkles, Award, Activity, Briefcase, GraduationCap, ChevronRight, Flame, Check, Lock, Pause, Play, Folder } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const ALUMNI_DATA = [
@@ -177,10 +177,10 @@ export const HomeGlobalAlumni = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-black text-slate-900 leading-none uppercase italic tracking-tighter mb-8 font-sans"
+            className="text-5xl md:text-7xl font-black text-slate-900 leading-tight uppercase italic tracking-tighter mb-8 font-sans overflow-visible py-1"
           >
-            Global Success <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 not-italic font-extrabold">
+            Global Success{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 not-italic font-extrabold px-1">
               Network.
             </span>
           </motion.h2>
@@ -563,10 +563,10 @@ export const HomeScholarshipDrive = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-none uppercase italic tracking-tighter mb-6 font-sans"
+              className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-tight uppercase italic tracking-tighter mb-6 font-sans overflow-visible py-1"
             >
-              National Scholarship <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 not-italic font-extrabold">
+              National Scholarship{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 not-italic font-extrabold px-1">
                 Test 2026.
               </span>
             </motion.h2>
@@ -934,6 +934,7 @@ export const HomeMobileApp = () => {
   const [solvedCount, setSolvedCount] = useState(4);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+  const [isPaused, setIsPaused] = useState(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
   
@@ -1343,10 +1344,10 @@ export const HomeMobileApp = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl lg:text-6xl font-black text-slate-900 tracking-tighter uppercase italic leading-tight mb-8 font-sans"
+              className="text-4xl lg:text-6xl font-black text-slate-900 tracking-tighter uppercase italic leading-tight mb-8 font-sans overflow-visible py-1"
             >
-              Learning In <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 not-italic font-extrabold">
+              Learning In{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 not-italic font-extrabold px-1">
                 Your Pocket.
               </span>
             </motion.h2>
@@ -1395,6 +1396,7 @@ export const HomeMobileApp = () => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => {
+                  setIsPaused(false);
                   setToastMessage('📲 Connecting to App Store... Downloading quantum-encrypted student portal client...');
                   setShowToast(true);
                   setTimeout(() => setShowToast(false), 4000);
@@ -1407,6 +1409,7 @@ export const HomeMobileApp = () => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => {
+                  setIsPaused(false);
                   setToastMessage('📲 Connecting to Google Play Store... Downloading quantum-encrypted parent portal client...');
                   setShowToast(true);
                   setTimeout(() => setShowToast(false), 4000);
@@ -1435,22 +1438,44 @@ export const HomeMobileApp = () => {
             }}
           >
             <div className="w-10 h-10 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0">
-              <Smartphone size={20} className="animate-pulse" />
+              <Smartphone size={20} className={isPaused ? "animate-none" : "animate-pulse"} />
             </div>
-            <div>
-              <h4 className="text-sm font-black tracking-tight text-white flex items-center gap-1.5">
-                Download Initialized <Sparkles size={12} className="text-indigo-400" />
+            <div className="flex-1">
+              <h4 className="text-sm font-black tracking-tight text-white flex items-center gap-1.5 uppercase">
+                {isPaused ? "Download Paused" : "Download Initialized"} <Sparkles size={12} className="text-indigo-400 animate-spin" style={{ animationDuration: '4s' }} />
               </h4>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                {toastMessage}
+                {isPaused ? "Download task suspended. Connection pool held." : toastMessage}
               </p>
               <div className="w-full bg-slate-800 h-1 rounded-full overflow-hidden mt-3">
                 <motion.div 
                   initial={{ width: 0 }}
-                  animate={{ width: '100%' }}
-                  transition={{ duration: 3.5, ease: "easeInOut" }}
+                  animate={isPaused ? { width: "35%" } : { width: '100%' }}
+                  transition={isPaused ? { duration: 0 } : { duration: 3.5, ease: "easeInOut" }}
                   className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full"
                 />
+              </div>
+
+              {/* Pause & Folder controls */}
+              <div className="flex items-center gap-3 mt-3.5">
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsPaused(!isPaused);
+                  }}
+                  className="flex items-center gap-1 px-3 py-1 bg-white/10 hover:bg-white/20 border border-white/10 rounded-lg text-[9px] font-mono font-black tracking-wider uppercase transition-colors cursor-pointer select-none text-indigo-200"
+                >
+                  {isPaused ? <Play size={10} /> : <Pause size={10} />}
+                  {isPaused ? "Resume" : "Pause"}
+                </button>
+                <button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  className="flex items-center gap-1 px-3 py-1 bg-white/10 hover:bg-white/20 border border-white/10 rounded-lg text-[9px] font-mono font-black tracking-wider uppercase transition-colors cursor-pointer select-none text-indigo-200"
+                >
+                  <Folder size={10} /> Folder
+                </button>
               </div>
             </div>
           </motion.div>

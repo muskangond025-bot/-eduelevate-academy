@@ -57,9 +57,9 @@ export const StreamSelectionGuidance = () => {
                <Compass size={28} className="animate-spin-slow" />
             </motion.div>
             
-            <h2 className="text-4xl lg:text-6xl font-black text-white tracking-tighter mb-8 leading-none uppercase">
-              Confused about <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-500 italic">Stream Choice?</span>
+            <h2 className="text-4xl lg:text-6xl font-black text-white tracking-tighter mb-8 leading-tight uppercase overflow-visible py-1">
+              Confused about{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-500 italic px-1">Stream Choice?</span>
             </h2>
             
             <p className="text-slate-400 text-base font-medium mb-12 max-w-md leading-relaxed">

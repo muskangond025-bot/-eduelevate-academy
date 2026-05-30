@@ -245,8 +245,8 @@ export const ContactFormSection = () => {
               <span>Diagnostic Enquiry Node</span>
             </motion.div>
 
-            <h2 className="text-4xl md:text-6xl font-black text-slate-800 tracking-tighter uppercase italic leading-[0.9] mb-8">
-              Drop A <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-indigo-500 not-italic">Message.</span>
+            <h2 className="text-4xl md:text-6xl font-black text-slate-800 tracking-tighter uppercase italic leading-tight mb-8 overflow-visible py-1">
+              Drop A <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-indigo-500 not-italic px-1">Message.</span>
             </h2>
             <p className="text-lg text-slate-500 font-semibold mb-12 max-w-xl leading-relaxed">
               Whether it's admissions consulting, counseling requests, or just clarifying a doubt, our academic cell is prepared to map out your success parameters.

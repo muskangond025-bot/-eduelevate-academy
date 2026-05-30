@@ -377,7 +377,7 @@ export const CounselorCallPage = () => {
 
                     <div className="space-y-2">
                       <h4 className="text-2xl font-black uppercase tracking-tight text-white">Call-Back Confirmed</h4>
-                      <p className="text-slate-450 leading-relaxed text-sm font-semibold max-w-sm">
+                      <p className="text-slate-300 leading-relaxed text-sm font-semibold max-w-sm">
                         Node synchronized successfully. Senior HOD advisor will contact you at your chosen slot: <br />
                         <span className="text-orange-400 font-bold block mt-2 font-mono">{formData.slot}</span>
                       </p>
