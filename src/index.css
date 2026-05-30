@@ -7,15 +7,46 @@
   --spacing-4\.5: 1.125rem;
   --spacing-5\.5: 1.375rem;
 
-  --color-primary: #1E3A8A; /* Vibrant Royal Blue */
-  --color-primary-light: #3B82F6;
-  --color-secondary: #4F46E5; /* Indigo */
-  --color-accent: #F59E0B; /* Amber */
-  --color-accent-orange: #F97316; /* Orange highlight */
+  --color-primary: #7C3AED; /* Premium Royal Purple */
+  --color-primary-light: #A78BFA; /* Light Purple */
+  --color-secondary: #6D28D9; /* Deep Purple */
+  --color-accent: #A855F7; /* Vibrant Purple */
+  --color-accent-orange: #8B5CF6; /* High-fidelity Violet Purple */
   --color-surface: #FFFFFF; /* Crisp card panels */
   --color-bg-light: #FAF9F6; /* Premium Alabaster off-white */
   --color-bg-dark: #060813; /* Futuristic cyber navy background */
   --color-surface-dark: #090B16; /* Deep futuristic deck card panel */
+
+  /* Map all text highlight and gradient classes to premium purples */
+  --color-orange-400: #C084FC;
+  --color-orange-500: #A855F7;
+  --color-orange-600: #7C3AED;
+
+  --color-amber-200: #E9D5FF;
+  --color-amber-400: #C084FC;
+  --color-amber-500: #A855F7;
+  --color-amber-600: #7C3AED;
+
+  --color-pink-500: #D8B4FE;
+  --color-pink-600: #A855F7;
+
+  --color-rose-500: #D8B4FE;
+  --color-rose-600: #A855F7;
+
+  --color-cyan-300: #E9D5FF;
+  --color-cyan-400: #C084FC;
+  --color-cyan-500: #8B5CF6;
+
+  --color-emerald-400: #E9D5FF;
+  --color-emerald-500: #C084FC;
+  --color-emerald-600: #8B5CF6;
+
+  --color-blue-500: #A855F7;
+  --color-blue-600: #7C3AED;
+
+  --color-indigo-400: #A78BFA;
+  --color-indigo-500: #8B5CF6;
+  --color-indigo-600: #7C3AED;
   
   --spacing-8: 0.5rem;
   --spacing-16: 1rem;
@@ -29,9 +60,28 @@
   body {
     @apply font-sans text-slate-900 bg-surface;
   }
-  h1, h2, h3, h4 {
+  h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-tight text-primary;
+    line-height: 1.15 !important;
+    padding-left: 0.05em !important;
+    padding-right: 0.05em !important;
+    overflow: visible !important;
   }
+}
+
+/* Global anti-clipping safeguards for slanted text and gradients */
+.italic {
+  padding-left: 0.08em !important;
+  padding-right: 0.08em !important;
+  overflow: visible !important;
+}
+
+.bg-clip-text {
+  padding-left: 0.08em !important;
+  padding-right: 0.08em !important;
+  margin-left: -0.08em !important;
+  margin-right: -0.08em !important;
+  overflow: visible !important;
 }
 
 .hero-gradient {
