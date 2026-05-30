@@ -153,7 +153,7 @@ const KineticWord = ({
               x: letterOffset.x,
               scale: letterOffset.scale,
               skewX: letterOffset.skew,
-              color: isHovered ? '#6366f1' : 'inherit'
+              color: 'inherit'
             }}
             transition={{
               type: "spring",
