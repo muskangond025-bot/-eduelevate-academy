@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Play, Sparkles, Target, TrendingUp, Users, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import pixverseVideo from '../../assets/pixverse.mp4';
 
 export const HomeHero = () => {
   const navigate = useNavigate();
@@ -127,13 +128,16 @@ export const HomeHero = () => {
               {/* Decorative behind-glow */}
               <div className="absolute -inset-4 bg-gradient-to-tr from-primary-light to-secondary rounded-[2.5rem] opacity-30 blur-2xl animate-pulse" />
               
-              {/* Main Image Card */}
+              {/* Main Video Card */}
               <div className="relative aspect-[4/5] w-full rounded-[2.5rem] overflow-hidden border-2 border-white/10 shadow-2xl bg-slate-900 group">
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 z-10" />
-                <img 
-                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop" 
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 z-10 pointer-events-none" />
+                <video 
+                  src={pixverseVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-                  alt="Academy Student"
                 />
               </div>
 
@@ -202,13 +206,12 @@ export const HomeHero = () => {
                 <X size={18} />
               </button>
 
-              {/* YouTube Iframe Playing Science/Educational Space Visuals */}
-              <iframe 
-                src="https://www.youtube.com/embed/9No-FiFp_2g?autoplay=1&mute=1" 
-                title="Academy Intro Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowFullScreen
-                className="w-full h-full border-0 z-10"
+              {/* Local HTML5 Video Player playing Pixverse Video */}
+              <video 
+                src={pixverseVideo}
+                autoPlay
+                controls
+                className="w-full h-full object-contain bg-slate-950 z-10"
               />
             </motion.div>
           </motion.div>
