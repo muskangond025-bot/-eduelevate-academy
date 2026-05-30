@@ -111,7 +111,7 @@ export const CounselorCallPage = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setIsHovered(false)}
-      className="bg-[#03050B] text-white min-h-screen relative overflow-hidden select-none pb-36 pt-28"
+      className="bg-bg-dark text-white min-h-screen relative overflow-hidden select-none pb-36 pt-28"
     >
       {/* Cybernetic Grid Canvas */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
@@ -159,7 +159,7 @@ export const CounselorCallPage = () => {
           
           {/* COLUMN 1: INTERACTIVE SIMULATOR CARD */}
           <div className="lg:col-span-6">
-            <div className="bg-[#090b16]/75 border border-white/10 rounded-[3rem] p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden group/card flex flex-col justify-between min-h-[500px]">
+            <div className="bg-surface-dark/75 border border-white/10 rounded-[3rem] p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden group/card flex flex-col justify-between min-h-[500px]">
               <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 to-rose-500/5 opacity-40 blur-2xl pointer-events-none" />
 
               {/* Bezel Terminal Header */}
@@ -193,7 +193,7 @@ export const CounselorCallPage = () => {
                       {/* Pulse Dial Trigger */}
                       <button 
                         onClick={startVoipCall}
-                        className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white border-4 border-[#03050B] shadow-[0_0_40px_rgba(249,115,22,0.3)] hover:scale-105 transition-all duration-300 relative group/btn"
+                        className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-white border-4 border-bg-dark shadow-[0_0_40px_rgba(249,115,22,0.3)] hover:scale-105 transition-all duration-300 relative group/btn"
                       >
                         <div className="absolute -inset-2 border-2 border-dashed border-orange-500/30 rounded-full animate-spin group-hover/btn:animate-[spin_4s_linear_infinite]" />
                         <PhoneCall size={32} className="animate-pulse" />
@@ -214,7 +214,7 @@ export const CounselorCallPage = () => {
                       className="text-center flex flex-col items-center w-full space-y-6"
                     >
                       {/* Soundwave/Aura Dial representation */}
-                      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-rose-600 to-red-500 flex items-center justify-center text-white border-4 border-[#03050B] shadow-[0_0_40px_rgba(239,68,68,0.3)] relative">
+                      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-rose-600 to-red-500 flex items-center justify-center text-white border-4 border-bg-dark shadow-[0_0_40px_rgba(239,68,68,0.3)] relative">
                         {callState === 'connected' && (
                           <div className="absolute inset-0 rounded-full bg-rose-500/20 animate-ping" />
                         )}
@@ -236,7 +236,7 @@ export const CounselorCallPage = () => {
                       </div>
 
                       {/* Real-time scrolling VoIP logger */}
-                      <div className="w-full h-24 bg-[#03050B]/80 rounded-2xl border border-white/5 p-4 overflow-y-auto text-left font-mono text-[8px] uppercase tracking-wider text-slate-500 space-y-1 select-none">
+                      <div className="w-full h-24 bg-bg-dark/80 rounded-2xl border border-white/5 p-4 overflow-y-auto text-left font-mono text-[8px] uppercase tracking-wider text-slate-500 space-y-1 select-none">
                         {voipLogs.map((log, idx) => (
                           <div key={idx} className="flex gap-2">
                             <span className="text-indigo-400 font-bold">&gt;&gt;</span>
@@ -279,7 +279,7 @@ export const CounselorCallPage = () => {
 
           {/* COLUMN 2: CALENDAR CALL-BACK BOOKING FORM */}
           <div className="lg:col-span-6">
-            <div className="bg-[#090b16]/75 border border-white/10 rounded-[3rem] p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden group/form min-h-[500px] flex flex-col justify-between">
+            <div className="bg-surface-dark/75 border border-white/10 rounded-[3rem] p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden group/form min-h-[500px] flex flex-col justify-between">
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-rose-500/5 opacity-40 blur-2xl pointer-events-none" />
 
               <div className="text-[10px] font-mono font-black text-indigo-400 tracking-widest uppercase mb-8 flex items-center justify-between border-b border-white/10 pb-6">
@@ -305,7 +305,7 @@ export const CounselorCallPage = () => {
                         placeholder="Type your name"
                         value={formData.name}
                         onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                        className="w-full bg-[#03050B] border border-white/10 rounded-2xl py-4.5 px-6 font-mono text-sm placeholder:text-slate-650 focus:border-indigo-500/40 focus:bg-[#03050B]/90 transition-all leading-normal text-white"
+                        className="w-full bg-bg-dark border border-white/10 rounded-2xl py-4.5 px-6 font-mono text-sm placeholder:text-slate-650 focus:border-indigo-500/40 focus:bg-bg-dark/90 transition-all leading-normal text-white"
                       />
                     </div>
 
@@ -317,7 +317,7 @@ export const CounselorCallPage = () => {
                         placeholder="Type phone vector"
                         value={formData.phone}
                         onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                        className="w-full bg-[#03050B] border border-white/10 rounded-2xl py-4.5 px-6 font-mono text-sm placeholder:text-slate-650 focus:border-indigo-500/40 focus:bg-[#03050B]/90 transition-all leading-normal text-white"
+                        className="w-full bg-bg-dark border border-white/10 rounded-2xl py-4.5 px-6 font-mono text-sm placeholder:text-slate-650 focus:border-indigo-500/40 focus:bg-bg-dark/90 transition-all leading-normal text-white"
                       />
                     </div>
 
@@ -327,7 +327,7 @@ export const CounselorCallPage = () => {
                         <select 
                           value={formData.grade}
                           onChange={(e) => setFormData(prev => ({ ...prev, grade: e.target.value }))}
-                          className="w-full bg-[#03050B] border border-white/10 rounded-2xl py-4.5 px-5 font-mono text-xs focus:border-indigo-500/40 focus:bg-[#03050B]/90 transition-all text-white"
+                          className="w-full bg-bg-dark border border-white/10 rounded-2xl py-4.5 px-5 font-mono text-xs focus:border-indigo-500/40 focus:bg-bg-dark/90 transition-all text-white"
                         >
                           <option>10th → 11th</option>
                           <option>11th Student</option>
@@ -341,7 +341,7 @@ export const CounselorCallPage = () => {
                         <select 
                           value={formData.slot}
                           onChange={(e) => setFormData(prev => ({ ...prev, slot: e.target.value }))}
-                          className="w-full bg-[#03050B] border border-white/10 rounded-2xl py-4.5 px-5 font-mono text-xs focus:border-indigo-500/40 focus:bg-[#03050B]/90 transition-all text-white"
+                          className="w-full bg-bg-dark border border-white/10 rounded-2xl py-4.5 px-5 font-mono text-xs focus:border-indigo-500/40 focus:bg-bg-dark/90 transition-all text-white"
                         >
                           <option>10:00 AM - 12:00 PM</option>
                           <option>12:00 PM - 02:00 PM</option>

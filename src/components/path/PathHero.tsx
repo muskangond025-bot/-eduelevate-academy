@@ -46,7 +46,7 @@ export const PathHero = () => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      className="pt-32 pb-24 bg-[#03050B] text-white relative overflow-hidden min-h-[580px] flex items-center"
+      className="pt-32 pb-24 bg-bg-dark text-white relative overflow-hidden min-h-[580px] flex items-center"
     >
       {/* Cybernetic Grid Blueprint Canvas */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />

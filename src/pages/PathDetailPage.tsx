@@ -143,7 +143,7 @@ export const PathDetailPage = () => {
 
   if (!config) {
     return (
-      <div className="bg-[#03050B] min-h-screen text-white flex flex-col items-center justify-center p-8 select-none">
+      <div className="bg-bg-dark min-h-screen text-white flex flex-col items-center justify-center p-8 select-none">
         <Cpu size={48} className="text-rose-500 animate-spin mb-6" />
         <h2 className="text-3xl font-black uppercase tracking-widest mb-4">Node Disconnected</h2>
         <p className="text-slate-400 font-bold mb-8">The requested path configuration node does not exist in our index.</p>
@@ -169,7 +169,7 @@ export const PathDetailPage = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setIsHovered(false)}
-      className="bg-[#03050B] text-white min-h-screen relative overflow-hidden select-none pb-36 pt-20"
+      className="bg-bg-dark text-white min-h-screen relative overflow-hidden select-none pb-36 pt-20"
     >
       {/* Cybernetic blueprint canvas grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
@@ -226,7 +226,7 @@ export const PathDetailPage = () => {
 
           {/* TELEMETRY METRIC WIDGETS */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-[#090b16]/75 border border-white/10 rounded-[2.5rem] p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden group">
+            <div className="bg-surface-dark/75 border border-white/10 rounded-[2.5rem] p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-rose-500/5 opacity-40 blur-2xl pointer-events-none" />
               
               <div className="text-[10px] font-mono font-black text-indigo-400 tracking-widest uppercase mb-8 flex items-center justify-between">
@@ -282,7 +282,7 @@ export const PathDetailPage = () => {
                     {/* Pulsing indicator node */}
                     <div className={`absolute -left-[41px] top-1.5 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
                       isActive 
-                        ? 'bg-[#03050B] border-indigo-500 scale-110 shadow-lg shadow-indigo-500/20' 
+                        ? 'bg-bg-dark border-indigo-500 scale-110 shadow-lg shadow-indigo-500/20' 
                         : 'bg-slate-900 border-white/10 group-hover/node:border-indigo-500/40 group-hover/node:scale-105'
                     }`}>
                       <div className={`w-2 h-2 rounded-full transition-colors ${isActive ? 'bg-indigo-400' : 'bg-slate-600 group-hover/node:bg-indigo-400/60'}`} />
@@ -350,7 +350,7 @@ export const PathDetailPage = () => {
               </div>
             </div>
 
-            <div className="bg-[#090b16]/75 border border-white/10 rounded-[2.8rem] p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden group">
+            <div className="bg-surface-dark/75 border border-white/10 rounded-[2.8rem] p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 to-indigo-500/5 opacity-40 blur-2xl pointer-events-none" />
 
               <div className="text-center mb-10 flex flex-col items-center">

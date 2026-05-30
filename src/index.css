@@ -8,8 +8,11 @@
   --color-primary-light: #3B82F6;
   --color-secondary: #4F46E5; /* Indigo */
   --color-accent: #F59E0B; /* Amber */
-  --color-surface: #F9FAFB;
-  --color-bg-light: #F3F4F6;
+  --color-accent-orange: #F97316; /* Orange highlight */
+  --color-surface: #FFFFFF; /* Crisp card panels */
+  --color-bg-light: #FAF9F6; /* Premium Alabaster off-white */
+  --color-bg-dark: #060813; /* Futuristic cyber navy background */
+  --color-surface-dark: #090B16; /* Deep futuristic deck card panel */
   
   --spacing-8: 0.5rem;
   --spacing-16: 1rem;

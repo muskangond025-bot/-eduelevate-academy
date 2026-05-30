@@ -144,7 +144,7 @@ export const PerformanceHero = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setIsHovered(false)}
-      className="pt-32 pb-24 bg-[#060813] relative overflow-hidden text-white border-b border-white/5"
+      className="pt-32 pb-24 bg-bg-dark relative overflow-hidden text-white border-b border-white/5"
     >
       {/* Spotlight dynamic glow */}
       <div 

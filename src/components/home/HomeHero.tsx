@@ -184,7 +184,7 @@ export const HomeHero = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsVideoOpen(false)}
-            className="fixed inset-0 bg-[#03050B]/90 backdrop-blur-2xl z-[100] flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
+            className="fixed inset-0 bg-bg-dark/90 backdrop-blur-2xl z-[100] flex items-center justify-center p-4 sm:p-6 md:p-8 select-none"
           >
             <motion.div 
               initial={{ scale: 0.95, y: 15 }}

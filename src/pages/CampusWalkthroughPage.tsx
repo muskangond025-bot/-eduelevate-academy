@@ -144,7 +144,7 @@ export const CampusWalkthroughPage = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setIsHovered(false)}
-      className="bg-[#03050B] text-white min-h-screen relative overflow-hidden select-none pb-36 pt-28"
+      className="bg-bg-dark text-white min-h-screen relative overflow-hidden select-none pb-36 pt-28"
     >
       {/* Cybernetic Grid Canvas */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
@@ -229,7 +229,7 @@ export const CampusWalkthroughPage = () => {
                         }}
                         className={`p-6 rounded-[2.8rem] border transition-all duration-500 flex flex-col justify-between min-h-[380px] cursor-pointer relative overflow-hidden backdrop-blur-xl ${
                           isSelected 
-                            ? 'bg-[#0A0D1A] border-indigo-500/40 text-white z-10' 
+                            ? 'bg-surface-dark border-indigo-500/40 text-white z-10' 
                             : 'bg-white/[0.01] border-white/5 hover:bg-white/[0.02] hover:border-white/10'
                         }`}
                       >
@@ -243,7 +243,7 @@ export const CampusWalkthroughPage = () => {
                             }`} 
                           />
                           <div className="absolute top-4 left-4 z-20">
-                            <span className="text-[8px] font-mono font-black text-white bg-[#03050B]/85 border border-white/10 px-2.5 py-1 rounded-full uppercase tracking-wider">
+                            <span className="text-[8px] font-mono font-black text-white bg-bg-dark/85 border border-white/10 px-2.5 py-1 rounded-full uppercase tracking-wider">
                               {item.badge}
                             </span>
                           </div>
@@ -328,7 +328,7 @@ export const CampusWalkthroughPage = () => {
 
                 {/* VISITOR DETAILS FORM */}
                 <div className="lg:col-span-5">
-                  <div className="bg-[#090b16]/75 border border-white/10 rounded-[2.8rem] p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden flex flex-col justify-between">
+                  <div className="bg-surface-dark/75 border border-white/10 rounded-[2.8rem] p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden flex flex-col justify-between">
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-rose-500/5 opacity-40 blur-2xl pointer-events-none" />
 
                     <div className="text-[10px] font-mono font-black text-indigo-400 tracking-widest uppercase mb-8 flex items-center justify-between border-b border-white/10 pb-6">
@@ -345,19 +345,19 @@ export const CampusWalkthroughPage = () => {
                           placeholder="Type visitor name"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
-                          className="w-full bg-[#03050B] border border-white/10 rounded-2xl py-4.5 px-6 font-mono text-xs placeholder:text-slate-650 focus:border-indigo-500/40 focus:bg-[#03050B]/90 transition-all leading-normal text-white"
+                          className="w-full bg-bg-dark border border-white/10 rounded-2xl py-4.5 px-6 font-mono text-xs placeholder:text-slate-650 focus:border-indigo-500/40 focus:bg-bg-dark/90 transition-all leading-normal text-white"
                         />
                       </div>
-
+ 
                       <div className="space-y-2">
                         <label className="text-[10px] font-mono font-black text-slate-400 uppercase tracking-widest">Phone Number</label>
                         <input 
                           type="tel" 
                           required
-                          placeholder="Type phone vector"
+                          placeholder="Type phone number"
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          className="w-full bg-[#03050B] border border-white/10 rounded-2xl py-4.5 px-6 font-mono text-xs placeholder:text-slate-650 focus:border-indigo-500/40 focus:bg-[#03050B]/90 transition-all leading-normal text-white"
+                          className="w-full bg-bg-dark border border-white/10 rounded-2xl py-4.5 px-6 font-mono text-xs placeholder:text-slate-650 focus:border-indigo-500/40 focus:bg-bg-dark/90 transition-all leading-normal text-white"
                         />
                       </div>
 
@@ -378,7 +378,7 @@ export const CampusWalkthroughPage = () => {
               key="success-state"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="max-w-xl mx-auto bg-[#090b16]/75 border border-white/10 rounded-[3rem] p-10 backdrop-blur-xl shadow-2xl flex flex-col items-center justify-center text-center space-y-8 relative overflow-hidden"
+              className="max-w-xl mx-auto bg-surface-dark/75 border border-white/10 rounded-[3rem] p-10 backdrop-blur-xl shadow-2xl flex flex-col items-center justify-center text-center space-y-8 relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-rose-500/5 opacity-40 blur-2xl pointer-events-none" />
 
@@ -400,7 +400,7 @@ export const CampusWalkthroughPage = () => {
               </div>
 
               {/* Digital Holographic Pass Summary */}
-              <div className="bg-[#03050B] border border-white/5 rounded-[2rem] p-6 w-full text-left font-mono text-[9px] uppercase tracking-widest text-slate-500 space-y-3 shadow-inner relative">
+              <div className="bg-bg-dark border border-white/5 rounded-[2rem] p-6 w-full text-left font-mono text-[9px] uppercase tracking-widest text-slate-500 space-y-3 shadow-inner relative">
                 <div className="absolute top-4 right-4 text-emerald-400 font-extrabold text-[7.5px] border border-emerald-500/20 bg-emerald-500/5 px-2 py-0.5 rounded shadow-sm">ACTIVE PASS</div>
                 <div className="space-y-1.5">
                   <span className="text-[7.5px] text-slate-600 font-bold block">TARGET NODE</span>
