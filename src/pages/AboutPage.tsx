@@ -13,7 +13,7 @@ import { SuccessStories } from '../components/about/SuccessStories';
 import { AboutCTA } from '../components/about/AboutCTA';
 
 export const AboutPage = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [loadingLogs, setLoadingLogs] = useState<string[]>([]);

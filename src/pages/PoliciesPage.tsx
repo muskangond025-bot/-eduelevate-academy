@@ -670,7 +670,7 @@ const MagneticBackButtonExtended = ({
 
 export const PoliciesPage = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [sectionCoords, setSectionCoords] = useState({ x: 0, y: 0 });
   const [isSectionHovered, setIsSectionHovered] = useState(false);
   const [loadingLogs, setLoadingLogs] = useState<string[]>([]);
