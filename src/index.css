@@ -4,6 +4,9 @@
   --font-sans: Georgia, serif;
   --font-display: Georgia, serif;
 
+  --spacing-4\.5: 1.125rem;
+  --spacing-5\.5: 1.375rem;
+
   --color-primary: #1E3A8A; /* Vibrant Royal Blue */
   --color-primary-light: #3B82F6;
   --color-secondary: #4F46E5; /* Indigo */
