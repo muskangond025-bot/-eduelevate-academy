@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Navigation, Sparkles } from 'lucide-react';
+import locationHeroImg from '../../assets/location_hero.png';
 
 const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: number }; colorClass: string }) => {
   const [sparks, setSparks] = useState<{ x: number; y: number; id: number }[]>([]);
@@ -195,100 +196,154 @@ export const LocationHero = ({ city = "Pune", area = "Kothrud" }) => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="pt-40 pb-28 bg-[#060813] relative overflow-hidden text-white border-b border-white/5"
+      className="pt-24 pb-28 bg-[#060813] relative overflow-hidden text-white border-b border-white/5"
     >
-      {/* Dynamic shifting coordinates warp mesh grid */}
-      <GravityWarpMeshGrid mouseCoords={sectionCoords} isActive={isSectionHovered} />
+      {/* Animated Background Theme Wrapper */}
+      <motion.div
+        initial={{ opacity: 0, scale: 1.05, y: -30 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute inset-0 z-0"
+      >
+        {/* Dynamic shifting coordinates warp mesh grid */}
+        <GravityWarpMeshGrid mouseCoords={sectionCoords} isActive={isSectionHovered} />
 
-      {/* Subtle HSL spotlight nebulae cursor tracking */}
-      <div
-        className="absolute pointer-events-none transition-opacity duration-75 blur-[120px] rounded-full z-0"
-        style={{
-          opacity: isSectionHovered ? 0.35 : 0,
-          left: `${sectionCoords.x}px`,
-          top: `${sectionCoords.y}px`,
-          width: '550px',
-          height: '550px',
-          transform: 'translate(-50%, -50%)',
-          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(6, 8, 19, 0.05) 50%, transparent 100%)'
-        }}
-      />
+        {/* Subtle HSL spotlight nebulae cursor tracking */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: isSectionHovered ? 0.35 : 0.18, scale: 1 }}
+          transition={{ duration: 1.6, ease: "easeOut" }}
+          className="absolute pointer-events-none blur-[120px] rounded-full z-0"
+          style={{
+            left: sectionCoords.x === 0 ? "50%" : `${sectionCoords.x}px`,
+            top: sectionCoords.y === 0 ? "45%" : `${sectionCoords.y}px`,
+            width: '550px',
+            height: '550px',
+            transform: 'translate(-50%, -50%)',
+            background: 'radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(6, 8, 19, 0.05) 50%, transparent 100%)'
+          }}
+        />
+
+        {/* Layout lines guidelines */}
+        <div className="absolute left-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
+        <div className="absolute right-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
+      </motion.div>
 
       {/* Spark Particle Trails */}
       <SparkParticlesTrail coords={sectionCoords} colorClass="bg-cyan-400" />
 
-      {/* Layout lines guidelines */}
-      <div className="absolute left-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
-      <div className="absolute right-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 select-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 select-none">
         
-        {/* Visual Badge Header with spin reticles */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-indigo-400 font-black text-[10px] uppercase tracking-widest mb-8 relative overflow-hidden"
-        >
-          <div className="w-5 h-5 rounded-full border border-indigo-500/40 relative flex items-center justify-center shrink-0">
-            <div className="absolute -inset-0.5 border border-dashed border-cyan-400/40 rounded-full animate-spin" style={{ animationDuration: '10s' }} />
-            <MapPin size={10} className="text-indigo-400" />
-          </div>
-          <span>Premier Learning Hub</span>
-        </motion.div>
-        
-        {/* Main Title with word reveal split stagger and gradient overlay */}
-        <h1 className="text-5xl lg:text-8xl font-black mb-8 tracking-tighter uppercase leading-[0.95] max-w-4xl mx-auto">
-          <motion.span
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, type: "spring", stiffness: 100 }}
-            className="block overflow-hidden"
-          >
-            Coaching Classes
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, type: "spring", stiffness: 100 }}
-            className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-300 font-extrabold italic mt-2"
-          >
-            In {area}, {city}.
-          </motion.span>
-        </h1>
-        
-        {/* Subtitle details */}
-        <motion.p 
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="text-slate-400 max-w-2xl mx-auto font-semibold leading-relaxed text-sm md:text-base px-4 mb-14"
-        >
-          Expert-led JEE, NEET & Foundation programs tailored for the academic excellence of students in {area}.
-        </motion.p>
-
-        {/* Holographic Magnetic Action Button */}
-        <motion.div 
-           initial={{ opacity: 0, y: 15 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ delay: 0.5 }}
-           className="flex justify-center"
-        >
-            <MagneticNavigationButton 
-              className="px-12 py-5.5 bg-white text-[#060813] hover:bg-gradient-to-r hover:from-indigo-500 hover:to-cyan-400 hover:text-white cursor-pointer"
-              laserColor="rgba(99, 102, 241, 0.4)"
-              onClick={() => window.open('https://maps.google.com/?q=18.5089,73.8078', '_blank')}
+        {/* Split Grid for Title + 4K Image (No Overlay, Zero Text overlap) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center text-left">
+          
+          {/* Left Column: Clean text and typography */}
+          <div className="lg:col-span-7 flex flex-col items-start w-full">
+            {/* Visual Badge Header with spin reticles */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-indigo-400 font-black text-[10px] uppercase tracking-widest mb-8 relative overflow-hidden"
             >
-               <Navigation size={14} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-               <span>Get Directions</span>
-            </MagneticNavigationButton>
-        </motion.div>
+              <div className="w-5 h-5 rounded-full border border-indigo-500/40 relative flex items-center justify-center shrink-0">
+                <div className="absolute -inset-0.5 border border-dashed border-cyan-400/40 rounded-full animate-spin" style={{ animationDuration: '10s' }} />
+                <MapPin size={10} className="text-indigo-400" />
+              </div>
+              <span>Premier Learning Hub</span>
+            </motion.div>
+            
+            {/* Main Title with word reveal split stagger and gradient overlay */}
+            <h1 className="text-5xl lg:text-7xl font-black mb-6 tracking-tighter uppercase leading-[0.95] w-full">
+              <motion.span
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, type: "spring", stiffness: 100 }}
+                className="block overflow-hidden"
+              >
+                Coaching Classes
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25, type: "spring", stiffness: 100 }}
+                className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-300 font-extrabold italic mt-2"
+              >
+                In {area}, {city}.
+              </motion.span>
+            </h1>
+            
+            {/* Subtitle details */}
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-slate-400 font-semibold leading-relaxed text-sm md:text-base mb-10 max-w-xl"
+            >
+              Expert-led JEE, NEET & Foundation programs tailored for the academic excellence of students in {area}.
+            </motion.p>
+
+            {/* Holographic Magnetic Action Button */}
+            <motion.div 
+               initial={{ opacity: 0, y: 15 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ delay: 0.5 }}
+               className="flex justify-start"
+            >
+                <MagneticNavigationButton 
+                  className="px-12 py-5.5 bg-white text-[#060813] hover:bg-gradient-to-r hover:from-indigo-500 hover:to-cyan-400 hover:text-white cursor-pointer"
+                  laserColor="rgba(99, 102, 241, 0.4)"
+                  onClick={() => window.open('https://maps.google.com/?q=18.5089,73.8078', '_blank')}
+                >
+                   <Navigation size={14} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                   <span>Get Directions</span>
+                </MagneticNavigationButton>
+            </motion.div>
+          </div>
+
+          {/* Right Column: 4K Real Stock Image framed elegantly (No dark overlays, No text overlap) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 60, damping: 15, delay: 0.2 }}
+            style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+            className="lg:col-span-5 w-full flex justify-center"
+          >
+            <div 
+              className="w-full max-w-md aspect-[4/3] rounded-[3rem] border-8 border-white/10 overflow-hidden shadow-2xl relative bg-slate-900/60 group/img cursor-pointer"
+              style={{ transform: "translateZ(10px)", transformStyle: "preserve-3d" }}
+            >
+              {/* Border laser sweep highlight trailing cursor inside card */}
+              <div
+                className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover/img:opacity-100 transition-opacity duration-500 z-30"
+                style={{
+                  background: `radial-gradient(150px circle, rgba(99, 102, 241, 0.45), transparent 80%)`,
+                  padding: '1.2px',
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude'
+                }}
+              />
+
+              {/* Sparks Trail */}
+              <div className="absolute inset-0 z-10 pointer-events-none" />
+
+              {/* The clean, ultra HD 4K image without overlays */}
+              <img 
+                src={locationHeroImg} 
+                alt="Academy Pune Branch Hub" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
+              />
+
+              {/* Corner tech badge indicating 4K authenticity */}
+              <span className="absolute bottom-4 right-6 font-mono text-[5px] text-white bg-slate-900/60 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded uppercase tracking-wider z-20">
+                [NODE_FOCAL: 4K_UHD // CALIBRATED]
+              </span>
+            </div>
+          </motion.div>
+
+        </div>
       </div>
 
-      {/* Simulated cyber telemetry logs footer */}
-      <div className="absolute bottom-4 left-6 right-6 flex justify-between font-mono text-[6px] text-slate-600 tracking-wider pointer-events-none select-none z-10">
-        <span>[SYS_INTEGRITY: SECURE // LOCATION_SUITE: IN_USE]</span>
-        <span>[CENTER_CODE: KTHRD_01 // COORDS: 18.5089° N, 73.8078° E]</span>
-      </div>
     </section>
   );
 };

@@ -8,6 +8,36 @@ export const HomeHero = () => {
   const navigate = useNavigate();
   const [isVideoOpen, setIsVideoOpen] = React.useState(false);
   const [bookState, setBookState] = React.useState<'closed' | 'open' | 'zoomed' | 'fullscreen'>('closed');
+  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+  const [tilt, setTilt] = React.useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const normX = (x - centerX) / centerX;
+    const normY = (y - centerY) / centerY;
+    
+    setMousePos({ x, y });
+    setTilt({ x: normX, y: normY });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+  };
+
+  const handleVideoEnded = () => {
+    // Smooth scroll to the second section if user has not scrolled manually
+    if (window.scrollY < 50) {
+      const sections = document.querySelectorAll('section');
+      if (sections && sections.length > 1) {
+        sections[1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
 
   React.useEffect(() => {
     // Stage transition timers
@@ -31,7 +61,11 @@ export const HomeHero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100vh-5rem)] flex items-center bg-black text-white overflow-hidden pt-24 pb-16">
+    <section 
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative min-h-[calc(100vh-5rem)] flex items-center bg-black text-white overflow-hidden pt-24 pb-16"
+    >
       {/* Golden Book Cinematic Entrance Overlay */}
       {bookState !== 'fullscreen' && (
         <motion.div 
@@ -118,13 +152,13 @@ export const HomeHero = () => {
         </motion.div>
       )}
 
-      {/* Loop full-screen background video */}
+      {/* Full-screen background video triggers auto-scroll on completion */}
       <video 
         src={teacherClassroomVideo}
         autoPlay
-        loop
         muted
         playsInline
+        onEnded={handleVideoEnded}
         className="absolute inset-0 w-full h-full object-cover opacity-95 pointer-events-none z-0"
       />
       {/* Cinematic dark overlays to guarantee legibility */}

@@ -75,46 +75,59 @@ const BranchInfoItem = ({
 
   return (
     <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`p-6 rounded-3xl border transition-all duration-500 relative overflow-hidden backdrop-blur-xl flex gap-6 items-start ${
-        isSelfHovered
-          ? 'scale-[1.02] bg-white border-indigo-500/30 shadow-[0_15px_30px_rgba(99,102,241,0.05)]'
-          : isDimmed
-            ? 'opacity-45 scale-[0.985] blur-[0.5px] border-slate-200/20 bg-white/20'
-            : 'bg-white/40 border-slate-200/50 shadow-sm'
-      }`}
-      style={{
-        transform: `perspective(1000px) rotateX(${-tilt.y * 5}deg) rotateY(${tilt.x * 5}deg)`,
-        transformStyle: "preserve-3d"
+      initial={{ opacity: 0, scale: 0.96 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 60, 
+        damping: 15, 
+        delay: index * 0.12 
       }}
+      className="w-full"
     >
-      {/* Border laser sweep highlight trailing cursor inside card */}
-      <div
-        className="absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className={`p-6 rounded-3xl border transition-all duration-500 relative overflow-hidden backdrop-blur-xl flex gap-6 items-start ${
+          isSelfHovered
+            ? 'scale-[1.02] bg-white border-indigo-500/30 shadow-[0_15px_30px_rgba(99,102,241,0.05)]'
+            : isDimmed
+              ? 'opacity-45 scale-[0.985] blur-[0.5px] border-slate-200/20 bg-white/20'
+              : 'bg-white/40 border-slate-200/50 shadow-sm'
+        }`}
         style={{
-          background: `radial-gradient(100px circle at ${coords.x}px ${coords.y}px, rgba(99, 102, 241, 0.35), transparent 80%)`,
-          padding: '1.2px',
-          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'xor',
-          maskComposite: 'exclude'
+          transform: `perspective(1000px) rotateX(${-tilt.y * 5}deg) rotateY(${tilt.x * 5}deg)`,
+          transformStyle: "preserve-3d"
         }}
-      />
+      >
+        {/* Border laser sweep highlight trailing cursor inside card */}
+        <div
+          className="absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"
+          style={{
+            background: `radial-gradient(100px circle at ${coords.x}px ${coords.y}px, rgba(99, 102, 241, 0.35), transparent 80%)`,
+            padding: '1.2px',
+            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+            WebkitMaskComposite: 'xor',
+            maskComposite: 'exclude'
+          }}
+        />
 
-      {/* Sparks Trail */}
-      <SparkParticlesTrail coords={coords} colorClass="bg-indigo-500" />
+        {/* Sparks Trail */}
+        <SparkParticlesTrail coords={coords} colorClass="bg-indigo-500" />
 
-      {/* Concentric spin HUD circles around branch icon */}
-      <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-indigo-650 shadow-sm shrink-0 relative" style={{ transform: "translateZ(20px)" }}>
-        <div className="absolute inset-[-4px] border border-dashed border-indigo-300/40 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
-        {React.cloneElement(item.icon as React.ReactElement, { size: 20, className: "relative z-10" })}
-      </div>
+        {/* Concentric spin HUD circles around branch icon */}
+        <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-indigo-650 shadow-sm shrink-0 relative" style={{ transform: "translateZ(20px)" }}>
+          <div className="absolute inset-[-4px] border border-dashed border-indigo-300/40 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
+          {React.cloneElement(item.icon as React.ReactElement, { size: 20, className: "relative z-10" })}
+        </div>
 
-      <div style={{ transform: "translateZ(10px)" }}>
-        <h4 className="text-lg font-black text-slate-800 mb-1 tracking-tight">{item.title}</h4>
-        <p className="text-slate-500 text-sm font-semibold leading-relaxed">{item.desc}</p>
-      </div>
+        <div style={{ transform: "translateZ(10px)" }}>
+          <h4 className="text-lg font-black text-slate-800 mb-1 tracking-tight">{item.title}</h4>
+          <p className="text-slate-500 text-sm font-semibold leading-relaxed">{item.desc}</p>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -310,12 +323,18 @@ export const BranchDetails = () => {
           <div className="space-y-12">
             <div>
               {/* Header reveal */}
-              <div className="mb-8 select-none">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ type: "spring", stiffness: 60, damping: 15 }}
+                className="mb-8 select-none"
+              >
                 <h2 className="text-4xl font-black text-slate-800 tracking-tighter uppercase leading-none">
                   Branch <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500 italic">Info.</span>
                 </h2>
                 <div className="h-[2px] w-12 bg-indigo-500 mt-3" />
-              </div>
+              </motion.div>
 
               {/* Cards details block with cooperative dimming */}
               <div className="space-y-6">
@@ -332,61 +351,78 @@ export const BranchDetails = () => {
             </div>
 
             {/* Premium Cyber Bezel Google Map Viewport Console */}
-            <div 
-              ref={mapRef}
-              onMouseMove={handleMapMouseMove}
-              onMouseLeave={handleMapMouseLeave}
-              className="relative select-none"
-              style={{
-                transform: `perspective(1000px) rotateX(${-mapTilt.y * 3.5}deg) rotateY(${mapTilt.x * 3.5}deg)`,
-                transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                transformStyle: "preserve-3d"
-              }}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ type: "spring", stiffness: 60, damping: 15, delay: 0.35 }}
+              style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+              className="w-full"
             >
-              <div className="bg-slate-900 rounded-[3.5rem] border-8 border-slate-200/80 overflow-hidden shadow-2xl relative" style={{ transform: "translateZ(10px)" }}>
+              <div 
+                ref={mapRef}
+                onMouseMove={handleMapMouseMove}
+                onMouseLeave={handleMapMouseLeave}
+                className="relative select-none"
+                style={{
+                  transform: `perspective(1000px) rotateX(${-mapTilt.y * 3.5}deg) rotateY(${mapTilt.x * 3.5}deg)`,
+                  transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                  transformStyle: "preserve-3d"
+                }}
+              >
+                <div className="bg-slate-900 rounded-[3.5rem] border-8 border-slate-200/80 overflow-hidden shadow-2xl relative" style={{ transform: "translateZ(10px)" }}>
 
 
-                <div className="aspect-video bg-[#060813] flex items-center justify-center relative overflow-hidden">
-                  {/* Dotted target lines backdrop */}
-                  <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
-                  <div className="absolute inset-8 border border-white/5 rounded-full pointer-events-none" />
-                  <div className="absolute inset-16 border border-white/5 rounded-full pointer-events-none animate-pulse" />
+                  <div className="aspect-video bg-[#060813] flex items-center justify-center relative overflow-hidden">
+                    {/* Dotted target lines backdrop */}
+                    <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
+                    <div className="absolute inset-8 border border-white/5 rounded-full pointer-events-none" />
+                    <div className="absolute inset-16 border border-white/5 rounded-full pointer-events-none animate-pulse" />
 
-                  {/* Active horizontal map scanning laser sweep */}
-                  <motion.div
-                    animate={{ y: ["0%", "100%", "0%"] }}
-                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                    className="absolute left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent pointer-events-none z-10"
-                  />
+                    {/* Active horizontal map scanning laser sweep */}
+                    <motion.div
+                      animate={{ y: ["0%", "100%", "0%"] }}
+                      transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                      className="absolute left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent pointer-events-none z-10"
+                    />
 
-                  {/* Center MapPin and reticle orbits */}
-                  <div className="relative text-center z-10 shrink-0">
-                    <div className="absolute inset-[-14px] border border-dashed border-indigo-500/30 rounded-full animate-spin" style={{ animationDuration: '6s' }} />
-                    <div className="absolute inset-[-24px] border border-dotted border-cyan-400/20 rounded-full animate-spin" style={{ animationDuration: '10s', animationDirection: 'reverse' }} />
-                    <MapPin size={42} className="text-indigo-400 mx-auto animate-bounce relative z-10" />
+                    {/* Center MapPin and reticle orbits */}
+                    <div className="relative text-center z-10 shrink-0">
+                      <div className="absolute inset-[-14px] border border-dashed border-indigo-500/30 rounded-full animate-spin" style={{ animationDuration: '6s' }} />
+                      <div className="absolute inset-[-24px] border border-dotted border-cyan-400/20 rounded-full animate-spin" style={{ animationDuration: '10s', animationDirection: 'reverse' }} />
+                      <MapPin size={42} className="text-indigo-400 mx-auto animate-bounce relative z-10" />
+                    </div>
+
+                    {/* Telemetry coords indicators */}
+                    <span className="absolute bottom-3 right-6 font-mono text-[5px] text-slate-500 tracking-wider">
+                      [LAT_LNG: 18.5089° N // 73.8078° E // ACTIVE]
+                    </span>
                   </div>
-
-                  {/* Telemetry coords indicators */}
-                  <span className="absolute bottom-3 right-6 font-mono text-[5px] text-slate-500 tracking-wider">
-                    [LAT_LNG: 18.5089° N // 73.8078° E // ACTIVE]
-                  </span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 
           {/* Right Column - Premium Frosted Form Registration Bezel */}
           <motion.div
-            ref={formCardRef}
-            onMouseMove={handleFormMouseMove}
-            onMouseLeave={handleFormMouseLeave}
-            className="p-12 rounded-[4rem] border transition-all duration-500 overflow-hidden bg-white/40 border-slate-200/50 backdrop-blur-xl shadow-3xl flex flex-col relative"
-            style={{
-              transform: `perspective(1000px) rotateX(${-formTilt.y * 3.5}deg) rotateY(${formTilt.x * 3.5}deg) scale3d(${isFormHovered ? 1.015 : 1}, ${isFormHovered ? 1.015 : 1}, 1)`,
-              transformStyle: "preserve-3d"
-            }}
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ type: "spring", stiffness: 55, damping: 15, delay: 0.15 }}
+            style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+            className="w-full h-full"
           >
+            <motion.div
+              ref={formCardRef}
+              onMouseMove={handleFormMouseMove}
+              onMouseLeave={handleFormMouseLeave}
+              className="p-12 rounded-[4rem] border transition-all duration-500 overflow-hidden bg-white/40 border-slate-200/50 backdrop-blur-xl shadow-3xl flex flex-col relative h-full"
+              style={{
+                transform: `perspective(1000px) rotateX(${-formTilt.y * 3.5}deg) rotateY(${formTilt.x * 3.5}deg) scale3d(${isFormHovered ? 1.015 : 1}, ${isFormHovered ? 1.015 : 1}, 1)`,
+                transformStyle: "preserve-3d"
+              }}
+            >
             {/* Border laser sweep highlight trailing cursor inside card */}
             <div
               className="absolute inset-0 rounded-[4rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"
@@ -568,6 +604,7 @@ export const BranchDetails = () => {
               [FORM_REF: ENQ_AXIS]
             </span>
           </motion.div>
+        </motion.div>
 
         </div>
       </div>

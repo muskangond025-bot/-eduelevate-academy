@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useSpring } from 'motion/react';
+import { motion, useScroll, useSpring, useMotionValueEvent } from 'motion/react';
 import { Flag, Trophy, Rocket, Building2 } from 'lucide-react';
 
 
@@ -142,6 +142,17 @@ export const JourneyTimeline = () => {
   });
 
   const pathProgress = useSpring(scrollYProgress, { stiffness: 45, damping: 18 });
+
+  const [visibleMilestones, setVisibleMilestones] = useState<boolean[]>([true, false, false, false]);
+
+  useMotionValueEvent(pathProgress, "change", (latest) => {
+    setVisibleMilestones([
+      true, // 2010 always visible
+      latest >= 0.15, // 2014 reveals when progress reaches 15%
+      latest >= 0.48, // 2018 reveals when progress reaches 48%
+      latest >= 0.80  // 2023 reveals when progress reaches 80%
+    ]);
+  });
 
   const handleSectionMouseMove = (e: React.MouseEvent) => {
     if (!sectionRef.current) return;
@@ -328,10 +339,17 @@ export const JourneyTimeline = () => {
               return (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
+                  initial={{ opacity: i === 0 ? 1 : 0, y: i === 0 ? 0 : 30, scale: i === 0 ? 1 : 0.95 }}
+                  animate={{
+                    opacity: visibleMilestones[i] ? 1 : 0,
+                    y: visibleMilestones[i] ? 0 : 30,
+                    scale: visibleMilestones[i] ? 1 : 0.95
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 85,
+                    damping: 20
+                  }}
                   className={`flex flex-col lg:flex-row items-center gap-12 ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
                 >
                   {/* Left Column - Card Hull */}

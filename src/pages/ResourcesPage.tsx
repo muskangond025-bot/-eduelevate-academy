@@ -120,7 +120,7 @@ const CategoryCard = ({
   hoveredCategory,
   setHoveredCategory
 }: {
-  cat: { title: string; count: string };
+  cat: any;
   index: number;
   hoveredCategory: number | null;
   setHoveredCategory: (i: number | null) => void;
@@ -179,12 +179,12 @@ const CategoryCard = ({
             <motion.div
               animate={{ rotate: -360 }}
               transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-              className="absolute inset-0 border-2 border-amber-500/10 border-t-amber-500/30 rounded-full"
+              className="absolute inset-0 border-2 border-emerald-500/10 border-t-emerald-500/30 rounded-full"
             />
             <motion.div
               animate={{ scale: [1, 0.9, 1] }}
               transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-              className="w-6 h-6 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-600 border border-amber-500/20"
+              className="w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 border border-emerald-500/20"
             >
               <Terminal size={12} />
             </motion.div>
@@ -196,15 +196,15 @@ const CategoryCard = ({
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 7, ease: "linear" }}
-              className="absolute inset-0 border border-purple-500/10 rounded-full"
+              className="absolute inset-0 border border-amber-500/10 rounded-full"
               style={{
-                background: 'conic-gradient(from 0deg, rgba(168, 85, 247, 0.08) 0deg, transparent 90deg)',
+                background: 'conic-gradient(from 0deg, rgba(245, 158, 11, 0.08) 0deg, transparent 90deg)',
               }}
             />
             <motion.div
               animate={{ scale: [0.9, 1.1, 0.9] }}
               transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-              className="w-6 h-6 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-600 border border-purple-500/20"
+              className="w-6 h-6 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-600 border border-amber-500/20"
             >
               <Layers size={12} />
             </motion.div>
@@ -216,12 +216,12 @@ const CategoryCard = ({
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 9, ease: "linear" }}
-              className="absolute inset-0 border border-dashed border-emerald-500/25 rounded-full"
+              className="absolute inset-0 border border-dashed border-rose-500/25 rounded-full"
             />
             <motion.div
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-              className="w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 border border-emerald-500/20"
+              className="w-6 h-6 rounded-full bg-rose-500/10 flex items-center justify-center text-rose-650 border border-rose-500/20"
             >
               <Award size={12} />
             </motion.div>
@@ -239,16 +239,17 @@ const CategoryCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.6 }}
-      className={`p-8 rounded-[3rem] border transition-all duration-500 hover:shadow-2xl flex flex-col items-center text-center relative overflow-hidden backdrop-blur-xl group ${
+      className={`p-8 rounded-[3rem] border transition-all duration-500 hover:shadow-[0_20px_50px_rgba(99,102,241,0.08)] flex flex-col items-center text-center relative overflow-hidden backdrop-blur-xl group ${
         isSelfHovered
-          ? 'border-indigo-500/35 bg-white shadow-[0_0_50px_rgba(99,102,241,0.06)]'
+          ? 'bg-white border-transparent'
           : isDimmed
             ? 'border-slate-100 opacity-45 scale-[0.985] blur-[0.5px]'
             : 'border-slate-200/50 bg-white/40 shadow-sm'
       }`}
       style={{
         transform: `perspective(1000px) rotateX(${-tilt.y * 8}deg) rotateY(${tilt.x * 8}deg) scale3d(${isSelfHovered ? 1.015 : 1}, ${isSelfHovered ? 1.015 : 1}, 1)`,
-        transformStyle: "preserve-3d"
+        transformStyle: "preserve-3d",
+        boxShadow: isSelfHovered ? `0 25px 60px -15px ${cat.glowColor}` : 'none'
       }}
     >
       {/* Background Spotlight Glow */}
@@ -256,7 +257,7 @@ const CategoryCard = ({
         className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-0"
         style={{
           opacity: isSelfHovered ? 1 : 0,
-          background: `radial-gradient(180px circle at ${coords.x}px ${coords.y}px, rgba(99, 102, 241, 0.04), transparent 80%)`,
+          background: `radial-gradient(180px circle at ${coords.x}px ${coords.y}px, ${cat.glowColor}, transparent 80%)`,
         }}
       />
 
@@ -264,7 +265,7 @@ const CategoryCard = ({
       <div
         className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"
         style={{
-          background: `radial-gradient(100px circle at ${coords.x}px ${coords.y}px, rgba(99, 102, 241, 0.35), transparent 80%)`,
+          background: `radial-gradient(120px circle at ${coords.x}px ${coords.y}px, ${cat.laserColor}, transparent 80%)`,
           padding: '1px',
           WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
           WebkitMaskComposite: 'xor',
@@ -273,20 +274,41 @@ const CategoryCard = ({
       />
 
       <div className="relative z-10 flex flex-col items-center">
-        <div className="w-16 h-16 bg-slate-50 border border-slate-150 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-500 group-hover:text-white group-hover:border-indigo-400 group-hover:shadow-lg group-hover:shadow-indigo-500/10 transition-all duration-300 transform group-hover:rotate-6">
+        {/* Technical monospaced identifier inside the card */}
+        <span className="text-[6px] font-mono text-slate-400 group-hover:text-slate-500 mb-4 transition-colors select-none tracking-widest">
+          [SYS_NODE: {cat.systemCode}]
+        </span>
+
+        <div className={`w-16 h-16 bg-slate-50 border border-slate-150 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-800 group-hover:shadow-lg transition-all duration-300 transform group-hover:rotate-6`}>
           {renderCategoryIcon()}
         </div>
-        <h4 className="font-black text-primary text-base tracking-tight mb-2 group-hover:text-indigo-600 transition-colors">{cat.title}</h4>
-        <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 border border-slate-100 px-3 py-1 rounded-full group-hover:bg-indigo-50 group-hover:text-indigo-600 group-hover:border-indigo-100/50 transition-colors">
+        
+        <h4 className="font-black text-primary text-base tracking-tight mb-4 group-hover:scale-[1.02] transition-transform select-none uppercase">
+          {cat.title}
+        </h4>
+        
+        <span className={`text-[9px] font-black uppercase tracking-widest border px-3 py-1 rounded-full transition-colors select-none shadow-sm ${cat.badgeClass}`}>
           {cat.count}
         </span>
       </div>
 
-      {/* Decorative Corner Accents */}
-      <div className="absolute top-5 left-5 w-2.5 h-2.5 border-t border-l border-slate-200 group-hover:border-indigo-500/20 transition-colors" />
-      <div className="absolute top-5 right-5 w-2.5 h-2.5 border-t border-r border-slate-200 group-hover:border-indigo-500/20 transition-colors" />
-      <div className="absolute bottom-5 left-5 w-2.5 h-2.5 border-b border-l border-slate-200 group-hover:border-indigo-500/20 transition-colors" />
-      <div className="absolute bottom-5 right-5 w-2.5 h-2.5 border-b border-r border-slate-200 group-hover:border-indigo-500/20 transition-colors" />
+      {/* Decorative Corner Accents styled according to hover */}
+      <div 
+        className="absolute top-6 left-6 w-3 h-3 border-t border-l transition-colors duration-300" 
+        style={{ borderColor: isSelfHovered ? cat.laserColor : 'rgba(226, 232, 240, 1)' }}
+      />
+      <div 
+        className="absolute top-6 right-6 w-3 h-3 border-t border-r transition-colors duration-300" 
+        style={{ borderColor: isSelfHovered ? cat.laserColor : 'rgba(226, 232, 240, 1)' }}
+      />
+      <div 
+        className="absolute bottom-6 left-6 w-3 h-3 border-b border-l transition-colors duration-300" 
+        style={{ borderColor: isSelfHovered ? cat.laserColor : 'rgba(226, 232, 240, 1)' }}
+      />
+      <div 
+        className="absolute bottom-6 right-6 w-3 h-3 border-b border-r transition-colors duration-300" 
+        style={{ borderColor: isSelfHovered ? cat.laserColor : 'rgba(226, 232, 240, 1)' }}
+      />
     </motion.div>
   );
 };
@@ -418,10 +440,46 @@ export const ResourcesPage = () => {
   };
 
   const CATEGORIES = [
-    { title: "Physics Notes", count: "140+ Modules" },
-    { title: "Chemistry Notes", count: "120+ Modules" },
-    { title: "Previous Papers", count: "50+ Exams" },
-    { title: "Study Planner", count: "10+ Blueprints" }
+    { 
+      title: "Physics Notes", 
+      count: "140+ Modules", 
+      themeColor: "indigo",
+      systemCode: "PHY_01",
+      glowColor: "rgba(99, 102, 241, 0.15)",
+      laserColor: "rgba(99, 102, 241, 0.4)",
+      badgeClass: "bg-indigo-50 border-indigo-100 text-indigo-700 hover:bg-indigo-100",
+      accentText: "text-indigo-650"
+    },
+    { 
+      title: "Chemistry Notes", 
+      count: "120+ Modules", 
+      themeColor: "emerald",
+      systemCode: "CHM_02",
+      glowColor: "rgba(16, 185, 129, 0.15)",
+      laserColor: "rgba(16, 185, 129, 0.4)",
+      badgeClass: "bg-emerald-50 border-emerald-100 text-emerald-700 hover:bg-emerald-100",
+      accentText: "text-emerald-650"
+    },
+    { 
+      title: "Previous Papers", 
+      count: "50+ Exams", 
+      themeColor: "amber",
+      systemCode: "PPR_03",
+      glowColor: "rgba(245, 158, 11, 0.15)",
+      laserColor: "rgba(245, 158, 11, 0.4)",
+      badgeClass: "bg-amber-50 border-amber-100 text-amber-700 hover:bg-amber-100",
+      accentText: "text-amber-650"
+    },
+    { 
+      title: "Study Planner", 
+      count: "10+ Blueprints", 
+      themeColor: "rose",
+      systemCode: "PLN_04",
+      glowColor: "rgba(244, 63, 94, 0.15)",
+      laserColor: "rgba(244, 63, 94, 0.4)",
+      badgeClass: "bg-rose-50 border-rose-100 text-rose-700 hover:bg-rose-100",
+      accentText: "text-rose-650"
+    }
   ];
 
   const ALL_RESOURCES = [
@@ -525,7 +583,7 @@ export const ResourcesPage = () => {
       </section>
 
       {/* 2. Quick Categories (Examples) */}
-      <section className="py-24 -mt-12 relative z-20">
+      <section className="py-16 relative z-20">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                {CATEGORIES.map((cat, i) => (

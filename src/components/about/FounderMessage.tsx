@@ -37,6 +37,7 @@ const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: n
 export const FounderMessage = () => {
   const [sectionCoords, setSectionCoords] = useState({ x: 0, y: 0 });
   const [isSectionHovered, setIsSectionHovered] = useState(false);
+  const [isTextHovered, setIsTextHovered] = useState(false);
 
   const [stickerCoords, setStickerCoords] = useState({ x: 0, y: 0 });
   const [stickerTilt, setStickerTilt] = useState({ x: 0, y: 0 });
@@ -139,14 +140,27 @@ export const FounderMessage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row gap-24 items-center">
           {/* Left Column - Founder Portrait and Sticker */}
-          <div 
+          <motion.div 
             ref={portraitRef}
             onMouseMove={handlePortraitMouseMove}
-            onMouseLeave={() => setPortraitTilt({ x: 0, y: 0 })}
+            onMouseLeave={() => {
+              setPortraitTilt({ x: 0, y: 0 });
+              setIsTextHovered(false);
+            }}
+            onMouseEnter={() => setIsTextHovered(true)}
             className="w-full lg:w-1/2 relative select-none"
+            animate={{
+              opacity: isTextHovered ? 1 : 0,
+              x: isTextHovered ? 0 : 180, // Starts tucked behind/under, glides out to the left side on hover
+              scale: isTextHovered ? 1 : 0.9,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 85,
+              damping: 20
+            }}
             style={{
               transform: `perspective(1000px) rotateX(${-portraitTilt.y * 5}deg) rotateY(${portraitTilt.x * 5}deg)`,
-              transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
               transformStyle: "preserve-3d"
             }}
           >
@@ -211,13 +225,17 @@ export const FounderMessage = () => {
               <p className="text-sm font-black text-slate-800 leading-tight">"Pedagogy is an art."</p>
               <div className="text-[6.5px] font-mono text-slate-400 uppercase tracking-widest mt-1">// Founder & Chairman</div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column - Messages Quote Console */}
           <div 
             ref={consoleRef}
             onMouseMove={handleConsoleMouseMove}
-            onMouseLeave={() => setConsoleTilt({ x: 0, y: 0 })}
+            onMouseLeave={() => {
+              setConsoleTilt({ x: 0, y: 0 });
+              setIsTextHovered(false);
+            }}
+            onMouseEnter={() => setIsTextHovered(true)}
             className="w-full lg:w-1/2"
             style={{
               transform: `perspective(1000px) rotateX(${-consoleTilt.y * 4}deg) rotateY(${consoleTilt.x * 4}deg)`,

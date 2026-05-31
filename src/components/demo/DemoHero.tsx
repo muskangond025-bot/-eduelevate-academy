@@ -101,7 +101,7 @@ export const DemoHero = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="pt-40 pb-28 bg-[#FAF9F6] relative overflow-hidden transition-all duration-300 border-b border-indigo-50"
+      className="relative pt-24 pb-24 overflow-hidden bg-[#FAF9F6] transition-all duration-300 border-b border-indigo-50"
       style={{ perspective: 1200 }}
     >
       {/* Background Spotlight Glows */}

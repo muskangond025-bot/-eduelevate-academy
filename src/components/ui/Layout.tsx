@@ -1,16 +1,39 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronDown, ChevronRight, MessageCircle, Instagram, Youtube, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { ChevronDown, ChevronRight, MessageCircle, Instagram, Youtube, Linkedin, Twitter, Facebook, Home, Info, FileText, MapPin, Shield, Phone, Plus } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
+const RollingText = ({ text, hoverColorClass = "text-indigo-600" }: { text: string; hoverColorClass?: string }) => {
+  return (
+    <span className="relative inline-block overflow-hidden group/roll leading-none align-bottom pb-[1px]">
+      <span className="inline-block transition-transform duration-500 ease-out group-hover/roll:-translate-y-full">
+        {text}
+      </span>
+      <span className={cn("absolute left-0 top-0 inline-block transition-transform duration-500 ease-out translate-y-full group-hover/roll:translate-y-0", hoverColorClass)}>
+        {text}
+      </span>
+    </span>
+  );
+};
+
 export const Layout = ({ children }: LayoutProps) => {
   const { pathname } = useLocation();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const mobileNavItems = [
+    { name: "Home", href: "/", icon: <Home size={18} /> },
+    { name: "About", href: "/about", icon: <Info size={18} /> },
+    { name: "Blog", href: "/blog", icon: <FileText size={18} /> },
+    { name: "Locations", href: "/locations", icon: <MapPin size={18} /> },
+    { name: "Policies", href: "/policies", icon: <Shield size={18} /> },
+    { name: "Contact", href: "/contact", icon: <Phone size={18} /> },
+  ];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -127,6 +150,76 @@ export const Layout = ({ children }: LayoutProps) => {
         {children}
       </main>
 
+      {/* Mobile Floating Action Button (FAB) Half-Circular Navigation Menu */}
+      <div 
+        className="fixed bottom-8 left-8 z-[100] lg:hidden select-none"
+        onMouseEnter={() => setIsMobileMenuOpen(true)}
+        onMouseLeave={() => setIsMobileMenuOpen(false)}
+      >
+        <div className="relative">
+          {/* Half-Circular Arc Menu Options */}
+          {mobileNavItems.map((item, index) => {
+            const angle = index * (90 / (mobileNavItems.length - 1)); // Spread evenly from 0° (right) to 90° (up)
+            const rad = (angle * Math.PI) / 180;
+            const radius = 96; // Orbit distance in pixels
+            const x = Math.round(radius * Math.cos(rad));
+            const y = Math.round(-radius * Math.sin(rad));
+
+            return (
+              <motion.div
+                key={item.href}
+                className="absolute left-2 top-2 z-40"
+                initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
+                animate={{
+                  x: isMobileMenuOpen ? x : 0,
+                  y: isMobileMenuOpen ? y : 0,
+                  scale: isMobileMenuOpen ? 1 : 0,
+                  opacity: isMobileMenuOpen ? 1 : 0
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 220,
+                  damping: 18,
+                  delay: isMobileMenuOpen ? index * 0.04 : (mobileNavItems.length - 1 - index) * 0.02
+                }}
+              >
+                <Link
+                  to={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "w-11 h-11 rounded-full shadow-lg border flex items-center justify-center transition-all relative group/mob-link cursor-pointer",
+                    pathname === item.href 
+                      ? "bg-primary text-white border-primary shadow-primary/20" 
+                      : "bg-white text-slate-650 border-slate-100 hover:bg-slate-50 hover:text-primary"
+                  )}
+                >
+                  {item.icon}
+                  
+                  {/* Premium Floating tooltip label */}
+                  <span className="absolute left-full ml-3 px-2 py-1 rounded bg-slate-955 text-white text-[8px] font-black uppercase tracking-wider opacity-0 pointer-events-none group-hover/mob-link:opacity-100 transition-opacity whitespace-nowrap shadow-md border border-white/5">
+                    {item.name}
+                  </span>
+                </Link>
+              </motion.div>
+            );
+          })}
+
+          {/* Center Toggle Button (+ / x) */}
+          <motion.button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            whileTap={{ scale: 0.9 }}
+            className="w-14 h-14 bg-gradient-to-tr from-primary to-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center cursor-pointer relative z-50 hover:scale-105 transition-transform"
+          >
+            <motion.div
+              animate={{ rotate: isMobileMenuOpen ? 135 : 0 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+            >
+              <Plus size={24} />
+            </motion.div>
+          </motion.button>
+        </div>
+      </div>
+
       <footer className="bg-slate-50/40 border-t border-slate-100 pt-24 pb-12 overflow-hidden sticky bottom-0 z-0">
         {/* Grid Backdrop Lines */}
         <div 
@@ -192,14 +285,50 @@ export const Layout = ({ children }: LayoutProps) => {
             ]} />
           </div>
           
+          {/* Infinite Rolling Text Marquee Ticker */}
+          <div className="w-full overflow-hidden py-3 border-t border-slate-100/60 mb-6 bg-slate-50/50 rounded-xl relative select-none">
+            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+            
+            <motion.div 
+              className="flex whitespace-nowrap gap-16 text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400"
+              animate={{ x: [0, -600] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+            >
+              {[
+                "★ 99.8% Topper Percentile Focus",
+                "★ 1-on-1 Elite Mentorship Ecosystem",
+                "★ 100% Adaptive Learning Blueprints",
+                "★ 24/7 AI-Powered Doubt Resolution",
+                "★ Nationwide NTSE & NST Scholars",
+                "★ 99.8% Topper Percentile Focus",
+                "★ 1-on-1 Elite Mentorship Ecosystem",
+                "★ 100% Adaptive Learning Blueprints",
+                "★ 24/7 AI-Powered Doubt Resolution",
+                "★ Nationwide NTSE & NST Scholars"
+              ].map((item, idx) => (
+                <span key={idx} className="inline-flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" />
+                  {item}
+                </span>
+              ))}
+            </motion.div>
+          </div>
+
           <div className="pt-8 border-t border-slate-200/40 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center md:text-left">
-              © 2026 ACADEMYPRO EDUCATION. All Rights Reserved.
+            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest text-center md:text-left cursor-default">
+              © 2026 <RollingText text="ACADEMYPRO EDUCATION" />. All Rights Reserved.
             </div>
             <div className="flex gap-8">
-              <Link to="/policies" className="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors tracking-widest">PRIVACY POLICY</Link>
-              <Link to="/policies" className="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors tracking-widest">TERMS OF SERVICE</Link>
-              <Link to="/policies" className="text-[10px] font-bold text-slate-400 hover:text-primary transition-colors tracking-widest">REFUND POLICY</Link>
+              <Link to="/policies" className="text-[10px] font-bold text-slate-400 hover:text-indigo-600 transition-colors tracking-widest">
+                <RollingText text="PRIVACY POLICY" />
+              </Link>
+              <Link to="/policies" className="text-[10px] font-bold text-slate-400 hover:text-indigo-600 transition-colors tracking-widest">
+                <RollingText text="TERMS OF SERVICE" />
+              </Link>
+              <Link to="/policies" className="text-[10px] font-bold text-slate-400 hover:text-indigo-600 transition-colors tracking-widest">
+                <RollingText text="REFUND POLICY" />
+              </Link>
             </div>
           </div>
         </div>
@@ -278,7 +407,7 @@ const FooterCol = ({ title, links }: any) => (
               <span className="opacity-0 w-0 group-hover/link:opacity-100 group-hover/link:w-auto text-indigo-600 transition-all duration-300 flex items-center">
                 <ChevronRight size={12} />
               </span>
-              <span>{link.label}</span>
+              <span><RollingText text={link.label} /></span>
             </motion.span>
           </Link>
         </li>

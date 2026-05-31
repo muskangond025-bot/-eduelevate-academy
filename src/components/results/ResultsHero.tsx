@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Trophy, Sparkles, Award, Activity } from 'lucide-react';
+import resultsHeroImg from '../../assets/results_hero.png';
+
 
 const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: number }; colorClass: string }) => {
   const [sparks, setSparks] = useState<{ x: number; y: number; id: number }[]>([]);
@@ -113,7 +115,28 @@ const TrophyHUDBadge = () => {
 export const ResultsHero = () => {
   const [sectionCoords, setSectionCoords] = useState({ x: 0, y: 0 });
   const [isSectionHovered, setIsSectionHovered] = useState(false);
+  const [isImgHovered, setIsImgHovered] = useState(false);
+  const [imgTilt, setImgTilt] = useState({ x: 0, y: 0 });
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  const handleImgMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    setImgTilt({
+      x: (x - centerX) / centerX,
+      y: (y - centerY) / centerY
+    });
+    setIsImgHovered(true);
+  };
+
+  const handleImgMouseLeave = () => {
+    setImgTilt({ x: 0, y: 0 });
+    setIsImgHovered(false);
+  };
+
 
   const handleSectionMouseMove = (e: React.MouseEvent) => {
     if (!sectionRef.current) return;
@@ -210,7 +233,7 @@ export const ResultsHero = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="pt-40 pb-32 bg-[#03050C] relative overflow-hidden border-b border-white/5"
+      className="pt-24 pb-24 bg-[#03050C] relative overflow-hidden border-b border-white/5"
     >
       {/* Dotted Grid Backdrop pattern overlay */}
       <div
@@ -247,51 +270,74 @@ export const ResultsHero = () => {
       <div className="absolute left-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
       <div className="absolute right-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
 
-      {/* Interactive 3D Parallax Telemetry Floaters */}
-      <motion.div
-        animate={{ x: leftFloaterX, y: leftFloaterY + 5 }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="absolute left-[3%] top-[30%] hidden xl:flex flex-col bg-white/[0.02] border border-white/5 p-4 rounded-2xl backdrop-blur-md shadow-2xl pointer-events-none select-none z-20"
-      >
-        <div className="flex items-center gap-2 mb-1.5 font-mono text-[7px] text-slate-400">
-          <Activity size={8} className="text-emerald-500 animate-pulse" />
-          <span>[AIR_1_SYNC: ACTIVE]</span>
-        </div>
-        <div className="text-[11px] font-black text-white italic tracking-wide">
-          ★ AIR 1 JEE MAIN & ADV
-        </div>
-      </motion.div>
 
-      <motion.div
-        animate={{ x: rightFloaterX, y: rightFloaterY - 5 }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="absolute right-[3%] top-[30%] hidden xl:flex flex-col bg-white/[0.02] border border-white/5 p-4 rounded-2xl backdrop-blur-md shadow-2xl pointer-events-none select-none z-20"
-      >
-        <div className="flex items-center gap-2 mb-1.5 font-mono text-[7px] text-slate-400">
-          <Award size={8} className="text-amber-500" />
-          <span>[SCHOLARSHIP: ONLINE]</span>
-        </div>
-        <div className="text-[11px] font-black text-white italic tracking-wide">
-          ★ 100% WAIVER SECURED
-        </div>
-      </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Concentric Trophy HUD badge */}
-        <TrophyHUDBadge />
-        
-        {/* Cinematic headline reveal */}
-        <h1 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter select-none leading-none">
-          Consistency is our{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-400 italic font-black">
-            Legacy.
-          </span>
-        </h1>
-        
-        <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-semibold leading-relaxed italic-small">
-          Year after year, we produce the brightest minds in the country. Explore the records that define academic excellence.
-        </p>
+        {/* Split Grid for Title + 4K Image (No Overlay, Zero Text overlap) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center text-left mb-8">
+          
+          {/* Left Column: Clean text and typography */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
+            {/* Concentric Trophy HUD badge */}
+            <TrophyHUDBadge />
+            
+            {/* Cinematic headline reveal */}
+            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter select-none leading-none uppercase">
+              Consistency is our{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-400 italic font-black">
+                Legacy.
+              </span>
+            </h1>
+            
+            <p className="text-base md:text-lg text-slate-400 font-semibold leading-relaxed italic-small max-w-xl text-left">
+              Year after year, we produce the brightest minds in the country. Explore the records that define academic excellence.
+            </p>
+          </div>
+
+          {/* Right Column: 4K Real Stock Image framed elegantly (No dark overlays, No text overlap) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4 }}
+            style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+            className="lg:col-span-5 w-full flex justify-center"
+          >
+            <div 
+              onMouseMove={handleImgMouseMove}
+              onMouseLeave={handleImgMouseLeave}
+              className="w-full max-w-md aspect-[4/3] rounded-[3rem] border-8 border-white/5 overflow-hidden shadow-2xl relative bg-slate-900 group/img cursor-pointer"
+              style={{ 
+                transform: `perspective(1000px) rotateX(${-imgTilt.y * 6}deg) rotateY(${imgTilt.x * 6}deg) scale3d(${isImgHovered ? 1.02 : 1}, ${isImgHovered ? 1.02 : 1}, 1)`,
+                transformStyle: "preserve-3d" 
+              }}
+            >
+              {/* Border laser sweep highlight trailing cursor inside card */}
+              <div
+                className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover/img:opacity-100 transition-opacity duration-500 z-30"
+                style={{
+                  background: `radial-gradient(150px circle at ${sectionCoords.x % 400}px ${sectionCoords.y % 300}px, rgba(251, 146, 60, 0.45), transparent 80%)`,
+                  padding: '1.2px',
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude'
+                }}
+              />
+
+              {/* The clean, ultra HD 4K image without overlays */}
+              <img 
+                src={resultsHeroImg} 
+                alt="Academic Graduation Ceremony Stage" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
+              />
+
+              {/* Corner tech badge indicating 4K authenticity */}
+              <span className="absolute bottom-4 right-6 font-mono text-[5px] text-white bg-slate-950/60 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded uppercase tracking-wider z-20">
+                [NODE_FOCAL: 4K_UHD // CALIBRATED]
+              </span>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

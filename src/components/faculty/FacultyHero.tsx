@@ -127,7 +127,7 @@ export const FacultyHero = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={handleSectionMouseLeave}
-      className="pt-40 pb-28 bg-[#060813] text-white relative overflow-hidden border-b border-white/5"
+      className="relative pt-24 pb-24 bg-[#060813] text-white overflow-hidden border-b border-white/5"
     >
       {/* Gravity mesh coordinate canvas warp grid */}
       {renderWarpGrid()}

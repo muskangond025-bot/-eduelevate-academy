@@ -285,12 +285,9 @@ export const LocalCourses = () => {
             <span>Academic Streams</span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tighter uppercase leading-none mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tighter uppercase leading-none">
             Programs <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500 italic">Available.</span>
           </h2>
-          <p className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">
-            [SYS_SYNC: CHOOSE_BATCH // ACCESS: PUBLIC]
-          </p>
         </div>
 
         {/* 3-column Grid Cards */}

@@ -1,7 +1,115 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, User, ArrowRight, Clock, Search } from 'lucide-react';
 import { PopularArticles } from './PopularArticles';
+
+const BlogCard = ({ 
+  post, 
+  index, 
+  onArticleClick 
+}: { 
+  post: any; 
+  index: number; 
+  onArticleClick: (p: any) => void;
+}) => {
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    setCoords({ x, y });
+    setTilt({
+      x: (x - centerX) / centerX,
+      y: (y - centerY) / centerY
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 80, rotateX: 12, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{
+        type: "spring",
+        stiffness: 65,
+        damping: 15,
+        delay: index * 0.12
+      }}
+      style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+      className="w-full h-full"
+    >
+      <div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onClick={() => onArticleClick(post)}
+        className="group cursor-pointer flex flex-col justify-between h-full p-8 rounded-[3.5rem] border bg-white/40 border-slate-200/50 backdrop-blur-md transition-all duration-500 hover:bg-white hover:shadow-[0_30px_70px_rgba(99,102,241,0.08)] hover:border-indigo-500/20"
+        style={{
+          transform: `perspective(1000px) rotateX(${-tilt.y * 5}deg) rotateY(${tilt.x * 5}deg)`,
+          transformStyle: "preserve-3d",
+          transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s, border-color 0.5s, box-shadow 0.5s'
+        }}
+      >
+        <div>
+          {/* Parallax Image Viewport */}
+          <div className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-8 shadow-md" style={{ transform: "translateZ(20px)" }}>
+            <img 
+              src={post.image} 
+              alt={post.title} 
+              className="w-full h-full object-cover group-hover:scale-105" 
+              style={{
+                transform: `scale(1.05) translateX(${-tilt.x * 8}px) translateY(${-tilt.y * 8}px)`,
+                transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            />
+            {/* Category badge floating in 3D */}
+            <div className="absolute top-6 left-6" style={{ transform: "translateZ(30px)" }}>
+              <span className="px-5 py-2 bg-slate-900/80 backdrop-blur-md rounded-full text-[10px] font-black text-white uppercase tracking-widest border border-white/10 group-hover:border-indigo-400/30 group-hover:bg-indigo-650/90 transition-all">
+                {post.category}
+              </span>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-6 mb-4 text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]" style={{ transform: "translateZ(15px)" }}>
+            <span className="flex items-center gap-2"><Calendar size={12} /> {post.date}</span>
+            <span className="flex items-center gap-2"><Clock size={12} /> {post.readTime}</span>
+          </div>
+          
+          <h3 className="text-2xl font-black text-primary mb-4 tracking-tight group-hover:text-secondary transition-colors leading-tight italic-small" style={{ transform: "translateZ(25px)" }}>
+            {post.title}
+          </h3>
+          
+          <p className="text-slate-500 text-sm font-medium mb-8 leading-relaxed italic-small line-clamp-2" style={{ transform: "translateZ(10px)" }}>
+            {post.excerpt}
+          </p>
+        </div>
+        
+        <div className="flex items-center justify-between pt-8 border-t border-slate-100/50" style={{ transform: "translateZ(15px)" }}>
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-primary font-black text-[10px] group-hover:bg-indigo-500/10 group-hover:text-indigo-650 transition-colors">
+              {post.author[0]}
+            </div>
+            <span className="text-xs font-black text-primary italic group-hover:text-indigo-650 transition-colors">{post.author}</span>
+          </div>
+          <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest bg-slate-50 px-4 py-2 rounded-lg group-hover:bg-secondary group-hover:text-primary transition-all">
+            Detail <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 export const BlogList = ({
   searchQuery,
@@ -95,60 +203,12 @@ export const BlogList = ({
                   </motion.div>
                 ) : (
                   filteredPosts.map((post, i) => (
-                    <motion.article
-                      layout
-                      key={post.title}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 20, scale: 0.98 }}
-                      transition={{ 
-                        opacity: { duration: 0.3 },
-                        y: { duration: 0.4 },
-                        layout: { duration: 0.4, type: "spring", stiffness: 180, damping: 24 }
-                      }}
-                      className="group cursor-pointer flex flex-col justify-between"
-                      onClick={() => onArticleClick(post)}
-                    >
-                      <div>
-                        <div className="relative aspect-[16/10] rounded-[3rem] overflow-hidden mb-8 shadow-md">
-                          <img 
-                            src={post.image} 
-                            alt={post.title} 
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                          />
-                          <div className="absolute top-6 left-6">
-                            <span className="px-5 py-2 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black text-primary uppercase tracking-widest">
-                              {post.category}
-                            </span>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center gap-6 mb-4 text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
-                          <span className="flex items-center gap-2"><Calendar size={12} /> {post.date}</span>
-                          <span className="flex items-center gap-2"><Clock size={12} /> {post.readTime}</span>
-                        </div>
-                        
-                        <h3 className="text-2xl font-black text-primary mb-4 tracking-tight group-hover:text-secondary transition-colors leading-tight italic-small">
-                          {post.title}
-                        </h3>
-                        
-                        <p className="text-slate-500 text-sm font-medium mb-8 leading-relaxed italic-small line-clamp-2">
-                          {post.excerpt}
-                        </p>
-                      </div>
-                      
-                      <div className="flex items-center justify-between pt-8 border-t border-slate-50">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-primary font-black text-[10px]">
-                            {post.author[0]}
-                          </div>
-                          <span className="text-xs font-black text-primary italic">{post.author}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest bg-slate-50 px-4 py-2 rounded-lg group-hover:bg-secondary group-hover:text-primary transition-all">
-                          Detail <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
-                        </div>
-                      </div>
-                    </motion.article>
+                    <BlogCard 
+                      key={post.title} 
+                      post={post} 
+                      index={i} 
+                      onArticleClick={onArticleClick} 
+                    />
                   ))
                 )}
               </AnimatePresence>

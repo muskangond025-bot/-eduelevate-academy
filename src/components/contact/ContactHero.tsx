@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, Cpu, Activity, Sparkles } from 'lucide-react';
+import contactHeroImg from '../../assets/contact_hero.png';
 
 const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: number }; colorClass: string }) => {
   const [sparks, setSparks] = useState<{ x: number; y: number; id: number }[]>([]);
@@ -191,7 +192,7 @@ export const ContactHero = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setIsHovered(false)}
-      className="pt-28 pb-28 bg-[#060813] relative overflow-hidden select-none min-h-[70vh] flex items-center"
+      className="relative pt-28 pb-28 min-h-[580px] bg-[#060813] overflow-hidden select-none flex items-center"
     >
       {/* Gravity Warp Coordinates Mesh Grid Background */}
       <svg className="absolute inset-0 w-full h-full opacity-[0.18] pointer-events-none z-0">
@@ -288,48 +289,98 @@ export const ContactHero = () => {
       <div className="absolute left-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
       <div className="absolute right-[8%] top-0 bottom-0 w-[1px] bg-white/5 pointer-events-none z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 w-full">
-        {/* Orbited badge with rotating dash reticle */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-orange-400 font-black text-[10px] uppercase tracking-[0.2em] mb-6 relative overflow-hidden"
-        >
-          <div className="w-5 h-5 rounded-full border border-orange-500/30 relative flex items-center justify-center shrink-0">
-            <div className="absolute -inset-0.5 border border-dashed border-orange-400/50 rounded-full animate-spin" style={{ animationDuration: '6s' }} />
-            <MessageSquare size={10} className="text-orange-400" />
-          </div>
-          <span>Get In Touch</span>
-        </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
-        {/* Title Header with Staggered Kinetic Splintered Characters Wave */}
-        <h1 className="text-5xl lg:text-[7.5rem] font-black text-white mb-10 tracking-tighter uppercase leading-[0.85] flex flex-col gap-3 justify-center items-center overflow-visible">
-          <div className="overflow-visible">
-            <KineticWord 
-              word="LET'S START" 
-              className="text-white font-black tracking-tighter"
-              delayOffset={0.1}
-              mouseCoords={globalMouse}
-            />
+        {/* Split Grid for Title + 4K Image (No Overlay, Zero Text overlap) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center text-left">
+          
+          {/* Left Column: Clean text and typography */}
+          <div className="lg:col-span-7 flex flex-col items-start w-full">
+            {/* Orbited badge with rotating dash reticle */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-orange-400 font-black text-[10px] uppercase tracking-[0.2em] mb-8 relative overflow-hidden"
+            >
+              <div className="w-5 h-5 rounded-full border border-orange-500/30 relative flex items-center justify-center shrink-0">
+                <div className="absolute -inset-0.5 border border-dashed border-orange-400/50 rounded-full animate-spin" style={{ animationDuration: '6s' }} />
+                <MessageSquare size={10} className="text-orange-400" />
+              </div>
+              <span>Get In Touch</span>
+            </motion.div>
+            
+            {/* Title Header with Staggered Kinetic Splintered Characters Wave */}
+            <h1 className="text-5xl lg:text-7xl font-black text-white mb-6 tracking-tighter uppercase leading-[0.95] flex flex-col gap-3 justify-start items-start overflow-visible w-full">
+              <div className="overflow-visible">
+                <KineticWord 
+                  word="LET'S START" 
+                  className="text-white font-black tracking-tighter"
+                  delayOffset={0.1}
+                  mouseCoords={globalMouse}
+                />
+              </div>
+              <div className="overflow-visible mt-2">
+                <KineticWord 
+                  word="YOUR JOURNEY." 
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-indigo-500 font-black italic tracking-tighter"
+                  delayOffset={0.35}
+                  mouseCoords={globalMouse}
+                />
+              </div>
+            </h1>
+            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="text-slate-400 font-semibold leading-relaxed text-sm md:text-base max-w-xl"
+            >
+              Have questions about our academic paths? Our counselors are ready to map out your personalized high-fidelity success roadmap.
+            </motion.p>
           </div>
-          <div className="overflow-visible mt-2">
-            <KineticWord 
-              word="YOUR JOURNEY." 
-              className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-indigo-500 font-black italic tracking-tighter"
-              delayOffset={0.35}
-              mouseCoords={globalMouse}
-            />
-          </div>
-        </h1>
-        
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="text-slate-400 max-w-2xl mx-auto font-semibold leading-relaxed text-sm md:text-base px-4"
-        >
-          Have questions about our academic paths? Our counselors are ready to map out your personalized high-fidelity success roadmap.
-        </motion.p>
+
+          {/* Right Column: 4K Real Stock Image framed elegantly (No dark overlays, No text overlap) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 60, damping: 15, delay: 0.2 }}
+            style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+            className="lg:col-span-5 w-full flex justify-center"
+          >
+            <div 
+              className="w-full max-w-md aspect-[4/3] rounded-[3rem] border-8 border-white/10 overflow-hidden shadow-2xl relative bg-slate-900/60 group/img cursor-pointer"
+              style={{ transform: "translateZ(10px)", transformStyle: "preserve-3d" }}
+            >
+              {/* Border laser sweep highlight trailing cursor inside card */}
+              <div
+                className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover/img:opacity-100 transition-opacity duration-500 z-30"
+                style={{
+                  background: `radial-gradient(150px circle, rgba(251, 146, 60, 0.45), transparent 80%)`,
+                  padding: '1.2px',
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude'
+                }}
+              />
+
+              {/* Sparks Trail */}
+              <div className="absolute inset-0 z-10 pointer-events-none" />
+
+              {/* The clean, ultra HD 4K image without overlays */}
+              <img 
+                src={contactHeroImg} 
+                alt="Friendly Academic Counselor" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
+              />
+
+              {/* Corner tech badge indicating 4K authenticity */}
+              <span className="absolute bottom-4 right-6 font-mono text-[5px] text-white bg-slate-900/60 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded uppercase tracking-wider z-20">
+                [NODE_FOCAL: 4K_UHD // CALIBRATED]
+              </span>
+            </div>
+          </motion.div>
+
+        </div>
       </div>
       
       {/* Bottom neon laser border grid segment */}

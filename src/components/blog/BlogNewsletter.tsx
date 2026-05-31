@@ -255,10 +255,22 @@ export const BlogNewsletter = () => {
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Premium Frosted Glassmorphic Subscription Console Bezel */}
         <motion.div
-          ref={cardRef}
+          initial={{ opacity: 0, x: 280, scale: 0.96 }}
+          whileInView={{ opacity: 1, x: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{
+            type: "spring",
+            stiffness: 105,
+            damping: 17,
+            mass: 0.95
+          }}
+          style={{ perspective: 1200, transformStyle: "preserve-3d" }}
+          className="w-full h-full"
+        >
+          {/* Premium Frosted Glassmorphic Subscription Console Bezel */}
+          <motion.div
+            ref={cardRef}
           onMouseMove={handleCardMouseMove}
           onMouseLeave={handleCardMouseLeave}
           className="relative rounded-[4rem] border transition-all duration-500 overflow-hidden bg-[#0d1222]/30 backdrop-blur-xl border-white/10 shadow-2xl p-16 lg:p-24 flex flex-col items-center text-center select-none"
@@ -421,7 +433,8 @@ export const BlogNewsletter = () => {
             [RADAR_COORD: SECURE // INDEX: NEWS_AXIS]
           </span>
         </motion.div>
-      </div>
-    </section>
+      </motion.div>
+    </div>
+  </section>
   );
 };

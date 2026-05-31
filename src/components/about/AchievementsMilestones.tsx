@@ -82,54 +82,68 @@ const HonorCard = ({
 
   return (
     <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`p-10 rounded-[3rem] border transition-all duration-500 relative overflow-hidden backdrop-blur-xl flex flex-col items-center text-center bg-white/5 border-white/10 ${
-        isSelfHovered
-          ? 'scale-[1.02] shadow-[0_0_50px_rgba(99,102,241,0.15)] border-indigo-500/30 bg-white/10'
-          : isDimmed
-            ? 'opacity-40 scale-[0.985] blur-[0.5px] border-white/5'
-            : 'shadow-2xl'
-      }`}
-      style={{
-        transform: `perspective(1000px) rotateX(${-tilt.y * 6}deg) rotateY(${tilt.x * 6}deg) scale3d(${isSelfHovered ? 1.02 : 1}, ${isSelfHovered ? 1.02 : 1}, 1)`,
-        transformStyle: "preserve-3d"
+      initial={{ opacity: 0, rotateY: 180, scale: 0.85 }}
+      whileInView={{ opacity: 1, rotateY: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 55, 
+        damping: 14, 
+        delay: index * 0.15 
       }}
+      style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+      className="w-full h-full"
     >
-      {/* Border laser sweep trailing cursor */}
-      <div
-        className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 z-30"
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className={`p-10 rounded-[3rem] border transition-all duration-500 relative overflow-hidden backdrop-blur-xl flex flex-col items-center text-center bg-white/5 border-white/10 h-full ${
+          isSelfHovered
+            ? 'scale-[1.02] shadow-[0_0_50px_rgba(99,102,241,0.15)] border-indigo-500/30 bg-white/10'
+            : isDimmed
+              ? 'opacity-45 scale-[0.985] blur-[0.5px] border-white/5'
+              : 'shadow-2xl'
+        }`}
         style={{
-          background: `radial-gradient(120px circle at ${coords.x}px ${coords.y}px, ${item.laserColor}, transparent 80%)`,
-          padding: '1.2px',
-          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'xor',
-          maskComposite: 'exclude'
+          transform: `perspective(1000px) rotateX(${-tilt.y * 6}deg) rotateY(${tilt.x * 6}deg) scale3d(${isSelfHovered ? 1.02 : 1}, ${isSelfHovered ? 1.02 : 1}, 1)`,
+          transformStyle: "preserve-3d"
         }}
-      />
+      >
+        {/* Border laser sweep trailing cursor */}
+        <div
+          className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 z-30"
+          style={{
+            background: `radial-gradient(120px circle at ${coords.x}px ${coords.y}px, ${item.laserColor}, transparent 80%)`,
+            padding: '1.2px',
+            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+            WebkitMaskComposite: 'xor',
+            maskComposite: 'exclude'
+          }}
+        />
 
-      {/* Sparks trail */}
-      <SparkParticlesTrail coords={coords} colorClass={item.sparkClass} />
+        {/* Sparks trail */}
+        <SparkParticlesTrail coords={coords} colorClass={item.sparkClass} />
 
-      {/* Rotating Concentric HUD Icon Orbits */}
-      <div className="relative w-20 h-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mb-8 shadow-sm group-hover/card:scale-110 transition-transform z-10 shrink-0" style={{ transform: "translateZ(25px)" }}>
-        <div className="absolute inset-[-6px] border border-dashed border-white/10 rounded-full animate-spin pointer-events-none group-hover/card:border-white/30" style={{ animationDuration: '8s' }} />
-        {React.cloneElement(item.icon as React.ReactElement, { size: 36, className: `relative z-10 ${colorMap[item.themeColor].split(' ')[1]}` })}
-      </div>
+        {/* Rotating Concentric HUD Icon Orbits */}
+        <div className="relative w-20 h-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mb-8 shadow-sm group-hover/card:scale-110 transition-transform z-10 shrink-0" style={{ transform: "translateZ(25px)" }}>
+          <div className="absolute inset-[-6px] border border-dashed border-white/10 rounded-full animate-spin pointer-events-none group-hover/card:border-white/30" style={{ animationDuration: '8s' }} />
+          {React.cloneElement(item.icon as React.ReactElement, { size: 36, className: `relative z-10 ${colorMap[item.themeColor].split(' ')[1]}` })}
+        </div>
 
-      <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-tight" style={{ transform: "translateZ(20px)" }}>
-        {item.title}
-      </h3>
-      
-      <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2" style={{ transform: "translateZ(10px)" }}>
-        {item.org}
-      </div>
+        <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-tight" style={{ transform: "translateZ(20px)" }}>
+          {item.title}
+        </h3>
+        
+        <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2" style={{ transform: "translateZ(10px)" }}>
+          {item.org}
+        </div>
 
-      {/* Monospaced indicator badge */}
-      <span className="absolute bottom-4 right-6 font-mono text-[7px] text-slate-500 select-none z-10">
-        [{item.badgeCode}]
-      </span>
+        {/* Monospaced indicator badge */}
+        <span className="absolute bottom-4 right-6 font-mono text-[7px] text-slate-500 select-none z-10">
+          [{item.badgeCode}]
+        </span>
+      </motion.div>
     </motion.div>
   );
 };

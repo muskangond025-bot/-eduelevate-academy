@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { ArrowRight, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -108,6 +108,17 @@ export const AboutCTA = () => {
 
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end end"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.85], [0.65, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [0.3, 1]);
+
+  const smoothedScale = useSpring(scale, { stiffness: 90, damping: 20 });
+  const smoothedOpacity = useSpring(opacity, { stiffness: 90, damping: 20 });
+
   const handleSectionMouseMove = (e: React.MouseEvent) => {
     if (!sectionRef.current) return;
     const rect = sectionRef.current.getBoundingClientRect();
@@ -172,7 +183,16 @@ export const AboutCTA = () => {
       <div className="absolute right-[8%] top-0 bottom-0 w-[1px] bg-slate-200/40 pointer-events-none z-10" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Premium Frosted Glassmorphic Card Banner */}
+        <motion.div
+          style={{
+            scale: smoothedScale,
+            opacity: smoothedOpacity,
+            perspective: 1200,
+            transformStyle: "preserve-3d"
+          }}
+          className="w-full h-full"
+        >
+          {/* Premium Frosted Glassmorphic Card Banner */}
         <div
           ref={cardRef}
           onMouseMove={handleCardMouseMove}
@@ -239,7 +259,8 @@ export const AboutCTA = () => {
 
           </div>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </div>
+  </section>
   );
 };

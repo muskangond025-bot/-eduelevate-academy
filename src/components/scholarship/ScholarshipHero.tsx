@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Award, Sparkles, ChevronRight, Target, ArrowRight, ShieldAlert } from 'lucide-react';
+import scholarshipHeroImg from '../../assets/scholarship_hero.png';
+
 
 const GridWarpCanvas = ({ mousePos, isHovered }: { mousePos: { x: number; y: number }; isHovered: boolean }) => {
   const containerRef = useRef<SVGSVGElement>(null);
@@ -134,7 +136,7 @@ export const ScholarshipHero = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="pt-40 pb-28 bg-[#02040A] relative overflow-hidden border-b border-white/5"
+      className="pt-24 pb-24 bg-[#02040A] relative overflow-hidden border-b border-white/5"
       style={{ perspective: 1200 }}
     >
       {/* Background Spotlight Glows */}
@@ -239,94 +241,48 @@ export const ScholarshipHero = () => {
             </motion.div>
           </div>
           
-          {/* Right Column: 3D Holographic Gold Pass */}
-          <div className="lg:w-2/5 w-full flex justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
+          {/* Right Column: 4K Real Stock Image framed elegantly (No dark overlays, No text overlap) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4 }}
+            style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+            className="lg:w-2/5 w-full flex justify-center"
+          >
+            <div 
               onMouseMove={handleTicketMouseMove}
               onMouseLeave={handleTicketMouseLeave}
-              className="w-full max-w-[340px] aspect-[4/6] bg-gradient-to-br from-amber-500/[0.08] via-orange-500/[0.02] to-transparent border border-amber-500/25 rounded-[3rem] p-8 relative shadow-2xl backdrop-blur-xl overflow-hidden flex flex-col justify-between group"
-              style={{
-                transform: `perspective(1000px) rotateX(${-ticketTilt.y * 15}deg) rotateY(${ticketTilt.x * 15}deg) scale3d(1.02, 1.02, 1)`,
-                transformStyle: "preserve-3d",
-                boxShadow: isTicketHovered 
-                  ? '0 35px 60px -15px rgba(245, 158, 11, 0.12)' 
-                  : '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+              className="w-full max-w-md aspect-[4/3] rounded-[3rem] border-8 border-white/5 overflow-hidden shadow-2xl relative bg-slate-900 group/img cursor-pointer"
+              style={{ 
+                transform: `perspective(1000px) rotateX(${-ticketTilt.y * 6}deg) rotateY(${ticketTilt.x * 6}deg) scale3d(${isTicketHovered ? 1.02 : 1}, ${isTicketHovered ? 1.02 : 1}, 1)`,
+                transformStyle: "preserve-3d" 
               }}
             >
-              {/* Glossy sheen dynamic shift */}
-              <div 
-                className="absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-10"
+              {/* Border laser sweep highlight trailing cursor inside card */}
+              <div
+                className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover/img:opacity-100 transition-opacity duration-500 z-30"
                 style={{
-                  background: `linear-gradient(135deg, transparent 30%, rgba(245, 158, 11, 0.15) 50%, transparent 70%)`,
-                  transform: `translate(${ticketTilt.x * 120}px, ${ticketTilt.y * 120}px)`,
-                }}
-              />
-
-              {/* Razor-Thin Border Laser sweep */}
-              <div 
-                className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"
-                style={{
-                  background: `radial-gradient(120px circle at ${ticketMouse.x}px ${ticketMouse.y}px, rgba(245, 158, 11, 0.45), transparent 80%)`,
-                  padding: '1px',
+                  background: `radial-gradient(150px circle at ${ticketMouse.x}px ${ticketMouse.y}px, rgba(245, 158, 11, 0.45), transparent 80%)`,
+                  padding: '1.2px',
                   WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   WebkitMaskComposite: 'xor',
                   maskComposite: 'exclude'
                 }}
               />
 
-              {/* Top of Ticket */}
-              <div className="flex justify-between items-start">
-                <div className="space-y-1">
-                  <span className="text-[7.5px] font-mono font-black text-amber-500/60 uppercase tracking-[0.2em]">Admission Token</span>
-                  <p className="text-white font-black text-lg tracking-tight">NST GOLD PASS</p>
-                </div>
-                <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500 border border-amber-500/20 shadow-inner">
-                  <Target size={18} className="animate-spin" style={{ animationDuration: '6s' }} />
-                </div>
-              </div>
+              {/* The clean, ultra HD 4K image without overlays */}
+              <img 
+                src={scholarshipHeroImg} 
+                alt="Scholarship Winner Student" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
+              />
 
-              {/* Mid of Ticket: 100% Scholarship display */}
-              <div className="my-auto py-6 text-center space-y-1 select-none">
-                <span className="text-[9px] font-mono font-black text-amber-500 uppercase tracking-[0.3em] block">Scholarship Band</span>
-                <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400 tracking-tighter block">100%</span>
-                <span className="text-[9px] font-mono font-black text-slate-500 uppercase tracking-widest block">Full-Ride Tuition Waiver</span>
-              </div>
-
-              {/* Bottom of Ticket: Metadata & Barcode */}
-              <div className="border-t border-amber-500/15 pt-5 space-y-4">
-                <div className="grid grid-cols-2 gap-4 text-left font-mono">
-                  <div>
-                    <span className="text-[6.5px] text-slate-500 uppercase tracking-wider block">Valid Year</span>
-                    <span className="text-[9px] text-slate-200 font-bold block">ACADEMIC 2026</span>
-                  </div>
-                  <div>
-                    <span className="text-[6.5px] text-slate-500 uppercase tracking-wider block">Security ID</span>
-                    <span className="text-[9px] text-slate-200 font-bold block">NST-9081-ACTIVE</span>
-                  </div>
-                </div>
-
-                {/* Barcode Mock */}
-                <div className="space-y-1 flex flex-col items-center">
-                  <div className="w-full h-8 flex justify-between opacity-60 group-hover:opacity-90 transition-opacity">
-                    {[1.5, 3, 1, 4, 1.5, 2, 3.5, 1, 2.5, 4, 1.5, 3, 1, 2, 1.5, 3.5, 1, 4, 1.5].map((w, idx) => (
-                      <div key={idx} className="bg-amber-500/80 h-full" style={{ width: `${w}px` }} />
-                    ))}
-                  </div>
-                  <span className="text-[6px] font-mono text-amber-500/50 uppercase tracking-[0.4em]">*NST-2026-ACTIVE*</span>
-                </div>
-              </div>
-
-              {/* Corner brackets */}
-              <div className="absolute top-6 left-6 w-3 h-3 border-t border-l border-amber-500/20 group-hover:border-amber-500/40 transition-colors" />
-              <div className="absolute top-6 right-6 w-3 h-3 border-t border-r border-amber-500/20 group-hover:border-amber-500/40 transition-colors" />
-              <div className="absolute bottom-6 left-6 w-3 h-3 border-b border-l border-amber-500/20 group-hover:border-amber-500/40 transition-colors" />
-              <div className="absolute bottom-6 right-6 w-3 h-3 border-b border-r border-amber-500/20 group-hover:border-amber-500/40 transition-colors" />
-
-            </motion.div>
-          </div>
+              {/* Corner tech badge indicating 4K authenticity */}
+              <span className="absolute bottom-4 right-6 font-mono text-[5px] text-white bg-slate-955/60 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded uppercase tracking-wider z-20">
+                [NODE_FOCAL: 4K_UHD // CALIBRATED]
+              </span>
+            </div>
+          </motion.div>
           
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { History, Star, Users, Award, Shield, Activity } from 'lucide-react';
+import aboutHeroImg from '../../assets/about_hero.png';
 
 const FloatingBackgroundShape = ({
   initialX,
@@ -191,14 +192,14 @@ const AboutStatItem = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, rotateY: 90, z: -100 }}
-      whileInView={{ opacity: 1, rotateY: 0, z: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      initial={{ opacity: 0, y: 90, rotateX: 15, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+      viewport={{ once: true }}
       transition={{ 
         type: "spring", 
-        stiffness: 60, 
-        damping: 14,
-        delay: index * 0.15 
+        stiffness: 70, 
+        damping: 16,
+        delay: index * 0.12 
       }}
       style={{ perspective: 1000, transformStyle: "preserve-3d" }}
       className="w-full h-full"
@@ -397,18 +398,20 @@ export const AboutHero = () => {
   const wordVariants = {
     hidden: { 
       opacity: 0, 
-      y: 60, 
-      rotateX: -90 
+      y: 50, 
+      filter: "blur(18px)",
+      scale: 0.94,
+      skewY: 3
     },
     visible: { 
       opacity: 1, 
       y: 0, 
-      rotateX: 0,
+      filter: "blur(0px)",
+      scale: 1,
+      skewY: 0,
       transition: { 
-        type: "spring", 
-        stiffness: 90, 
-        damping: 18, 
-        mass: 1.1 
+        duration: 1.1,
+        ease: [0.16, 1, 0.3, 1] // EaseOutExpo
       }
     }
   };
@@ -418,7 +421,7 @@ export const AboutHero = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="relative pt-32 pb-24 overflow-hidden bg-[#FAF9F6] text-slate-800 border-b border-slate-200/50"
+      className="relative pt-24 pb-24 overflow-hidden bg-[#FAF9F6] text-slate-800 border-b border-slate-200/50"
     >
       {/* Light blueprint coordinates canvas backdrop */}
       <div
@@ -471,55 +474,106 @@ export const AboutHero = () => {
       <div className="absolute left-[8%] top-0 bottom-0 w-[1px] bg-slate-200/40 pointer-events-none z-10" />
       <div className="absolute right-[8%] top-0 bottom-0 w-[1px] bg-slate-200/40 pointer-events-none z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 select-none text-center">
-        {/* Visual Badge Header with spin */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-5 py-2.5 rounded-full text-indigo-650 font-black text-[10px] uppercase tracking-widest mb-10 shadow-sm relative overflow-hidden"
-        >
-          <div className="w-5 h-5 rounded-full border border-indigo-300 relative flex items-center justify-center shrink-0">
-            <div className="absolute -inset-0.5 border border-dashed border-indigo-400/40 rounded-full animate-spin" style={{ animationDuration: '10s' }} />
-            <History size={10} className="text-indigo-600" />
-          </div>
-          <span>Our Institute Story</span>
-        </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 select-none">
         
-        {/* Main Title with Awwwards-tier 3D flip-down typography reveal */}
-        <motion.h1
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          style={{ perspective: 1200, transformStyle: "preserve-3d" }}
-          className="text-5xl lg:text-7xl font-black text-slate-800 tracking-tighter mb-8 uppercase leading-tight max-w-4xl mx-auto flex flex-col items-center justify-center gap-1.5"
-        >
-          <div className="overflow-hidden block" style={{ transformStyle: "preserve-3d" }}>
-            <motion.span variants={wordVariants} className="block origin-top">
-              Legacy of
-            </motion.span>
-          </div>
-          <div className="overflow-hidden block mt-2" style={{ transformStyle: "preserve-3d" }}>
-            <motion.span
-              variants={wordVariants}
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-emerald-400 italic font-black origin-top whitespace-nowrap overflow-visible py-1 px-2"
+        {/* Split Grid for Title + 4K Image (No Overlay, Zero Text overlap) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center text-left mb-16">
+          
+          {/* Left Column: Clean text and typography */}
+          <div className="lg:col-span-7 flex flex-col items-start">
+            {/* Visual Badge Header with spin */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-5 py-2.5 rounded-full text-indigo-650 font-black text-[10px] uppercase tracking-widest mb-8 shadow-sm relative overflow-hidden"
             >
-              Academic Brilliance.
-            </motion.span>
+              <div className="w-5 h-5 rounded-full border border-indigo-300 relative flex items-center justify-center shrink-0">
+                <div className="absolute -inset-0.5 border border-dashed border-indigo-400/40 rounded-full animate-spin" style={{ animationDuration: '10s' }} />
+                <History size={10} className="text-indigo-600" />
+              </div>
+              <span>Our Institute Story</span>
+            </motion.div>
+            
+            {/* Main Title with Awwwards-tier 3D flip-down typography reveal */}
+            <motion.h1
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              style={{ perspective: 1200, transformStyle: "preserve-3d" }}
+              className="text-5xl lg:text-7xl font-black text-slate-800 tracking-tighter mb-6 uppercase leading-none flex flex-col gap-1.5"
+            >
+              <div className="overflow-hidden block" style={{ transformStyle: "preserve-3d" }}>
+                <motion.span variants={wordVariants} className="block origin-top">
+                  Legacy of
+                </motion.span>
+              </div>
+              <div className="overflow-hidden block mt-2" style={{ transformStyle: "preserve-3d" }}>
+                <motion.span
+                  variants={wordVariants}
+                  className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-emerald-400 italic font-black origin-top whitespace-nowrap overflow-visible py-1 px-1"
+                >
+                  Academic Brilliance.
+                </motion.span>
+              </div>
+            </motion.h1>
+            
+            {/* Subtitle details */}
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="text-slate-500 font-semibold leading-relaxed text-sm md:text-base italic-small mt-4 max-w-xl"
+            >
+              From a small classroom to India's most trusted coaching brand. We don't just teach students; we nurture the leaders of tomorrow.
+            </motion.p>
           </div>
-        </motion.h1>
-        
-        {/* Subtitle details */}
-        <motion.p 
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="text-slate-500 max-w-2xl mx-auto font-semibold leading-relaxed text-sm md:text-base italic-small px-4 mb-16"
-        >
-          From a small classroom to India's most trusted coaching brand. We don't just teach students; we nurture the leaders of tomorrow.
-        </motion.p>
+
+          {/* Right Column: 4K Real Stock Image framed elegantly (No dark overlays, No text overlap) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: "spring", stiffness: 60, damping: 15, delay: 0.2 }}
+            style={{ perspective: 1000, transformStyle: "preserve-3d" }}
+            className="lg:col-span-5 w-full flex justify-center"
+          >
+            <div 
+              className="w-full max-w-md aspect-[4/3] rounded-[3rem] border-8 border-slate-200/80 overflow-hidden shadow-2xl relative bg-slate-100 group/img cursor-pointer"
+              style={{ transform: "translateZ(10px)", transformStyle: "preserve-3d" }}
+            >
+              {/* Border laser sweep highlight trailing cursor inside card */}
+              <div
+                className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover/img:opacity-100 transition-opacity duration-500 z-30"
+                style={{
+                  background: `radial-gradient(150px circle, rgba(99, 102, 241, 0.45), transparent 80%)`,
+                  padding: '1.2px',
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude'
+                }}
+              />
+
+              {/* Sparks Trail */}
+              <div className="absolute inset-0 z-10 pointer-events-none" />
+
+              {/* The clean, ultra HD 4K image without overlays */}
+              <img 
+                src={aboutHeroImg} 
+                alt="Modern Academic Campus" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
+              />
+
+              {/* Corner tech badge indicating 4K authenticity */}
+              <span className="absolute bottom-4 right-6 font-mono text-[5px] text-white bg-slate-900/60 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded uppercase tracking-wider z-20">
+                [NODE_FOCAL: 4K_UHD // CALIBRATED]
+              </span>
+            </div>
+          </motion.div>
+
+        </div>
 
         {/* 4-column stats cards grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
