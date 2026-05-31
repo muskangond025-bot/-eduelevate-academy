@@ -59,84 +59,90 @@ export const Layout = ({ children }: LayoutProps) => {
     <div className="min-h-screen flex flex-col font-sans selection:bg-secondary selection:text-white">
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-100">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3 shrink-0">
-            {/* Logo Group */}
-            <Link to="/" className="flex items-center gap-2 group shrink-0">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-primary/20">
-                <span className="text-white font-black text-xl">A</span>
-              </div>
-              <span className="hidden sm:block font-display font-black text-2xl text-primary tracking-tighter uppercase">
-                ACADEMY<span className="text-secondary">PRO</span>
-              </span>
+          <div className="flex items-center gap-2 shrink-0">
+            <Link to="/" className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center hover:rotate-12 transition-transform shadow-lg shadow-primary/20 shrink-0">
+              <span className="text-white font-black text-xl">A</span>
             </Link>
+            
+            <span className="hidden sm:inline-flex font-display font-black text-2xl text-primary tracking-tighter uppercase">
+              ACADEMY<span className="text-secondary">PRO</span>
+            </span>
 
-            {/* Mobile Header Circular Arc Menu (+ Icon) */}
+            {/* Mobile Circular Navigation Menu in Navbar */}
             <div 
-              className="relative lg:hidden select-none"
+              className="relative lg:hidden ml-2 select-none"
               onMouseEnter={() => setIsMobileMenuOpen(true)}
               onMouseLeave={() => setIsMobileMenuOpen(false)}
             >
-              <div className="relative">
-                {/* Center Toggle Button (+ / x) inside header */}
+              <div className="relative flex items-center">
+                {/* Center Toggle Button (+ / x) */}
                 <motion.button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 bg-gradient-to-tr from-primary to-indigo-600 text-white rounded-xl shadow-lg flex items-center justify-center cursor-pointer relative z-50 hover:scale-105 transition-transform"
+                  className="w-9 h-9 bg-gradient-to-tr from-primary to-indigo-600 text-white rounded-full shadow-lg flex items-center justify-center cursor-pointer relative z-50 hover:scale-105 transition-transform"
                 >
                   <motion.div
                     animate={{ rotate: isMobileMenuOpen ? 135 : 0 }}
                     transition={{ type: "spring", stiffness: 200, damping: 15 }}
                   >
-                    <Plus size={20} />
+                    <Plus size={16} />
                   </motion.div>
                 </motion.button>
 
-                {/* Circular Options Arc (Quadrant IV: Downwards & Right) */}
-                {mobileNavItems.map((item, index) => {
-                  const angle = index * (90 / (mobileNavItems.length - 1)); // Spread from 0 to 90 degrees
-                  const rad = (angle * Math.PI) / 180;
-                  const radius = 80; // Orbit radius
-                  const x = Math.round(radius * Math.cos(rad));
-                  const y = Math.round(radius * Math.sin(rad)); // sweeps downwards
+                {/* Orbit items expand down and right (Quadrant IV) */}
+                <AnimatePresence>
+                  {isMobileMenuOpen && mobileNavItems.map((item, index) => {
+                    const angle = index * (90 / (mobileNavItems.length - 1)); // 0° (right) to 90° (down)
+                    const rad = (angle * Math.PI) / 180;
+                    const radius = 80; // Orbit distance in pixels
+                    const x = Math.round(radius * Math.cos(rad));
+                    const y = Math.round(radius * Math.sin(rad));
 
-                  return (
-                    <motion.div
-                      key={item.href}
-                      className="absolute left-0 top-0 z-40"
-                      initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
-                      animate={{
-                        x: isMobileMenuOpen ? x : 0,
-                        y: isMobileMenuOpen ? y : 0,
-                        scale: isMobileMenuOpen ? 1 : 0,
-                        opacity: isMobileMenuOpen ? 1 : 0
-                      }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 220,
-                        damping: 18,
-                        delay: isMobileMenuOpen ? index * 0.04 : (mobileNavItems.length - 1 - index) * 0.02
-                      }}
-                    >
-                      <Link
-                        to={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={cn(
-                          "w-10 h-10 rounded-full shadow-lg border flex items-center justify-center transition-all relative group/mob-link cursor-pointer",
-                          pathname === item.href 
-                            ? "bg-primary text-white border-primary shadow-primary/20" 
-                            : "bg-white text-slate-650 border-slate-100 hover:bg-slate-50 hover:text-primary"
-                        )}
+                    return (
+                      <motion.div
+                        key={item.href}
+                        className="absolute left-0 top-0 z-40"
+                        initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
+                        animate={{
+                          x: x,
+                          y: y,
+                          scale: 1,
+                          opacity: 1
+                        }}
+                        exit={{
+                          x: 0,
+                          y: 0,
+                          scale: 0,
+                          opacity: 0
+                        }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 220,
+                          damping: 18,
+                          delay: index * 0.04
+                        }}
                       >
-                        {item.icon}
-                        
-                        {/* Premium Floating tooltip label */}
-                        <span className="absolute left-full ml-3 px-2 py-1 rounded bg-slate-900 text-white text-[8px] font-black uppercase tracking-wider opacity-0 pointer-events-none group-hover/mob-link:opacity-100 transition-opacity whitespace-nowrap shadow-md border border-white/5">
-                          {item.name}
-                        </span>
-                      </Link>
-                    </motion.div>
-                  );
-                })}
+                        <Link
+                          to={item.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={cn(
+                            "w-9 h-9 rounded-full shadow-lg border flex items-center justify-center transition-all relative group/mob-link cursor-pointer",
+                            pathname === item.href 
+                              ? "bg-primary text-white border-primary shadow-primary/20" 
+                              : "bg-white text-slate-600 border-slate-100 hover:bg-slate-50 hover:text-primary"
+                          )}
+                        >
+                          {item.icon}
+                          
+                          {/* Premium Floating tooltip label */}
+                          <span className="absolute left-full ml-3 px-2 py-1 rounded bg-slate-900 text-white text-[8px] font-black uppercase tracking-wider opacity-0 pointer-events-none group-hover/mob-link:opacity-100 transition-opacity whitespace-nowrap shadow-md border border-white/5">
+                            {item.name}
+                          </span>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
               </div>
             </div>
           </div>
@@ -223,7 +229,7 @@ export const Layout = ({ children }: LayoutProps) => {
         {children}
       </main>
 
-      {/* Mobile Floating Menu removed as it is now in the header navbar */}
+
 
       <footer className="bg-slate-50/40 border-t border-slate-100 pt-24 pb-12 overflow-hidden sticky bottom-0 z-0">
         {/* Grid Backdrop Lines */}
