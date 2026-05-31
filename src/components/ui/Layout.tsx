@@ -59,18 +59,10 @@ export const Layout = ({ children }: LayoutProps) => {
     <div className="min-h-screen flex flex-col font-sans selection:bg-secondary selection:text-white">
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-100">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2 shrink-0">
-            <Link to="/" className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center hover:rotate-12 transition-transform shadow-lg shadow-primary/20 shrink-0">
-              <span className="text-white font-black text-xl">A</span>
-            </Link>
-            
-            <span className="hidden sm:inline-flex font-display font-black text-2xl text-primary tracking-tighter uppercase">
-              ACADEMY<span className="text-secondary">PRO</span>
-            </span>
-
-            {/* Mobile Circular Navigation Menu in Navbar */}
+          <div className="flex items-center gap-3 shrink-0">
+            {/* Mobile Circular Navigation Menu in Navbar (Extreme Left) */}
             <div 
-              className="relative lg:hidden ml-2 select-none"
+              className="relative lg:hidden select-none"
               onMouseEnter={() => setIsMobileMenuOpen(true)}
               onMouseLeave={() => setIsMobileMenuOpen(false)}
             >
@@ -145,6 +137,16 @@ export const Layout = ({ children }: LayoutProps) => {
                 </AnimatePresence>
               </div>
             </div>
+
+            {/* Logo Group: logo box + brand name always next to each other */}
+            <Link to="/" className="flex items-center gap-2 group shrink-0">
+              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-primary/20 shrink-0">
+                <span className="text-white font-black text-xl">A</span>
+              </div>
+              <span className="font-display font-black text-xl sm:text-2xl text-primary tracking-tighter uppercase">
+                ACADEMY<span className="text-secondary">PRO</span>
+              </span>
+            </Link>
           </div>
           
           <div className="hidden lg:flex items-center gap-1">
