@@ -59,14 +59,87 @@ export const Layout = ({ children }: LayoutProps) => {
     <div className="min-h-screen flex flex-col font-sans selection:bg-secondary selection:text-white">
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-100">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group shrink-0">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-primary/20">
-              <span className="text-white font-black text-xl">A</span>
+          <div className="flex items-center gap-3 shrink-0">
+            {/* Logo Group */}
+            <Link to="/" className="flex items-center gap-2 group shrink-0">
+              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-primary/20">
+                <span className="text-white font-black text-xl">A</span>
+              </div>
+              <span className="hidden sm:block font-display font-black text-2xl text-primary tracking-tighter uppercase">
+                ACADEMY<span className="text-secondary">PRO</span>
+              </span>
+            </Link>
+
+            {/* Mobile Header Circular Arc Menu (+ Icon) */}
+            <div 
+              className="relative lg:hidden select-none"
+              onMouseEnter={() => setIsMobileMenuOpen(true)}
+              onMouseLeave={() => setIsMobileMenuOpen(false)}
+            >
+              <div className="relative">
+                {/* Center Toggle Button (+ / x) inside header */}
+                <motion.button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-10 h-10 bg-gradient-to-tr from-primary to-indigo-600 text-white rounded-xl shadow-lg flex items-center justify-center cursor-pointer relative z-50 hover:scale-105 transition-transform"
+                >
+                  <motion.div
+                    animate={{ rotate: isMobileMenuOpen ? 135 : 0 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                  >
+                    <Plus size={20} />
+                  </motion.div>
+                </motion.button>
+
+                {/* Circular Options Arc (Quadrant IV: Downwards & Right) */}
+                {mobileNavItems.map((item, index) => {
+                  const angle = index * (90 / (mobileNavItems.length - 1)); // Spread from 0 to 90 degrees
+                  const rad = (angle * Math.PI) / 180;
+                  const radius = 80; // Orbit radius
+                  const x = Math.round(radius * Math.cos(rad));
+                  const y = Math.round(radius * Math.sin(rad)); // sweeps downwards
+
+                  return (
+                    <motion.div
+                      key={item.href}
+                      className="absolute left-0 top-0 z-40"
+                      initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
+                      animate={{
+                        x: isMobileMenuOpen ? x : 0,
+                        y: isMobileMenuOpen ? y : 0,
+                        scale: isMobileMenuOpen ? 1 : 0,
+                        opacity: isMobileMenuOpen ? 1 : 0
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 220,
+                        damping: 18,
+                        delay: isMobileMenuOpen ? index * 0.04 : (mobileNavItems.length - 1 - index) * 0.02
+                      }}
+                    >
+                      <Link
+                        to={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={cn(
+                          "w-10 h-10 rounded-full shadow-lg border flex items-center justify-center transition-all relative group/mob-link cursor-pointer",
+                          pathname === item.href 
+                            ? "bg-primary text-white border-primary shadow-primary/20" 
+                            : "bg-white text-slate-650 border-slate-100 hover:bg-slate-50 hover:text-primary"
+                        )}
+                      >
+                        {item.icon}
+                        
+                        {/* Premium Floating tooltip label */}
+                        <span className="absolute left-full ml-3 px-2 py-1 rounded bg-slate-900 text-white text-[8px] font-black uppercase tracking-wider opacity-0 pointer-events-none group-hover/mob-link:opacity-100 transition-opacity whitespace-nowrap shadow-md border border-white/5">
+                          {item.name}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
-            <span className="font-display font-black text-2xl text-primary tracking-tighter uppercase">
-              ACADEMY<span className="text-secondary">PRO</span>
-            </span>
-          </Link>
+          </div>
           
           <div className="hidden lg:flex items-center gap-1">
             <ul className="flex items-center gap-2">
@@ -150,75 +223,7 @@ export const Layout = ({ children }: LayoutProps) => {
         {children}
       </main>
 
-      {/* Mobile Floating Action Button (FAB) Half-Circular Navigation Menu */}
-      <div 
-        className="fixed bottom-8 left-8 z-[100] lg:hidden select-none"
-        onMouseEnter={() => setIsMobileMenuOpen(true)}
-        onMouseLeave={() => setIsMobileMenuOpen(false)}
-      >
-        <div className="relative">
-          {/* Half-Circular Arc Menu Options */}
-          {mobileNavItems.map((item, index) => {
-            const angle = index * (90 / (mobileNavItems.length - 1)); // Spread evenly from 0° (right) to 90° (up)
-            const rad = (angle * Math.PI) / 180;
-            const radius = 96; // Orbit distance in pixels
-            const x = Math.round(radius * Math.cos(rad));
-            const y = Math.round(-radius * Math.sin(rad));
-
-            return (
-              <motion.div
-                key={item.href}
-                className="absolute left-2 top-2 z-40"
-                initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
-                animate={{
-                  x: isMobileMenuOpen ? x : 0,
-                  y: isMobileMenuOpen ? y : 0,
-                  scale: isMobileMenuOpen ? 1 : 0,
-                  opacity: isMobileMenuOpen ? 1 : 0
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 220,
-                  damping: 18,
-                  delay: isMobileMenuOpen ? index * 0.04 : (mobileNavItems.length - 1 - index) * 0.02
-                }}
-              >
-                <Link
-                  to={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={cn(
-                    "w-11 h-11 rounded-full shadow-lg border flex items-center justify-center transition-all relative group/mob-link cursor-pointer",
-                    pathname === item.href 
-                      ? "bg-primary text-white border-primary shadow-primary/20" 
-                      : "bg-white text-slate-650 border-slate-100 hover:bg-slate-50 hover:text-primary"
-                  )}
-                >
-                  {item.icon}
-                  
-                  {/* Premium Floating tooltip label */}
-                  <span className="absolute left-full ml-3 px-2 py-1 rounded bg-slate-955 text-white text-[8px] font-black uppercase tracking-wider opacity-0 pointer-events-none group-hover/mob-link:opacity-100 transition-opacity whitespace-nowrap shadow-md border border-white/5">
-                    {item.name}
-                  </span>
-                </Link>
-              </motion.div>
-            );
-          })}
-
-          {/* Center Toggle Button (+ / x) */}
-          <motion.button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            whileTap={{ scale: 0.9 }}
-            className="w-14 h-14 bg-gradient-to-tr from-primary to-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center cursor-pointer relative z-50 hover:scale-105 transition-transform"
-          >
-            <motion.div
-              animate={{ rotate: isMobileMenuOpen ? 135 : 0 }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            >
-              <Plus size={24} />
-            </motion.div>
-          </motion.button>
-        </div>
-      </div>
+      {/* Mobile Floating Menu removed as it is now in the header navbar */}
 
       <footer className="bg-slate-50/40 border-t border-slate-100 pt-24 pb-12 overflow-hidden sticky bottom-0 z-0">
         {/* Grid Backdrop Lines */}
