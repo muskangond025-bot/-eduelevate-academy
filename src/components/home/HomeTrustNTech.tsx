@@ -209,7 +209,7 @@ export const HomeAdaptiveAssessment = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-32 bg-slate-50/50 relative overflow-hidden border-b border-slate-100">
+    <section ref={sectionRef} className="pt-12 pb-32 bg-slate-50/50 relative overflow-hidden border-b border-slate-100">
       {/* Subtle Grid Backdrop */}
       <div 
         className="absolute inset-0 opacity-[0.04] pointer-events-none" 
@@ -229,10 +229,7 @@ export const HomeAdaptiveAssessment = () => {
            {/* Left Content Column */}
            <div className="lg:w-[45%]">
               {/* Badge Tagline */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 mb-6 shadow-sm">
-                <Sparkles size={14} className="text-violet-600 animate-pulse" />
-                <span className="text-[10px] font-bold tracking-widest uppercase text-slate-600">INTELLIGENT DIAGNOSTICS</span>
-              </div>
+
 
               <h2 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight uppercase tracking-tighter mb-8 font-sans overflow-visible py-1">
                 Adaptive{" "}

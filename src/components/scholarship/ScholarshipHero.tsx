@@ -136,7 +136,7 @@ export const ScholarshipHero = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="pt-24 pb-24 bg-[#02040A] relative overflow-hidden border-b border-white/5"
+      className="pt-12 pb-24 bg-[#02040A] relative overflow-hidden border-b border-white/5"
       style={{ perspective: 1200 }}
     >
       {/* Background Spotlight Glows */}
@@ -165,14 +165,6 @@ export const ScholarshipHero = () => {
           
           {/* Left Column: Title & Actions */}
           <div className="lg:w-3/5 w-full text-left">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 bg-amber-500/5 border border-amber-500/15 px-5 py-2.5 rounded-full text-amber-500 font-black text-[10px] uppercase tracking-[0.25em] mb-8 shadow-2xl backdrop-blur-md"
-            >
-              <Award size={13} className="text-amber-500 animate-pulse" />
-              <span>National Scholarship Test 2026</span>
-            </motion.div>
             
             {/* Staggered Word Reveal Title */}
             <h1 className="text-6xl sm:text-7xl lg:text-[5.5rem] font-black text-white tracking-tighter leading-none mb-8 select-none">
@@ -194,8 +186,8 @@ export const ScholarshipHero = () => {
                   >
                     {word === "Potential." ? (
                       <>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-400 font-black">Potential</span>
-                        <span className="text-amber-400 font-black">.</span>
+                        <span className="text-indigo-600 font-black">Potential</span>
+                        <span className="text-indigo-600 font-black">.</span>
                       </>
                     ) : (
                       word

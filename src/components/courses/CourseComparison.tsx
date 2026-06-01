@@ -26,7 +26,7 @@ export const CourseComparison = () => {
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="py-32 bg-slate-50/50 relative overflow-hidden"
+      className="pt-12 pb-12 bg-slate-50/50 relative overflow-hidden"
     >
       {/* Background blueprint grid overlay */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.15]"
@@ -56,14 +56,6 @@ export const CourseComparison = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block px-3 py-1 bg-white border border-slate-100 text-slate-500 text-[10px] font-black uppercase tracking-widest rounded-full mb-4 shadow-sm"
-          >
-            System Metrics Comparison
-          </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -173,7 +165,7 @@ export const CourseComparison = () => {
            </div>
            
            <div className="p-8 bg-slate-50/40 text-center border-t border-slate-100/60">
-              <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest opacity-60">Calculated based on 2024 Institute Performance Audits</p>
+              <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest opacity-60">Calculated based on 2026 Institute Performance Audits</p>
            </div>
         </div>
       </div>

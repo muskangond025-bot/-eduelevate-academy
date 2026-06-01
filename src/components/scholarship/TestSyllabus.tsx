@@ -146,7 +146,7 @@ export const TestSyllabus = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       id="syllabus-section"
-      className="py-32 bg-[#FAF9F6] text-primary relative overflow-hidden border-b border-indigo-50"
+      className="pt-12 pb-24 bg-[#FAF9F6] text-primary relative overflow-hidden border-b border-indigo-50"
       style={{ perspective: 1200 }}
     >
       {/* Background Spotlight Glow */}
@@ -163,16 +163,7 @@ export const TestSyllabus = () => {
       <GridWarpCanvas mousePos={mousePos} isHovered={isHovered} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-[0.25em] rounded-full mb-6 shadow-sm"
-          >
-            <Sparkles size={11} className="text-indigo-500 animate-bounce" />
-            <span>Syllabus Matrix</span>
-          </motion.div>
+        <div className="text-center mb-12">
           
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -273,18 +264,6 @@ export const TestSyllabus = () => {
                       exit={{ opacity: 0, x: -20 }}
                       className="bg-white/80 border border-slate-200/60 rounded-[4rem] p-12 shadow-2xl backdrop-blur-xl flex flex-col justify-between gap-10 group/console relative overflow-hidden h-full"
                     >
-                       {/* Chrome indicator dots bezel */}
-                       <div className="flex justify-between items-center border-b border-slate-200 pb-5 mb-4 select-none">
-                         <div className="flex gap-2">
-                           <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 shadow-md shadow-rose-500/10" />
-                           <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 shadow-md shadow-amber-500/10" />
-                           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shadow-md shadow-emerald-500/10" />
-                         </div>
-                         <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest font-black flex items-center gap-1.5">
-                           <Compass size={11} className="animate-spin" style={{ animationDuration: '6s' }} />
-                           <span>Diagnostic_Matrix // Subject_Lock_V3</span>
-                         </span>
-                       </div>
 
                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                           {item.topics.map((topic, i) => (

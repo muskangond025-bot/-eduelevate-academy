@@ -59,7 +59,7 @@ export const FinalCTA = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-32 bg-slate-50/40 overflow-hidden text-slate-800 border-t border-slate-100">
+    <section ref={sectionRef} className="relative pt-12 pb-32 bg-slate-50/40 overflow-hidden text-slate-800 border-slate-100">
       {/* Grid Backdrop Lines */}
       <div 
         className="absolute inset-0 opacity-[0.04] pointer-events-none" 
@@ -87,15 +87,7 @@ export const FinalCTA = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
         <div className="mb-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-[0_2px_10px_rgba(15,23,42,0.02)] backdrop-blur-md mb-6"
-          >
-            <Sparkles size={14} className="text-indigo-600 animate-pulse" />
-            <span className="text-[10px] font-bold tracking-widest uppercase text-slate-600">REDEFINE YOUR PATH</span>
-          </motion.div>
+
 
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -137,7 +129,7 @@ export const FinalCTA = () => {
             onMouseEnter={() => setHoveredCard(0)}
             onMouseLeave={() => setHoveredCard(null)}
             onClick={() => navigate('/book-demo')}
-            className={`relative p-8 md:p-10 rounded-[2.5rem] border backdrop-blur-xl transition-colors duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[480px] text-left ${
+            className={`relative p-8 md:p-10 rounded-[2.5rem] border backdrop-blur-xl transition-colors duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[480px] text-left gpu-accelerated ${
               hoveredCard === 0 
                 ? 'border-slate-200 bg-white shadow-[0_30px_60px_rgba(15,23,42,0.06)]' 
                 : hoveredCard !== null 
@@ -225,7 +217,7 @@ export const FinalCTA = () => {
             onMouseEnter={() => setHoveredCard(1)}
             onMouseLeave={() => setHoveredCard(null)}
             onClick={() => navigate('/scholarship')}
-            className={`relative p-8 md:p-10 rounded-[2.5rem] border backdrop-blur-xl transition-colors duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[480px] text-left ${
+            className={`relative p-8 md:p-10 rounded-[2.5rem] border backdrop-blur-xl transition-colors duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[480px] text-left gpu-accelerated ${
               hoveredCard === 1 
                 ? 'border-slate-200 bg-white shadow-[0_30px_60px_rgba(15,23,42,0.06)]' 
                 : hoveredCard !== null 

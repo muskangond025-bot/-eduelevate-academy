@@ -145,10 +145,7 @@ const FrostedInfoCard = ({
         <p className="text-xs font-bold text-slate-400">{item.desc}</p>
       </div>
 
-      {/* Monospaced technical indicators */}
-      <span className="absolute bottom-4 right-6 font-mono text-[5px] text-slate-350 select-none pointer-events-none">
-        [SYS_HELPLINE_MODULE_0{index + 1}]
-      </span>
+
     </motion.div>
   );
 };

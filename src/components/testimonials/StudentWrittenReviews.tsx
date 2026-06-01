@@ -109,7 +109,7 @@ const WrittenReviewCard = ({
 
       {/* Decorative Quote mark in card background */}
       <Quote
-        className={`absolute bottom-6 right-8 opacity-5 text-slate-350 w-24 h-24 pointer-events-none transition-all duration-700 select-none ${themeConfig.iconColor}`}
+        className={`absolute bottom-6 right-8 opacity-5 text-slate-400 w-24 h-24 pointer-events-none transition-all duration-700 select-none ${themeConfig.iconColor}`}
         style={{
           transform: isSelfHovered ? 'scale(1.15) rotate(15deg) translateZ(10px)' : 'scale(1) rotate(0deg)',
           opacity: isSelfHovered ? 0.08 : 0.03

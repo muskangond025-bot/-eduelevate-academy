@@ -274,7 +274,7 @@ const HolographicSticker = () => {
       ref={stickerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setIsHovered(false)}
-      className="absolute -bottom-10 -right-10 p-10 bg-secondary rounded-[3rem] shadow-2xl text-primary max-w-xs cursor-pointer select-none group/sticker overflow-hidden z-20"
+      className="hidden sm:block absolute -bottom-10 -right-10 p-10 bg-secondary rounded-[3rem] shadow-2xl text-primary max-w-xs cursor-pointer select-none group/sticker overflow-hidden z-20"
       style={{
         background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
         transform: `perspective(1000px) rotateX(${(coords.y - 60) * 0.15}deg) rotateY(${-(coords.x - 120) * 0.15}deg)`
@@ -347,7 +347,7 @@ export const FacultyIntroduction = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/60"
+      className="pt-12 pb-24 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/60"
     >
       {/* Light Dotted Matrix coordinates Canvas Backdrop */}
       <div
@@ -381,17 +381,7 @@ export const FacultyIntroduction = () => {
           
           {/* Left Column: Heading & Features */}
           <div className="flex flex-col">
-            <div className="relative select-none mb-8">
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm"
-              >
-                <Star size={11} className="text-indigo-500 animate-spin" style={{ animationDuration: '4s' }} />
-                <span>Mentorship science</span>
-              </motion.div>
-
+            <div className="relative select-none mb-4">
               <h2 className="text-4xl lg:text-5xl font-black text-primary tracking-tighter uppercase leading-tight mb-6 overflow-visible py-1">
                 Experienced Minds,{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-650 italic font-black px-1">

@@ -9,26 +9,8 @@ import { HomeCombinedTrust, HomeAdaptiveAssessment, HomeStudyEcosystem } from '.
 import { HomeGlobalAlumni, HomeScholarshipDrive, HomeMobileApp } from '../components/home/HomeFinalSections';
 import { HomePlatformPreview } from '../components/home/HomePlatformPreview';
 import { FinalCTA } from '../components/home/FinalCTA';
-import Lenis from 'lenis';
 
 export const Home = () => {
-  React.useEffect(() => {
-    // Initialize Lenis buttery smooth scroll
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
-      autoRaf: true,
-    });
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
 
   return (
     <div className="bg-white">

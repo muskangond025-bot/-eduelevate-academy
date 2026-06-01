@@ -115,10 +115,7 @@ const StepItemCard = ({
       </div>
 
       <div className="relative z-10 flex-grow" style={{ transform: "translateZ(15px)" }}>
-        <div className="flex items-center justify-between gap-2 mb-1 font-mono text-[7px] text-slate-400 select-none">
-          <span className="font-bold uppercase">SYSTEM COMPONENT</span>
-          <span>[{themeConfig.badgeCode}]</span>
-        </div>
+
         <h4 className="font-black text-slate-800 mb-2 uppercase text-sm tracking-tight group-hover/card:text-indigo-650 transition-colors">
           {step.title}
         </h4>
@@ -201,7 +198,7 @@ export const StudySystem = () => {
         setIsSectionHovered(false);
         setConsoleTilt({ x: 0, y: 0 });
       }}
-      className="py-32 bg-[#FAF9F6] text-slate-800 relative overflow-hidden border-b border-slate-200/50"
+      className="pt-12 pb-24 bg-[#FAF9F6] text-slate-800 relative overflow-hidden border-b border-slate-200/50"
     >
       {/* Light blueprint coordinates canvas backdrop */}
       <div
@@ -273,19 +270,7 @@ export const StudySystem = () => {
             {/* Console outer bezel wrap */}
             <div className="bg-[#0b0f1e]/95 border border-white/10 rounded-[3.8rem] p-6 shadow-2xl relative overflow-hidden backdrop-blur-2xl">
               
-              {/* macOS browser control dots */}
-              <div className="flex items-center gap-1.5 absolute top-5 left-8 z-20">
-                <div className="w-2 h-2 rounded-full bg-rose-500/70" />
-                <div className="w-2 h-2 rounded-full bg-amber-500/70" />
-                <div className="w-2 h-2 rounded-full bg-emerald-500/70" />
-              </div>
 
-              {/* Status Header */}
-              <div className="w-full text-center border-b border-white/5 pb-4 mb-4 select-none">
-                <span className="font-mono text-[8px] tracking-widest text-slate-550 uppercase">
-                  [VIEWPORT: STUDY_ENGINE_INGESTION]
-                </span>
-              </div>
 
               {/* Console Screen frame */}
               <div className="relative rounded-[2.8rem] overflow-hidden border border-white/5 aspect-square bg-slate-900 group">

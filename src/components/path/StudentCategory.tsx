@@ -282,7 +282,7 @@ export const StudentCategory = () => {
     <section 
       ref={containerRef}
       onMouseMove={handleGlobalMouseMove}
-      className="py-36 bg-[#F8FAFC] text-slate-900 relative overflow-hidden"
+      className="pt-12 pb-24 bg-[#F8FAFC] text-slate-900 relative overflow-hidden"
     >
       {/* Visual gradients and style tags declarations */}
       <StageStylesAndGradients />
@@ -302,10 +302,6 @@ export const StudentCategory = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-28">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 text-sm font-semibold tracking-wider uppercase mb-6 shadow-inner select-none">
-            <Cpu size={14} className="animate-pulse" />
-            Path Calibration
-          </div>
           <h2 className="text-5xl lg:text-7xl font-black text-slate-900 tracking-tighter mb-4 leading-none select-none uppercase">
             Identify <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 italic">Your Stage</span>
           </h2>

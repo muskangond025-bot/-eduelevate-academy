@@ -325,7 +325,7 @@ export const CourseFAQ = () => {
     <section 
       ref={containerRef}
       onMouseMove={handleGlobalMouseMove}
-      className="py-36 bg-[#F8FAFC] text-slate-900 relative overflow-hidden"
+      className="pt-12 pb-12 bg-[#F8FAFC] text-slate-900 relative overflow-hidden"
     >
       {/* Styles and Gradients Definitions */}
       <FAQStylesAndGradients />

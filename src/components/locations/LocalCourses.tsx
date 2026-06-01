@@ -44,7 +44,7 @@ const CourseMiniWidget = ({ stream }: { stream: string }) => {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-          className="absolute w-8 h-8 rounded-full border border-indigo-500/20 relative"
+          className="absolute w-8 h-8 rounded-full border border-indigo-500/20"
         >
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-indigo-500" />
         </motion.div>
@@ -181,11 +181,6 @@ const LocalCourseCard = ({
         <span>Explore Batch</span>
         <ArrowRight size={14} className="text-indigo-600 shrink-0" />
       </Link>
-
-      {/* Monospaced technical indicators */}
-      <span className="absolute bottom-4 right-6 font-mono text-[5px] text-slate-400 select-none pointer-events-none">
-        [{course.badgeCode}]
-      </span>
     </motion.div>
   );
 };
@@ -242,7 +237,7 @@ export const LocalCourses = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/50"
+      className="pt-12 pb-32 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/50"
     >
       {/* Light blueprint coordinates canvas backdrop */}
       <div
@@ -275,15 +270,7 @@ export const LocalCourses = () => {
         
         {/* Header section reveal */}
         <div className="text-center mb-20 select-none">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-5 py-2.5 rounded-full text-indigo-650 font-black text-[10px] uppercase tracking-widest mb-6 shadow-sm"
-          >
-            <Cpu size={10} className="text-indigo-650 animate-pulse" />
-            <span>Academic Streams</span>
-          </motion.div>
+          
 
           <h2 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tighter uppercase leading-none">
             Programs <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500 italic">Available.</span>

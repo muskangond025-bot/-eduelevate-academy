@@ -113,19 +113,47 @@ export const Eligibility = () => {
   };
 
   const criteria = [
-    { text: "Students currently studying in Grades 8th, 9th, 10th", tag: "GRADES 8-10" },
-    { text: "Students passed/appearing for Grade 12th in 2026", tag: "BATCH 2026" },
-    { text: "Droppers who are preparing for JEE/NEET 2027", tag: "TARGET 2027" },
-    { text: "Olympiad and NTSE aspirants", tag: "COMPETITIVE" },
-    { text: "Minimum 60% marks in the last academic year", tag: "MIN 60% MARKS" }
+    { 
+      text: "Students currently studying in Grades 8th, 9th, 10th", 
+      tag: "GRADES 8-10", 
+      image: "https://images.unsplash.com/photo-1523240715632-99bb5d06d332?auto=format&fit=crop&q=80&w=1000",
+      alt: "Grades 8 to 10 Students studying"
+    },
+    { 
+      text: "Students passed/appearing for Grade 12th in 2026", 
+      tag: "BATCH 2026", 
+      image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1000",
+      alt: "Grade 12 Senior Students studying"
+    },
+    { 
+      text: "Droppers who are preparing for JEE/NEET 2027", 
+      tag: "TARGET 2027", 
+      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=1000",
+      alt: "Intense JEE/NEET Preparation Dropper Study"
+    },
+    { 
+      text: "Olympiad and NTSE aspirants", 
+      tag: "COMPETITIVE", 
+      image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&q=80&w=1000",
+      alt: "Olympiad and Competitive Exam Aspirants"
+    },
+    { 
+      text: "Minimum 60% marks in the last academic year", 
+      tag: "MIN 60% MARKS", 
+      image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=1000",
+      alt: "Academic Report and Grades Success"
+    }
   ];
+
+  const activeImage = hoveredRow !== null ? criteria[hoveredRow].image : criteria[0].image;
+  const activeAlt = hoveredRow !== null ? criteria[hoveredRow].alt : criteria[0].alt;
 
   return (
     <section 
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="py-32 bg-[#05070F] relative overflow-hidden transition-all duration-500 border-t border-white/5"
+      className="pt-12 pb-24 bg-[#05070F] relative overflow-hidden transition-all duration-500 border-t border-white/5"
       style={{ perspective: 1200 }}
     >
       {/* Background Spotlight Glow */}
@@ -151,11 +179,6 @@ export const Eligibility = () => {
             viewport={{ once: true }}
             className="lg:w-1/2 w-full text-left"
           >
-            <div className="text-[10px] font-black text-amber-500 tracking-[0.25em] uppercase mb-4 flex items-center gap-1">
-              <Sparkles size={11} className="animate-bounce" />
-              <span>Qualification requirements</span>
-            </div>
-            
             <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter mb-8 uppercase leading-none select-none">
               Who Can <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-400 italic font-black">Apply?</span>
             </h2>
@@ -193,7 +216,7 @@ export const Eligibility = () => {
                          <CheckCircle2 size={16} className={isSelfHovered ? 'animate-pulse' : ''} />
                        </div>
                        <span className={`text-sm font-bold leading-snug transition-colors ${
-                         isSelfHovered ? 'text-white' : 'text-slate-350'
+                         isSelfHovered ? 'text-white' : 'text-slate-300'
                        }`}>{item.text}</span>
                      </div>
 
@@ -242,26 +265,22 @@ export const Eligibility = () => {
                   }}
                 />
 
-                {/* Bezel controls */}
-                <div className="flex justify-between items-center border-b border-white/10 pb-4 mb-4 select-none">
-                  <div className="flex gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                  </div>
-                  <span className="text-[8px] font-mono text-slate-500 uppercase tracking-widest font-black">
-                    Diagnostic_Viewport // Node_Global
-                  </span>
-                </div>
 
                 {/* Actual image frame inside glass bezel */}
                 <div className="aspect-[4/3] w-full rounded-[2.5rem] overflow-hidden relative shadow-inner bg-slate-950">
-                  <img 
-                    src="https://images.unsplash.com/photo-1523240715632-99bb5d06d332?auto=format&fit=crop&q=80&w=1000" 
-                    alt="Students Preparing" 
-                    className="w-full h-full object-cover opacity-75 group-hover/console:scale-105 group-hover/console:opacity-90 transition-all duration-700 filter contrast-125"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#05070F] via-transparent to-transparent pointer-events-none" />
+                  <AnimatePresence mode="wait">
+                    <motion.img 
+                      key={activeImage}
+                      src={activeImage} 
+                      alt={activeAlt}
+                      initial={{ opacity: 0, scale: 1.05 }}
+                      animate={{ opacity: 0.75, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0 w-full h-full object-cover group-hover/console:scale-105 transition-all duration-700 filter contrast-125"
+                    />
+                  </AnimatePresence>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05070F] via-transparent to-transparent pointer-events-none z-10" />
                   
                   {/* Concentric targets scanning on image */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30 z-10">

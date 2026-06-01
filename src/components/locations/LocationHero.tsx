@@ -196,7 +196,7 @@ export const LocationHero = ({ city = "Pune", area = "Kothrud" }) => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="pt-24 pb-28 bg-[#060813] relative overflow-hidden text-white border-b border-white/5"
+      className="pt-12 pb-28 bg-[#060813] relative overflow-hidden text-white border-b border-white/5"
     >
       {/* Animated Background Theme Wrapper */}
       <motion.div
@@ -239,18 +239,6 @@ export const LocationHero = ({ city = "Pune", area = "Kothrud" }) => {
           
           {/* Left Column: Clean text and typography */}
           <div className="lg:col-span-7 flex flex-col items-start w-full">
-            {/* Visual Badge Header with spin reticles */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-indigo-400 font-black text-[10px] uppercase tracking-widest mb-8 relative overflow-hidden"
-            >
-              <div className="w-5 h-5 rounded-full border border-indigo-500/40 relative flex items-center justify-center shrink-0">
-                <div className="absolute -inset-0.5 border border-dashed border-cyan-400/40 rounded-full animate-spin" style={{ animationDuration: '10s' }} />
-                <MapPin size={10} className="text-indigo-400" />
-              </div>
-              <span>Premier Learning Hub</span>
-            </motion.div>
             
             {/* Main Title with word reveal split stagger and gradient overlay */}
             <h1 className="text-5xl lg:text-7xl font-black mb-6 tracking-tighter uppercase leading-[0.95] w-full">

@@ -126,13 +126,12 @@ const SmartChatScreen = () => {
               </span>
               <span className="text-[7.5px] text-slate-600 font-bold uppercase">{m.isHOD ? "HOD COUNSELOR" : "STUDENT"}</span>
             </div>
-            <p className="text-slate-350 leading-relaxed font-bold">{m.msg}</p>
+            <p className="text-slate-300 leading-relaxed font-bold">{m.msg}</p>
           </motion.div>
         ))}
       </div>
 
-      <div className="border-t border-white/5 pt-2 flex items-center justify-between text-[8px] text-slate-500 font-bold uppercase tracking-wider">
-        <span>Moderator ID: 1042-PRO</span>
+      <div className="border-t border-white/5 pt-2 flex items-center justify-end text-[8px] text-slate-500 font-bold uppercase tracking-wider">
         <span>Auto-scroll Enabled</span>
       </div>
     </div>
@@ -160,12 +159,7 @@ const HandoutsScreen = () => {
   }, []);
 
   return (
-    <div className="w-full h-full bg-slate-950 rounded-3xl p-5 flex flex-col justify-between items-center border border-white/5 shadow-inner">
-      <div className="w-full flex justify-between border-b border-white/5 pb-3 text-[9px] font-mono text-slate-500 font-bold uppercase tracking-wider">
-        <span>Queue: SECURE_DESK</span>
-        <span>PDF_ENGINE_V3</span>
-      </div>
-
+    <div className="w-full h-full bg-slate-950 rounded-3xl p-5 flex flex-col justify-center items-center border border-white/5 shadow-inner">
       {/* Futuristic PDF Card */}
       <div className="w-full max-w-[210px] bg-slate-900/80 rounded-2xl p-4 border border-white/5 flex flex-col items-center gap-3 relative shadow-2xl my-2 overflow-hidden group">
         <style>{`
@@ -185,7 +179,7 @@ const HandoutsScreen = () => {
         </div>
         <div className="text-center font-mono">
           <span className="text-[10px] font-black text-slate-200 block truncate max-w-[150px]">Physics_Calculus_L3.pdf</span>
-          <span className="text-[8px] text-slate-500 uppercase block font-black mt-0.5">1.8 MB // SECURE</span>
+          <span className="text-[8px] text-slate-500 uppercase block font-black mt-0.5">1.8 MB</span>
         </div>
         
         {/* Progress bar or done badge */}
@@ -210,11 +204,6 @@ const HandoutsScreen = () => {
           </motion.div>
         )}
       </div>
-
-      <div className="w-full text-center text-[8px] font-mono text-slate-500 font-bold uppercase tracking-widest flex items-center justify-center gap-1">
-        <RefreshCw size={8} className="animate-spin" style={{ animationDuration: '4s' }} />
-        <span>BACKUP RE-ENGAGED: ON</span>
-      </div>
     </div>
   );
 };
@@ -224,9 +213,8 @@ const DiagnosticTestScreen = () => {
 
   return (
     <div className="w-full h-full bg-slate-950 rounded-3xl p-5 flex flex-col justify-between border border-white/5 font-mono text-[10px] shadow-inner">
-      <div className="flex justify-between items-center border-b border-white/5 pb-3 text-[9px] text-slate-500 font-bold uppercase tracking-wider">
-        <span>MICRO_DIAGNOSTIC_V2</span>
-        <span className="text-indigo-400 font-black">XP: {selected === 'B' ? '+50 XP' : '0 XP'}</span>
+      <div className="flex justify-end items-center border-b border-white/5 pb-3 text-[9px] text-indigo-400 font-bold uppercase tracking-wider">
+        <span className="font-black">XP: {selected === 'B' ? '+50 XP' : '0 XP'}</span>
       </div>
 
       <div className="space-y-3 my-1">
@@ -263,14 +251,13 @@ const DiagnosticTestScreen = () => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center border-t border-white/5 pt-2 text-[8px] text-slate-500 font-bold uppercase tracking-wider">
-        <span>{selected ? 'DIAGNOSTIC SECURED' : 'SELECT RESPONSE VALVE'}</span>
+      <div className="flex justify-end items-center border-t border-white/5 pt-2 text-[8px] text-slate-500 font-bold uppercase tracking-wider">
         {selected && (
           <button 
             onClick={() => setSelected(null)} 
             className="text-indigo-400 underline uppercase tracking-widest font-black flex items-center gap-1 hover:text-indigo-300 transition-colors"
           >
-            Reset
+            Reset Test
           </button>
         )}
       </div>
@@ -296,7 +283,7 @@ export const DemoExperience = () => {
   ];
 
   return (
-    <section className="py-32 bg-slate-950 text-white overflow-hidden relative">
+    <section className="pt-12 pb-12 bg-slate-950 text-white overflow-hidden relative">
       {/* Background blueprint dots */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
@@ -313,14 +300,6 @@ export const DemoExperience = () => {
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           {/* Left panel: Information & Tabs */}
           <div className="lg:w-1/2 w-full">
-             <motion.div
-               initial={{ opacity: 0, y: 15 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               className="inline-block px-4 py-2 bg-white/5 border border-white/10 text-slate-400 text-[10px] font-black uppercase tracking-widest rounded-full mb-6"
-             >
-               Digital Architecture
-             </motion.div>
              <motion.h2 
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}

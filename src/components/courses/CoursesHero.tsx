@@ -31,7 +31,7 @@ export const CoursesHero = () => {
     <section 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative pt-24 pb-24 overflow-hidden bg-slate-950 text-white transition-all duration-300"
+      className="relative pt-12 pb-12 overflow-hidden bg-slate-950 text-white transition-all duration-300"
       style={{ perspective: 1000 }}
     >
       {/* Spotlight Cursor Glow */}
@@ -67,17 +67,7 @@ export const CoursesHero = () => {
           {/* Left Column: Clean text and typography */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             {/* Sparkly Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-indigo-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8 shadow-2xl relative group cursor-pointer overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-white/[0.02] translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />
-              <div className="relative z-10 flex items-center gap-2">
-                <Sparkles size={12} className="text-amber-500 animate-pulse" /> 
-                <span>Advanced Academic Programs</span>
-              </div>
-            </motion.div>
+
             
             {/* Main Title Word Entrance */}
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.95] mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 uppercase">

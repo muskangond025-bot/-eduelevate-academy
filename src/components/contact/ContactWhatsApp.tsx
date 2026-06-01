@@ -126,7 +126,7 @@ export const ContactWhatsApp = () => {
   };
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden select-none">
+    <section className="pt-0 pb-20 bg-[#FAF9F6] relative overflow-hidden select-none">
       {/* Light blueprint coordinates canvas backdrop */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.08]"
@@ -231,15 +231,6 @@ export const ContactWhatsApp = () => {
 
           {/* Left Text Block inside green panel */}
           <div className="lg:w-2/3 text-center lg:text-left relative z-10" style={{ transform: "translateZ(15px)" }}>
-            
-            {/* Visual HUD orbit badge */}
-            <div className="inline-flex items-center gap-2 px-6 py-2 bg-white/10 border border-white/20 backdrop-blur-md rounded-full text-[9px] font-black uppercase tracking-[0.25em] mb-8 relative select-none">
-              <div className="w-5 h-5 rounded-full border border-white/30 relative flex items-center justify-center shrink-0">
-                <div className="absolute -inset-0.5 border border-dashed border-white/40 rounded-full animate-spin" style={{ animationDuration: '6s' }} />
-                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-              </div>
-              <span>Always Online Synchronizer</span>
-            </div>
 
             <h2 className="text-5xl lg:text-7xl font-black mb-8 tracking-tighter leading-tight italic uppercase overflow-visible py-1">
               Quick Support On <span className="text-slate-900 not-italic px-1">WhatsApp.</span>

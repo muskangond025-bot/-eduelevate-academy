@@ -191,10 +191,7 @@ const FacilityCard = ({
         {item.desc}
       </p>
 
-      {/* Monospaced indicator badge */}
-      <span className="absolute bottom-4 right-6 font-mono text-[7px] text-slate-400 select-none z-10">
-        [{item.badgeCode}]
-      </span>
+
     </motion.div>
   );
 };

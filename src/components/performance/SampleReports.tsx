@@ -239,7 +239,7 @@ export const SampleReports = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/60"
+      className="pt-12 pb-24 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/60"
     >
       {/* Light Blueprint Grid Canvas Backdrop */}
       <div
@@ -285,15 +285,6 @@ export const SampleReports = () => {
           
           {/* Left Panel: Header and Selectors */}
           <div className="lg:w-1/2 w-full">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm"
-            >
-              <Cpu size={11} className="text-indigo-500 animate-pulse" />
-              <span>Weekend Diagnostics</span>
-            </motion.div>
 
             <h2 className="text-5xl md:text-6xl font-black text-primary tracking-tighter mb-6 uppercase leading-none select-none">
               Sample <br />
@@ -327,21 +318,8 @@ export const SampleReports = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
-              className="p-8 lg:p-10 bg-[#060813] border border-white/10 rounded-[4.5rem] shadow-2xl relative overflow-hidden w-full max-w-[460px] aspect-[4/5] flex flex-col justify-between"
+              className="p-8 lg:p-10 bg-[#060813] border border-white/10 rounded-[4.5rem] shadow-2xl relative overflow-visible w-full max-w-[460px] aspect-[4/5] flex flex-col justify-between"
             >
-              {/* macOS Bezel Chrome controls */}
-              <div className="flex gap-1.5 py-1 px-2 border-b border-white/5 bg-white/[0.02] flex items-center justify-between select-none mb-6">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80 border border-rose-600/10" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80 border border-amber-600/10" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 border border-emerald-600/10" />
-                </div>
-                <div className="bg-white/5 border border-white/10 rounded-md px-3 py-0.5 text-[7px] font-mono text-slate-400 uppercase tracking-widest shrink-0">
-                  <span>[PREVIEW_ID: {activeData.id}]</span>
-                </div>
-                <div className="w-8" />
-              </div>
-
               {/* Dotted dashboard grids in bezel background */}
               <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-0"
                 style={{
@@ -443,7 +421,7 @@ export const SampleReports = () => {
               <motion.div
                 animate={{ y: [0, -6, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute top-1/4 -right-8 bg-gradient-to-r from-violet-500 via-pink-500 to-indigo-500 text-white font-black px-5 py-2.5 rounded-xl shadow-2xl rotate-12 uppercase text-[9px] tracking-widest select-none z-20 border border-white/20 backdrop-blur-md"
+                className="absolute top-1/4 -right-16 bg-gradient-to-r from-violet-500 via-pink-500 to-indigo-500 text-white font-black px-5 py-2.5 rounded-xl shadow-2xl rotate-12 uppercase text-[9px] tracking-widest select-none z-20 border border-white/20 backdrop-blur-md hidden sm:inline-block"
                 style={{
                   boxShadow: '0 15px 30px rgba(167, 139, 250, 0.3)',
                   textShadow: '0 1px 1px rgba(0,0,0,0.15)'
@@ -455,7 +433,7 @@ export const SampleReports = () => {
               <motion.div
                 animate={{ y: [0, 6, 0] }}
                 transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-                className="absolute bottom-1/4 -left-8 bg-gradient-to-r from-blue-500 via-teal-500 to-indigo-500 text-white font-black px-5 py-2.5 rounded-xl shadow-2xl -rotate-12 uppercase text-[9px] tracking-widest select-none z-20 border border-white/20 backdrop-blur-md"
+                className="absolute bottom-1/4 -left-16 bg-gradient-to-r from-blue-500 via-teal-500 to-indigo-500 text-white font-black px-5 py-2.5 rounded-xl shadow-2xl -rotate-12 uppercase text-[9px] tracking-widest select-none z-20 border border-white/20 backdrop-blur-md hidden sm:inline-block"
                 style={{
                   boxShadow: '0 15px 30px rgba(59, 130, 246, 0.3)',
                   textShadow: '0 1px 1px rgba(0,0,0,0.15)'

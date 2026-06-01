@@ -309,7 +309,7 @@ export const CareerPathGuidance = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="py-36 bg-[#03050C] relative overflow-hidden transition-all duration-500 border-t border-white/5"
+      className="pt-12 pb-24 bg-[#03050C] relative overflow-hidden transition-all duration-500 border-t border-white/5"
       style={{ perspective: 1200 }}
     >
       {/* Background Spotlight Glow */}
@@ -327,16 +327,6 @@ export const CareerPathGuidance = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <div className="max-w-3xl mx-auto mb-28">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-5 py-2.5 rounded-full text-slate-400 font-black text-[10px] uppercase tracking-[0.25em] mb-8 shadow-2xl backdrop-blur-md"
-          >
-            <HelpCircle size={12} className="text-indigo-400 animate-pulse" />
-            <span>Still Confused About Your Path?</span>
-          </motion.div>
-
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

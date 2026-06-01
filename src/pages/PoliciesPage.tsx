@@ -232,10 +232,7 @@ const FrostedPolicyWrapper = ({
         {children}
       </div>
 
-      {/* Monospaced technical indicators */}
-      <span className="absolute bottom-4 right-6 font-mono text-[5px] text-slate-400 select-none pointer-events-none">
-        [COMPLIANCE_AXIS_0{index + 1} // SECURE]
-      </span>
+
     </motion.div>
   );
 };
@@ -454,11 +451,7 @@ const CoordinatesCompassWidget = ({ mouseCoords }: { mouseCoords: { x: number; y
         <text x="30" y="122" fontSize="6" fontFamily="monospace" fill="rgba(99, 102, 241, 0.5)" textAnchor="end">270°W</text>
       </svg>
 
-      <div className="absolute bottom-4 left-6 font-mono text-[7.5px] text-slate-400 select-none pointer-events-none flex flex-col gap-1 bg-white/40 backdrop-blur-sm border border-slate-200/30 p-2.5 rounded-xl shadow-sm">
-        <span className="text-indigo-650 font-bold">[SYS_COORDS_SCANNER]</span>
-        <span className="flex items-center gap-1">RAD_VELOCITY: <span className="text-cyan-600 font-bold">15.2 RAD/S</span></span>
-        <span className="flex items-center gap-1">LOCK_STATUS: <span className="text-emerald-500 font-bold animate-pulse">TARGET_ACQUIRED</span></span>
-      </div>
+
     </div>
   );
 };

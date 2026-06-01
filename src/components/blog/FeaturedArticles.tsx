@@ -95,10 +95,7 @@ const FocusCalibrationWidget = () => {
         </div>
       </div>
 
-      {/* Live scanner log coordinates indicator */}
-      <span className="absolute bottom-2 right-4 font-mono text-[5px] text-slate-500">
-        [SYS_TRACK: 18HR_RULE]
-      </span>
+
     </div>
   );
 };
@@ -213,7 +210,7 @@ export const FeaturedArticles = ({ onArticleClick }: { onArticleClick: (article:
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#FAF9F6] relative z-10 overflow-hidden border-b border-slate-200/50"
+      className="pt-12 pb-32 bg-[#FAF9F6] relative z-10 overflow-hidden border-b border-slate-200/50"
     >
       {/* Light blueprint coordinates canvas backdrop */}
       <div
@@ -246,22 +243,10 @@ export const FeaturedArticles = ({ onArticleClick }: { onArticleClick: (article:
         
         {/* Header entrance reveal */}
         <div className="flex flex-col items-center text-center mb-16 select-none">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-5 py-2.5 rounded-full text-indigo-650 font-black text-[10px] uppercase tracking-widest mb-6 shadow-sm"
-          >
-            <Sparkles size={10} className="text-indigo-650 animate-pulse" />
-            <span>Featured Insight</span>
-          </motion.div>
           
           <h2 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tighter uppercase leading-none mb-4">
             Elite Strategy <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500 italic">Disclosures</span>
           </h2>
-          <p className="text-[10px] font-mono text-slate-400 uppercase tracking-widest">
-            [EXAM_STRATEGY: ACTIVE // COMPILATION: SECURE]
-          </p>
         </div>
 
         {/* Premium Frosted Glassmorphic Featured Card */}
@@ -386,10 +371,7 @@ export const FeaturedArticles = ({ onArticleClick }: { onArticleClick: (article:
 
           </div>
 
-          {/* Fixed Technical HUD indicator corner brackets */}
-          <span className="absolute bottom-4 right-6 font-mono text-[7px] text-slate-500 tracking-wider select-none z-10">
-            [SYS_INTEGRITY: SECURE // TACTICAL_CONSOLE: IN_USE]
-          </span>
+
         </motion.div>
       </div>
     </section>

@@ -71,7 +71,7 @@ const FloatingSelect = ({
   children: React.ReactNode;
 }) => {
   const [focused, setFocused] = useState(false);
-  const isFloating = focused || value !== "";
+  const isFloating = true;
 
   return (
     <div className="relative group/input">
@@ -157,7 +157,7 @@ export const RegistrationForm = () => {
   };
 
   return (
-    <section className="py-32 bg-[#FAF9F6] relative overflow-hidden border-b border-indigo-50" id="registration-form">
+    <section className="pt-12 pb-24 bg-[#FAF9F6] relative overflow-hidden border-b border-indigo-50" id="registration-form">
       {/* Background Dot Blueprint Overlay */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.25]"
         style={{
@@ -167,16 +167,8 @@ export const RegistrationForm = () => {
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-[0.25em] rounded-full mb-6 shadow-sm"
-          >
-            <Sparkles size={11} className="text-indigo-500 animate-bounce" />
-            <span>Registry Active</span>
-          </motion.div>
+        <div className="text-center mb-12">
+          
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -215,17 +207,6 @@ export const RegistrationForm = () => {
             }}
           />
 
-          {/* Bezel header ticks */}
-          <div className="flex justify-between items-center border-b border-slate-200 pb-5 mb-8 select-none">
-            <div className="flex gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-            </div>
-            <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest font-black flex items-center gap-1">
-              <span>Registry_Bezel // Hub_Active</span>
-            </span>
-          </div>
 
           <AnimatePresence mode="wait">
             {isSubmitted ? (

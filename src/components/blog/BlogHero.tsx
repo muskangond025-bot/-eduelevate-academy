@@ -11,7 +11,7 @@ export const BlogHero = ({
   setSearchQuery: (q: string) => void;
 }) => {
   return (
-    <section className="pt-24 pb-16 bg-slate-50 sticky top-[80px] z-0 overflow-hidden">
+    <section className="pt-12 pb-16 bg-slate-50 sticky top-[80px] z-0 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,146,60,0.05),transparent_50%)]" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -20,13 +20,7 @@ export const BlogHero = ({
           
           {/* Left Column: Clean text and typography */}
           <div className="lg:col-span-7 flex flex-col items-start w-full">
-            <motion.div
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               className="inline-flex items-center gap-2 bg-secondary/10 border border-secondary/20 px-4 py-2 rounded-full text-secondary font-black text-[10px] uppercase tracking-widest mb-8"
-            >
-              Institutional Insights
-            </motion.div>
+            
             
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}

@@ -167,7 +167,7 @@ export const PerformanceHero = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative pt-24 pb-24 overflow-hidden bg-bg-dark text-white border-b border-white/5"
+      className="relative pt-12 pb-24 overflow-hidden bg-bg-dark text-white border-b border-white/5"
     >
       {/* Spotlight dynamic glow */}
       <div 
@@ -190,13 +190,6 @@ export const PerformanceHero = () => {
           
           {/* Left Column: Clean text and typography */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            <motion.div
-               initial={{ opacity: 0, y: 15 }}
-               animate={{ opacity: 1, y: 0 }}
-               className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-2 rounded-full text-blue-400 font-black text-[10px] uppercase tracking-widest mb-8 shadow-2xl backdrop-blur-md"
-            >
-              <BarChart3 size={14} className="animate-pulse text-indigo-400" /> Data-Driven Achievement
-            </motion.div>
             
             <h1 className="text-5xl lg:text-7xl font-black mb-8 tracking-tighter uppercase leading-tight select-none overflow-visible py-1">
               Precision{" "}

@@ -118,7 +118,7 @@ export const TestSchedule = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="py-32 bg-[#03050C] overflow-hidden relative border-b border-white/5"
+      className="pt-12 pb-24 bg-[#03050C] overflow-hidden relative border-b border-white/5"
       style={{ perspective: 1200 }}
     >
       {/* Background Spotlight Glow */}
@@ -135,16 +135,7 @@ export const TestSchedule = () => {
       <GridWarpCanvas mousePos={mousePos} isHovered={isHovered} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/5 border border-white/10 text-slate-400 text-[10px] font-black uppercase tracking-[0.25em] rounded-full mb-6 shadow-2xl backdrop-blur-md"
-          >
-            <Sparkles size={11} className="text-indigo-400 animate-bounce" />
-            <span>Time Blocks</span>
-          </motion.div>
+        <div className="text-center mb-12">
           <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter mb-4 uppercase leading-none select-none">
             TEST <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-400 italic font-black">SCHEDULE.</span>
           </h2>

@@ -184,7 +184,7 @@ export const ContactFormSection = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setIsHovered(false)}
-      className="py-28 bg-[#FAF9F6] relative overflow-hidden select-none border-b border-slate-200/50"
+      className="pt-0 pb-8 bg-[#FAF9F6] relative overflow-hidden select-none"
     >
       {/* Light blueprint coordinates canvas backdrop */}
       <div
@@ -233,17 +233,7 @@ export const ContactFormSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 select-none">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           
-          {/* Left Text Block */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 bg-orange-50 border border-orange-100 px-4 py-1.5 rounded-full text-orange-650 font-black text-[9px] uppercase tracking-widest mb-6"
-            >
-              <Terminal size={10} className="text-orange-500 animate-pulse" />
-              <span>Diagnostic Enquiry Node</span>
-            </motion.div>
 
             <h2 className="text-4xl md:text-6xl font-black text-slate-800 tracking-tighter uppercase italic leading-tight mb-8 overflow-visible py-1">
               Drop A <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-indigo-500 not-italic px-1">Message.</span>
@@ -478,7 +468,7 @@ export const ContactFormSection = () => {
               </AnimatePresence>
 
               {/* Technical indicators inside card */}
-              <span className="absolute bottom-4 right-6 font-mono text-[5px] text-slate-350 select-none">
+              <span className="absolute bottom-4 right-6 font-mono text-[5px] text-slate-400 select-none">
                 [SECURE_CHANNEL: 256_BIT // IP_V4: ACTIVE]
               </span>
             </motion.div>

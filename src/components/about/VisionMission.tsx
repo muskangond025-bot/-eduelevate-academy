@@ -369,7 +369,7 @@ export const VisionMission = () => {
                   ref={stickerRef}
                   onMouseMove={handleStickerMouseMove}
                   onMouseLeave={() => setStickerTilt({ x: 0, y: 0 })}
-                  className="absolute -bottom-10 -right-10 p-8 rounded-3xl shadow-2xl border bg-white/70 border-slate-200/50 max-w-[280px] backdrop-blur-xl z-20 overflow-hidden group/sticker cursor-help"
+                  className="hidden sm:block absolute -bottom-10 -right-10 p-8 rounded-3xl shadow-2xl border bg-white/70 border-slate-200/50 max-w-[280px] backdrop-blur-xl z-20 overflow-hidden group/sticker cursor-help"
                   style={{
                     transform: `perspective(800px) rotateX(${-stickerTilt.y * 12}deg) rotateY(${stickerTilt.x * 12}deg) translateZ(35px)`,
                     transformStyle: "preserve-3d",

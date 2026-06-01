@@ -280,7 +280,7 @@ export const DemoBooking = () => {
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="py-32 bg-[#FAF9F6] relative overflow-hidden" 
+      className="pt-12 pb-32 bg-[#FAF9F6] relative overflow-hidden" 
       id="booking-section"
     >
       {/* Background Spotlight Glow */}
@@ -304,15 +304,6 @@ export const DemoBooking = () => {
           {/* Slots Selector Panel */}
           <div className="lg:w-1/2 flex flex-col justify-between">
             <div>
-               <motion.div
-                 initial={{ opacity: 0, y: 15 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6"
-               >
-                 <Sparkles size={11} className="text-indigo-500 animate-bounce" />
-                 <span>Upcoming Sessions</span>
-               </motion.div>
                <h2 className="text-5xl font-black text-primary tracking-tighter mb-10 uppercase leading-tight select-none overflow-visible py-1">
                  Available{" "}
                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-600 italic font-black px-1">Slots.</span>
@@ -404,15 +395,7 @@ export const DemoBooking = () => {
                           </svg>
                        </div>
                        
-                       {/* Monospace Badge detail */}
-                       <div className="flex flex-wrap gap-2 mb-4 font-mono text-[9px] uppercase font-bold tracking-widest text-indigo-600/80">
-                         <span className="bg-indigo-50 border border-indigo-100/50 px-2 py-0.5 rounded">
-                           [TRANSACTION: COMPLETE]
-                         </span>
-                         <span className="bg-amber-50 border border-amber-100/50 text-amber-600 px-2 py-0.5 rounded">
-                           [DESPATCH_DISPATCHED]
-                         </span>
-                       </div>
+
 
                        <h3 className="text-4xl font-black text-primary mb-3 tracking-tighter uppercase leading-none select-none">Seat Secured!</h3>
                        <p className="text-slate-500 text-sm font-semibold mb-10 max-w-sm leading-relaxed italic-small">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { LayoutDashboard, Bell, Search, User, Sparkles } from 'lucide-react';
+import { LayoutDashboard, Bell, Search, User, Sparkles, Star, Award } from 'lucide-react';
 
 const StatsCard = ({
   title,
@@ -123,7 +123,7 @@ export const StudentDashboardPreview = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setIsHovered(false)}
-      className="py-32 bg-[#FAF9F6] relative overflow-hidden"
+      className="pt-12 pb-24 bg-[#FAF9F6] relative overflow-hidden"
     >
       {/* Blueprint Dotted Grid Pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.25]"
@@ -139,15 +139,6 @@ export const StudentDashboardPreview = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-5 shadow-sm"
-          >
-            <Sparkles size={11} className="text-indigo-500 animate-bounce" />
-            <span>Interactive Workspace</span>
-          </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -173,33 +164,18 @@ export const StudentDashboardPreview = () => {
            transition={{ duration: 0.7 }}
            className="bg-white rounded-[4rem] shadow-2xl border border-slate-200/80 overflow-hidden relative backdrop-blur-xl"
         >
-          {/* Mock Dashboard browser controls header */}
-          <div className="flex gap-1.5 py-3 px-6 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between select-none">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-rose-500/80 border border-rose-600/10" />
-              <div className="w-3 h-3 rounded-full bg-amber-500/80 border border-amber-600/10" />
-              <div className="w-3 h-3 rounded-full bg-emerald-500/80 border border-emerald-600/10" />
-            </div>
-            
-            <div className="bg-white border border-slate-200/60 rounded-lg px-6 py-1.5 text-[8.5px] font-mono text-slate-400 uppercase tracking-widest flex items-center gap-2 shrink-0">
-              <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-ping" />
-              <span>STUDENT_HUD_INTERFACE // localhost:3000</span>
-            </div>
-            
-            <div className="w-12" /> {/* spacer */}
-          </div>
 
           <div className="flex h-[620px]">
             {/* Sidebar */}
-            <div className="w-20 lg:w-24 bg-slate-955 flex flex-col items-center py-10 gap-8 relative select-none shrink-0 border-r border-white/5">
-               <div className="w-10 h-10 bg-secondary rounded-2xl flex items-center justify-center text-primary font-black shadow-lg shadow-secondary/15 transform hover:scale-105 transition-transform duration-300">A</div>
-               <div className="flex flex-col gap-6 text-slate-550 relative z-10 w-full px-4 items-center">
+            <div className="w-20 lg:w-24 bg-slate-50 flex flex-col items-center py-10 gap-8 relative select-none shrink-0 border-r border-slate-150">
+               <div className="w-10 h-10 bg-indigo-650 rounded-2xl flex items-center justify-center text-white font-black shadow-lg shadow-indigo-500/20 transform hover:scale-105 transition-transform duration-300">A</div>
+               <div className="flex flex-col gap-6 text-slate-400 relative z-10 w-full px-4 items-center">
                   
                   {/* Dashboard */}
                   <button 
                     onClick={() => setActiveTab("dashboard")}
-                    className={`p-3 rounded-xl transition-all relative w-12 h-12 flex items-center justify-center ${
-                      activeTab === "dashboard" ? 'text-white bg-white/10' : 'hover:text-white hover:bg-white/[0.03]'
+                    className={`p-3 rounded-xl transition-all relative w-12 h-12 flex items-center justify-center cursor-pointer ${
+                      activeTab === "dashboard" ? 'text-indigo-600 bg-indigo-50 border border-indigo-100/50 shadow-sm' : 'text-slate-400 hover:text-indigo-650 hover:bg-indigo-50/30'
                     }`}
                   >
                     <LayoutDashboard size={20} />
@@ -208,19 +184,19 @@ export const StudentDashboardPreview = () => {
                   {/* Notification */}
                   <button 
                     onClick={() => setActiveTab("notifications")}
-                    className={`p-3 rounded-xl transition-all relative w-12 h-12 flex items-center justify-center ${
-                      activeTab === "notifications" ? 'text-white bg-white/10' : 'hover:text-white hover:bg-white/[0.03]'
+                    className={`p-3 rounded-xl transition-all relative w-12 h-12 flex items-center justify-center cursor-pointer ${
+                      activeTab === "notifications" ? 'text-indigo-600 bg-indigo-50 border border-indigo-100/50 shadow-sm' : 'text-slate-400 hover:text-indigo-650 hover:bg-indigo-50/30'
                     }`}
                   >
                     <Bell size={20} className={activeTab === "notifications" ? "animate-pulse" : ""} />
-                    <span className="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full border border-slate-955 animate-pulse" />
+                    <span className="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full border border-slate-50 animate-pulse" />
                   </button>
                   
                   {/* Search */}
                   <button 
                     onClick={() => setActiveTab("search")}
-                    className={`p-3 rounded-xl transition-all relative w-12 h-12 flex items-center justify-center ${
-                      activeTab === "search" ? 'text-white bg-white/10' : 'hover:text-white hover:bg-white/[0.03]'
+                    className={`p-3 rounded-xl transition-all relative w-12 h-12 flex items-center justify-center cursor-pointer ${
+                      activeTab === "search" ? 'text-indigo-600 bg-indigo-50 border border-indigo-100/50 shadow-sm' : 'text-slate-400 hover:text-indigo-650 hover:bg-indigo-50/30'
                     }`}
                   >
                     <Search size={20} />
@@ -229,8 +205,8 @@ export const StudentDashboardPreview = () => {
                   {/* User profile */}
                   <button 
                     onClick={() => setActiveTab("profile")}
-                    className={`p-3 rounded-xl transition-all relative w-12 h-12 flex items-center justify-center mt-32 ${
-                      activeTab === "profile" ? 'text-white bg-white/10' : 'hover:text-white hover:bg-white/[0.03]'
+                    className={`p-3 rounded-xl transition-all relative w-12 h-12 flex items-center justify-center mt-32 cursor-pointer ${
+                      activeTab === "profile" ? 'text-indigo-600 bg-indigo-50 border border-indigo-100/50 shadow-sm' : 'text-slate-400 hover:text-indigo-650 hover:bg-indigo-50/30'
                     }`}
                   >
                     <User size={20} />
@@ -245,115 +221,237 @@ export const StudentDashboardPreview = () => {
                   <div>
                      <h3 className="text-2xl font-black text-primary tracking-tight">Welcome Back, Rohan!</h3>
                      <div className="flex items-center gap-2 mt-1 font-mono text-[9px] uppercase font-bold tracking-widest text-slate-400">
-                       <span className="text-indigo-600 bg-indigo-50 border border-indigo-100/50 px-2 py-0.5 rounded">[TARGET: JEE ADV 2026]</span>
+                       <span className="text-indigo-650 bg-indigo-5 border border-indigo-100/50 px-2 py-0.5 rounded">[TARGET: JEE ADV 2026]</span>
                        <span>// Mapped Node</span>
                      </div>
                   </div>
                   <div className="px-5 py-2 bg-slate-100 border border-slate-200/50 rounded-full text-[9px] font-mono font-black text-slate-500 uppercase tracking-widest">Batch: Elite-A</div>
                </div>
 
-               {/* Stats Row */}
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 select-none">
-                 <StatsCard
-                   title="Time Spent"
-                   value="124 Hours"
-                   bgClass="bg-indigo-50/20 border-indigo-100"
-                   textClass="text-indigo-500"
-                   laserColor="rgba(99, 102, 241, 0.3)"
-                   index={0}
-                   hoveredStat={hoveredStat}
-                   setHoveredStat={setHoveredStat}
-                 />
-                 <StatsCard
-                   title="Concept Mastery"
-                   value="78%"
-                   bgClass="bg-blue-50/20 border-blue-100"
-                   textClass="text-blue-500"
-                   laserColor="rgba(59, 130, 246, 0.3)"
-                   index={1}
-                   hoveredStat={hoveredStat}
-                   setHoveredStat={setHoveredStat}
-                 />
-                 <StatsCard
-                   title="Leaderboard"
-                   value="Rank #12"
-                   bgClass="bg-emerald-50/20 border-emerald-100"
-                   textClass="text-emerald-500"
-                   laserColor="rgba(16, 185, 129, 0.3)"
-                   index={2}
-                   hoveredStat={hoveredStat}
-                   setHoveredStat={setHoveredStat}
-                 />
-               </div>
+               <div className="flex-1 flex flex-col justify-between overflow-hidden relative">
+                 <AnimatePresence mode="wait">
+                   {activeTab === "dashboard" && (
+                     <motion.div
+                       key="dashboard"
+                       initial={{ opacity: 0, y: 15 }}
+                       animate={{ opacity: 1, y: 0 }}
+                       exit={{ opacity: 0, y: -10 }}
+                       className="flex flex-col gap-8 flex-1"
+                     >
+                       {/* Stats Row */}
+                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 select-none">
+                         <StatsCard
+                           title="Time Spent"
+                           value="124 Hours"
+                           bgClass="bg-indigo-50/20 border-indigo-100"
+                           textClass="text-indigo-500"
+                           laserColor="rgba(99, 102, 241, 0.3)"
+                           index={0}
+                           hoveredStat={hoveredStat}
+                           setHoveredStat={setHoveredStat}
+                         />
+                         <StatsCard
+                           title="Concept Mastery"
+                           value="78%"
+                           bgClass="bg-blue-50/20 border-blue-100"
+                           textClass="text-blue-500"
+                           laserColor="rgba(59, 130, 246, 0.3)"
+                           index={1}
+                           hoveredStat={hoveredStat}
+                           setHoveredStat={setHoveredStat}
+                         />
+                         <StatsCard
+                           title="Leaderboard"
+                           value="Rank #12"
+                           bgClass="bg-emerald-50/20 border-emerald-100"
+                           textClass="text-emerald-500"
+                           laserColor="rgba(16, 185, 129, 0.3)"
+                           index={2}
+                           hoveredStat={hoveredStat}
+                           setHoveredStat={setHoveredStat}
+                         />
+                       </div>
 
-               {/* Chart Viewport Console */}
-               <div className="flex-1 bg-slate-50/50 backdrop-blur-md rounded-[3rem] border border-slate-200/60 p-8 flex flex-col justify-between relative overflow-hidden group/chart">
-                  {/* Graphic grid back */}
-                  <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-                    style={{
-                      backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`,
-                      backgroundSize: '16px 16px'
-                    }}
-                  />
-                  
-                  <div className="flex justify-between items-end h-full gap-4 relative z-10 select-none">
-                     {chartData.map((h, i) => {
-                       const isSelfHovered = hoveredBar === i;
-                       const isDimmed = hoveredBar !== null && hoveredBar !== i;
+                       {/* Chart Viewport Console */}
+                       <div className="flex-1 bg-slate-50/50 backdrop-blur-md rounded-[3rem] border border-slate-200/60 p-8 flex flex-col justify-between relative overflow-hidden group/chart">
+                         {/* Graphic grid back */}
+                         <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+                           style={{
+                             backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`,
+                             backgroundSize: '16px 16px'
+                           }}
+                         />
+                         
+                         <div className="flex justify-between items-end h-full gap-4 relative z-10 select-none">
+                            {chartData.map((h, i) => {
+                              const isSelfHovered = hoveredBar === i;
+                              const isDimmed = hoveredBar !== null && hoveredBar !== i;
 
-                       return (
-                         <div
-                           key={i}
-                           onMouseEnter={() => setHoveredBar(i)}
-                           onMouseLeave={() => setHoveredBar(null)}
-                           className="h-full flex-1 flex flex-col justify-end relative group/bar"
-                         >
-                           {/* Hover tooltip readouts */}
-                           <AnimatePresence>
-                             {isSelfHovered && (
-                               <motion.div
-                                 initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                                 exit={{ opacity: 0, y: 5 }}
-                                 className="absolute -top-14 left-1/2 -translate-x-1/2 bg-slate-900 border border-slate-800 text-white font-mono text-[8px] tracking-widest px-3 py-1.5 rounded-xl shadow-2xl z-35 flex flex-col items-center select-none"
-                               >
-                                 <span className="text-[10px] font-black text-indigo-400 block mb-0.5">{h}%</span>
-                                 <span className="text-slate-400 block text-[6.5px]">SYNC_METRIC</span>
-                               </motion.div>
-                             )}
-                           </AnimatePresence>
+                              return (
+                                <div
+                                  key={i}
+                                  onMouseEnter={() => setHoveredBar(i)}
+                                  onMouseLeave={() => setHoveredBar(null)}
+                                  className="h-full flex-1 flex flex-col justify-end relative group/bar"
+                                >
+                                  {/* Hover tooltip readouts */}
+                                  <AnimatePresence>
+                                    {isSelfHovered && (
+                                      <motion.div
+                                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: 5 }}
+                                        className="absolute -top-14 left-1/2 -translate-x-1/2 bg-slate-900 border border-slate-800 text-white font-mono text-[8px] tracking-widest px-3 py-1.5 rounded-xl shadow-2xl z-35 flex flex-col items-center select-none"
+                                      >
+                                        <span className="text-[10px] font-black text-indigo-400 block mb-0.5">{h}%</span>
+                                        <span className="text-slate-400 block text-[6.5px]">SYNC_METRIC</span>
+                                      </motion.div>
+                                    )}
+                                  </AnimatePresence>
 
-                           {/* Bar Column Vector */}
-                           <motion.div 
-                             initial={{ height: 0 }}
-                             whileInView={{ height: `${h}%` }}
-                             className={`w-full rounded-t-2xl relative transition-all duration-300 ${
-                               isSelfHovered 
-                                 ? 'bg-gradient-to-t from-indigo-500 to-indigo-400 shadow-lg shadow-indigo-500/20 scale-x-105' 
-                                 : isDimmed
-                                   ? 'bg-primary/[0.04] opacity-50'
-                                   : 'bg-primary/10'
-                             }`}
-                           />
+                                  {/* Bar Column Vector */}
+                                  <motion.div 
+                                    initial={{ height: 0 }}
+                                    whileInView={{ height: `${h}%` }}
+                                    className={`w-full rounded-t-2xl relative transition-all duration-300 ${
+                                      isSelfHovered 
+                                        ? 'bg-gradient-to-t from-indigo-500 to-indigo-400 shadow-lg shadow-indigo-500/20 scale-x-105' 
+                                        : isDimmed
+                                          ? 'bg-primary/[0.04] opacity-50'
+                                          : 'bg-primary/10'
+                                    }`}
+                                  />
+                                </div>
+                              );
+                            })}
                          </div>
-                       );
-                     })}
-                  </div>
-                  <div className="flex justify-between pt-6 border-t border-slate-200 mt-4 h-8 select-none relative z-10">
-                     {days.map((d, i) => (
-                       <span key={i} className="text-[9px] font-mono font-black text-slate-400 w-full text-center">{d}</span>
-                     ))}
-                  </div>
+                         <div className="flex justify-between pt-6 border-t border-slate-200 mt-4 h-8 select-none relative z-10">
+                            {days.map((d, i) => (
+                              <span key={i} className="text-[9px] font-mono font-black text-slate-400 w-full text-center">{d}</span>
+                            ))}
+                         </div>
+                       </div>
+                     </motion.div>
+                   )}
+
+                   {activeTab === "notifications" && (
+                     <motion.div
+                       key="notifications"
+                       initial={{ opacity: 0, y: 15 }}
+                       animate={{ opacity: 1, y: 0 }}
+                       exit={{ opacity: 0, y: -10 }}
+                       className="flex flex-col gap-6 flex-1 justify-center"
+                     >
+                       <h4 className="text-base font-black text-primary uppercase tracking-tight mb-2 pl-2">Recent Academic Alerts</h4>
+                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                         <div className="p-5 bg-emerald-50/50 border border-emerald-100 rounded-3xl flex gap-4 items-start shadow-sm hover:bg-emerald-50 transition-colors">
+                           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 mt-1 shrink-0" />
+                           <div>
+                             <div className="text-xs font-black text-indigo-950 uppercase leading-none mb-1">Physics Mock Test Graded</div>
+                             <div className="text-[11px] text-slate-550 font-semibold mb-2">Rigid Body Dynamics (Vol. II) // Score: 92/120</div>
+                             <span className="font-mono text-[7px] text-emerald-650 bg-emerald-100/50 border border-emerald-200/30 px-2 py-0.5 rounded font-bold uppercase tracking-widest">[AIR 142 // CALIBRATED]</span>
+                           </div>
+                         </div>
+                         
+                         <div className="p-5 bg-indigo-50/50 border border-indigo-100 rounded-3xl flex gap-4 items-start shadow-sm hover:bg-indigo-50 transition-colors">
+                           <span className="w-2.5 h-2.5 rounded-full bg-indigo-500 mt-1 shrink-0" />
+                           <div>
+                             <div className="text-xs font-black text-indigo-950 uppercase leading-none mb-1">Weekly Report Generated</div>
+                             <div className="text-[11px] text-slate-550 font-semibold mb-2">Weekly Roadmap sync complete. WhatsApp PDF is ready.</div>
+                             <span className="font-mono text-[7px] text-indigo-650 bg-indigo-100/50 border border-indigo-200/30 px-2 py-0.5 rounded font-bold uppercase tracking-widest">[ROADMAP_SYNC // STABLE]</span>
+                           </div>
+                         </div>
+
+                         <div className="p-5 bg-amber-50/50 border border-amber-100 rounded-3xl flex gap-4 items-start shadow-sm hover:bg-amber-50 transition-colors">
+                           <span className="w-2.5 h-2.5 rounded-full bg-amber-500 mt-1 shrink-0" />
+                           <div>
+                             <div className="text-xs font-black text-indigo-950 uppercase leading-none mb-1">Mathematics Rank Analysis</div>
+                             <div className="text-[11px] text-slate-550 font-semibold mb-2">Calculus diagnostic review complete. Weak concept sub-topic identified.</div>
+                             <span className="font-mono text-[7px] text-amber-650 bg-amber-100/50 border border-amber-200/30 px-2 py-0.5 rounded font-bold uppercase tracking-widest">[CONCEPT_GAP // DIAGNOSED]</span>
+                           </div>
+                         </div>
+
+                         <div className="p-5 bg-slate-50 border border-slate-200/60 rounded-3xl flex gap-4 items-start shadow-sm hover:bg-slate-100 transition-colors">
+                           <span className="w-2.5 h-2.5 rounded-full bg-slate-400 mt-1 shrink-0" />
+                           <div>
+                             <div className="text-xs font-black text-indigo-950 uppercase leading-none mb-1">Daily Ingestion Task Uploaded</div>
+                             <div className="text-[11px] text-slate-550 font-semibold mb-2">Organic Chemistry (Vol. I) flashcards added by Prof. Verma.</div>
+                             <span className="font-mono text-[7px] text-slate-550 bg-slate-100 border border-slate-200/40 px-2 py-0.5 rounded font-bold uppercase tracking-widest">[INGEST_TASK // PENDING]</span>
+                           </div>
+                         </div>
+                       </div>
+                     </motion.div>
+                   )}
+
+                   {activeTab === "search" && (
+                     <motion.div
+                       key="search"
+                       initial={{ opacity: 0, y: 15 }}
+                       animate={{ opacity: 1, y: 0 }}
+                       exit={{ opacity: 0, y: -10 }}
+                       className="flex flex-col gap-6 flex-1 justify-center"
+                     >
+                       <h4 className="text-base font-black text-primary uppercase tracking-tight pl-2">Search Academic Directory</h4>
+                       <div className="relative mx-2">
+                         <input 
+                           type="text" 
+                           placeholder="Search tests, topics, formulas, syllabus matrices..."
+                           className="w-full px-6 py-4.5 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-semibold text-primary focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all shadow-sm"
+                         />
+                         <Search size={16} className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400" />
+                       </div>
+                       <div className="mt-2 pl-2">
+                         <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3">Quick Filter Directories</div>
+                         <div className="flex flex-wrap gap-2.5">
+                           {["Mock Tests", "Weekly Diagnostics", "Physics Syllabus", "Chemistry Matrices", "Calculus Roadmaps"].map((filter) => (
+                             <span key={filter} className="px-4 py-2 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 rounded-xl text-[10px] font-black text-slate-500 cursor-pointer transition-colors shadow-sm">{filter}</span>
+                           ))}
+                         </div>
+                       </div>
+                     </motion.div>
+                   )}
+
+                   {activeTab === "profile" && (
+                     <motion.div
+                       key="profile"
+                       initial={{ opacity: 0, y: 15 }}
+                       animate={{ opacity: 1, y: 0 }}
+                       exit={{ opacity: 0, y: -10 }}
+                       className="flex flex-col gap-6 flex-1 justify-center"
+                     >
+                       <h4 className="text-base font-black text-primary uppercase tracking-tight pl-2">Rohan's Academic Profile</h4>
+                       <div className="mx-2 p-6.5 bg-slate-50/50 border border-slate-200 rounded-3xl shadow-md flex flex-col md:flex-row gap-6 items-center justify-between">
+                         <div className="flex gap-5 items-center flex-col md:flex-row text-center md:text-left">
+                           <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-500/20 select-none shrink-0">
+                             R
+                           </div>
+                           <div>
+                             <h5 className="text-xl font-black text-primary leading-tight">Rohan Sengupta</h5>
+                             <div className="text-[11px] text-slate-400 font-semibold mb-1">Elite Batch JEE 2026 // Student HUD: Active</div>
+                             <span className="font-mono text-[8px] text-indigo-650 bg-indigo-50 border border-indigo-100/50 px-2 py-0.5 rounded font-bold uppercase tracking-widest">[TARGET: IIT BOMBAY // AIR_GOAL: &lt;100]</span>
+                           </div>
+                         </div>
+                         
+                         <div className="flex gap-4 md:border-l border-slate-150 md:pl-6 w-full md:w-auto justify-around">
+                           <div className="text-center">
+                             <div className="text-2xl font-black text-primary font-mono tracking-tight leading-none mb-1">A+</div>
+                             <div className="text-[7.5px] font-black text-slate-400 uppercase tracking-widest">Grade</div>
+                           </div>
+                           <div className="text-center">
+                             <div className="text-2xl font-black text-primary font-mono tracking-tight leading-none mb-1">#12</div>
+                             <div className="text-[7.5px] font-black text-slate-400 uppercase tracking-widest">Rank</div>
+                           </div>
+                           <div className="text-center">
+                             <div className="text-2xl font-black text-primary font-mono tracking-tight leading-none mb-1">98.2%</div>
+                             <div className="text-[7.5px] font-black text-slate-400 uppercase tracking-widest">Attendance</div>
+                           </div>
+                         </div>
+                       </div>
+                     </motion.div>
+                   )}
+                 </AnimatePresence>
                </div>
             </div>
-          </div>
-
-          {/* Overlay Tag */}
-          <div className="absolute top-16 right-8 z-20 select-none">
-             <div className="px-5 py-2.5 bg-white border border-slate-200 shadow-xl rounded-2xl font-black text-[9px] uppercase tracking-widest text-primary flex items-center gap-2">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping" />
-                <span>Live Preview</span>
-             </div>
           </div>
         </motion.div>
       </div>

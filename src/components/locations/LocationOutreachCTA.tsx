@@ -327,11 +327,7 @@ export const LocationOutreachCTA = ({ city = "Pune", area = "Kothrud" }) => {
             </Link>
           </div>
 
-          {/* Fixed corner technical coordinates tracker indicators */}
-          <span className="absolute bottom-4 right-6 font-mono text-[7px] text-slate-500 select-none">
-            <span className="mr-4">[OUTREACH_STATUS: PUNE_WIDE]</span>
-            <span>[TOTAL_HUBS: 12+]</span>
-          </span>
+
         </motion.div>
       </div>
     </section>

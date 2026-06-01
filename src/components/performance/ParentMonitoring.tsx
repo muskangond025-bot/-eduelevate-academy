@@ -199,7 +199,7 @@ export const ParentMonitoring = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#060813] text-white relative overflow-hidden border-b border-white/5"
+      className="pt-12 pb-24 bg-[#060813] text-white relative overflow-hidden border-b border-white/5"
     >
       {/* Deep Space Grid Canvas Backdrop */}
       <div
@@ -253,15 +253,6 @@ export const ParentMonitoring = () => {
           
           {/* Left Panel: Header and features list */}
           <div className="lg:w-1/2 w-full">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm"
-            >
-              <ShieldCheck size={11} className="text-indigo-400 animate-spin" style={{ animationDuration: '4s' }} />
-              <span>Parental Peace of Mind</span>
-            </motion.div>
 
             <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter mb-6 uppercase leading-none select-none">
               Zero{' '}

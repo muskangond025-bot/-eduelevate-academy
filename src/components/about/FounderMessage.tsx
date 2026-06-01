@@ -205,7 +205,7 @@ export const FounderMessage = () => {
               ref={stickerRef}
               onMouseMove={handleStickerMouseMove}
               onMouseLeave={() => setStickerTilt({ x: 0, y: 0 })}
-              className="absolute -bottom-4 -right-4 p-4.5 rounded-[1.5rem] shadow-xl border bg-white/85 border-slate-200/60 max-w-[190px] backdrop-blur-xl z-20 overflow-hidden group/sticker cursor-help"
+              className="hidden sm:block absolute -bottom-4 -right-4 p-4.5 rounded-[1.5rem] shadow-xl border bg-white/85 border-slate-200/60 max-w-[190px] backdrop-blur-xl z-20 overflow-hidden group/sticker cursor-help"
               style={{
                 transform: `perspective(800px) rotateX(${-stickerTilt.y * 12}deg) rotateY(${stickerTilt.x * 12}deg) translateZ(35px)`,
                 transformStyle: "preserve-3d",

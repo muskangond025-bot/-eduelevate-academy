@@ -418,7 +418,7 @@ export const AnalyticsFeaturesExtended = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/60"
+      className="pt-12 pb-24 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/60"
     >
       {/* Light Blueprint Grid Canvas Backdrop */}
       <div
@@ -450,16 +450,7 @@ export const AnalyticsFeaturesExtended = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Title Header with cinematic reveal masks */}
-        <div className="text-center mb-24 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm"
-          >
-            <Star size={11} className="text-indigo-500 animate-spin" style={{ animationDuration: '3s' }} />
-            <span>Precision Diagnostics</span>
-          </motion.div>
+        <div className="text-center mb-12 relative">
 
           <h2 className="text-5xl md:text-6xl font-black text-primary tracking-tighter mb-4 uppercase leading-none select-none">
             Precision{' '}

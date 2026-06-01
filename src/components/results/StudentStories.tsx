@@ -170,13 +170,6 @@ const VideoHUDModal = ({
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             className="bg-[#0b0f1e]/95 border border-white/10 rounded-[3rem] p-8 md:p-10 max-w-lg w-full relative overflow-hidden backdrop-blur-2xl z-10 shadow-2xl shadow-indigo-500/10"
           >
-            {/* macOS Dot Indicators */}
-            <div className="flex items-center gap-1.5 absolute top-6 left-8 select-none">
-              <div className="w-2.5 h-2.5 rounded-full bg-rose-500/70" />
-              <div className="w-2.5 h-2.5 rounded-full bg-amber-500/70" />
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/70" />
-            </div>
-
             {/* Title / Close Bar */}
             <div className="flex justify-end mb-6">
               <button
@@ -188,37 +181,13 @@ const VideoHUDModal = ({
             </div>
 
             {/* Video Bezel Screen Viewport */}
-            <div className="bg-slate-950/60 rounded-[2rem] border border-white/5 p-6 mb-6 relative overflow-hidden flex flex-col justify-between h-72">
+            <div className="bg-slate-955 rounded-[2rem] border border-white/5 p-6 mb-6 relative overflow-hidden flex flex-col justify-between h-72">
               {/* Scanline laser line */}
               <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-indigo-500/20 shadow-[0_0_8px_rgba(99,102,241,0.5)] animate-pulse pointer-events-none" style={{ animationDuration: '3s' }} />
-
-              {/* Header Status Row */}
-              <div className="flex items-center justify-between text-[8px] font-mono tracking-widest text-slate-500 select-none">
-                <div className="flex items-center gap-1.5">
-                  <Radio size={8} className="text-rose-500 animate-pulse" />
-                  <span>[PLAYBACK: BROADCASTING]</span>
-                </div>
-                <div>[SOURCE_ID: {story.rank.replace(/[^A-Za-z0-9]/g, '_')}]</div>
-              </div>
 
               {/* Center Equalizer & Telemetry */}
               <div className="flex-1 flex flex-col justify-center">
                 <AudioWaveVisualizer />
-                <p className="text-center font-mono text-[9px] text-indigo-400 uppercase tracking-wider select-none animate-pulse">
-                  &lt; DECODING AUDIO SIGNAL STREAMS &gt;
-                </p>
-              </div>
-
-              {/* Bottom Telemetry Metrics */}
-              <div className="flex items-end justify-between font-mono text-[8px] text-slate-500 mt-4 select-none">
-                <div className="flex flex-col items-start gap-1">
-                  <span>[TELEMETRY_ACC: 94.2%]</span>
-                  <span>[STREAM_FPS: 60.00]</span>
-                </div>
-                <div className="text-right flex flex-col items-end gap-1">
-                  <span>[VOLUME: 100% // SYNCD]</span>
-                  <span>[DECODE: SECURE]</span>
-                </div>
               </div>
             </div>
 
@@ -226,7 +195,6 @@ const VideoHUDModal = ({
             <div className="mb-6 flex flex-col gap-2 font-mono">
               <div className="flex justify-between items-center text-[10px] text-slate-400 select-none">
                 <span>{formatTime(playbackTime)}</span>
-                <span className="text-indigo-400 font-bold">LIVE STICKER FEED</span>
                 <span>01:15</span>
               </div>
               <div className="h-1 bg-white/5 rounded-full overflow-hidden relative">
@@ -394,11 +362,6 @@ const StudentStoryCard = ({
         {/* Right testimonial text */}
         <div className="flex-1 flex flex-col justify-between">
           <div className="mb-6">
-            <div className="flex items-center gap-2 mb-4 font-mono text-[7.5px] text-slate-400">
-              <span className="px-2 py-0.5 bg-white/5 rounded border border-white/10">[STORY_ID: SS-0{index + 1}]</span>
-              <span>★</span>
-              <span className="text-indigo-400">VERIFIED STORY</span>
-            </div>
             <p className="text-slate-300 font-semibold leading-relaxed text-base italic-small relative">
               "{story.quote}"
             </p>
@@ -456,7 +419,7 @@ export const StudentStories = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#060813] text-white relative overflow-hidden border-b border-white/5"
+      className="pt-12 pb-24 bg-[#060813] text-white relative overflow-hidden border-b border-white/5"
     >
       {/* Deep Space Coordinates Grid Canvas Backdrop */}
       <div
@@ -488,16 +451,7 @@ export const StudentStories = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Title with cinematic staggered clip-mask details */}
-        <div className="text-center mb-24 relative select-none">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-950/50 border border-indigo-500/20 text-indigo-400 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-md"
-          >
-            <Shield size={11} className="text-indigo-400 animate-pulse" />
-            <span>Alumni Achievements</span>
-          </motion.div>
+        <div className="text-center mb-12 relative select-none">
 
           <h2 className="text-5xl md:text-6xl font-black text-white tracking-tighter mb-4 uppercase leading-none">
             Student{' '}

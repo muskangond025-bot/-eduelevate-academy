@@ -274,10 +274,7 @@ const CategoryCard = ({
       />
 
       <div className="relative z-10 flex flex-col items-center">
-        {/* Technical monospaced identifier inside the card */}
-        <span className="text-[6px] font-mono text-slate-400 group-hover:text-slate-500 mb-4 transition-colors select-none tracking-widest">
-          [SYS_NODE: {cat.systemCode}]
-        </span>
+
 
         <div className={`w-16 h-16 bg-slate-50 border border-slate-150 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-800 group-hover:shadow-lg transition-all duration-300 transform group-hover:rotate-6`}>
           {renderCategoryIcon()}
@@ -496,7 +493,7 @@ export const ResourcesPage = () => {
         ref={sectionRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setIsHovered(false)}
-        className="pt-32 pb-24 bg-[#060813] relative overflow-hidden text-white border-b border-white/5"
+        className="pt-[116px] pb-24 bg-[#060813] relative overflow-hidden text-white border-b border-white/5"
       >
         {/* Spotlight dynamic glow */}
         <div 
@@ -511,30 +508,10 @@ export const ResourcesPage = () => {
         {/* Warp background mesh lines */}
         <GridWarpCanvas mousePos={mousePos} isHovered={isHovered} />
 
-        {/* 3D Telemetry cards drifting */}
-        <FloatingTelemetryCard delay={0.1} initialX="10%" initialY="20%" mousePos={mousePos}>
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-ping" />
-            <span>[CATALOG_SYNC: ACTIVE]</span>
-          </div>
-        </FloatingTelemetryCard>
-        
-        <FloatingTelemetryCard delay={0.2} initialX="80%" initialY="60%" mousePos={mousePos}>
-          <div className="flex items-center gap-2 text-amber-500">
-            <span className="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse" />
-            <span>[TOTAL_DRIVES: 320 GB]</span>
-          </div>
-        </FloatingTelemetryCard>
+
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/5 border border-white/10 text-slate-400 text-[10px] font-black uppercase tracking-[0.25em] rounded-full mb-8 shadow-2xl backdrop-blur-md"
-          >
-            <Sparkles size={11} className="text-indigo-400 animate-bounce" />
-            <span>Digital Learning Library</span>
-          </motion.div>
+
           
           <h1 className="text-5xl lg:text-8xl font-black mb-8 tracking-tighter uppercase leading-none select-none">
             Academic <br/>
@@ -604,15 +581,6 @@ export const ResourcesPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="flex items-end justify-between mb-16">
               <div>
-                 <motion.div
-                   initial={{ opacity: 0, y: 10 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true }}
-                   className="inline-flex items-center gap-1.5 px-4.5 py-1.5 bg-amber-50 border border-amber-100 text-amber-700 text-[9px] font-black uppercase tracking-widest rounded-full mb-4 shadow-sm"
-                 >
-                   <Sparkles size={10} className="text-amber-500" />
-                   <span>Weekly Catalog Sync</span>
-                 </motion.div>
                  <h2 className="text-4xl font-black text-primary tracking-tighter mb-2 uppercase leading-none select-none">
                    LATEST <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-600 italic font-black">UPLOADS.</span>
                  </h2>
@@ -634,21 +602,7 @@ export const ResourcesPage = () => {
         </div>
       </section>
 
-      {/* 4. Demo Class Integration - The "Next Step" Call to Action */}
-      <div className="pt-32 border-t border-slate-200/60 mt-16 bg-[#FAF9F6]">
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-20 relative z-10">
-            <div className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-5 shadow-sm">
-              <Sparkles size={11} className="text-indigo-500 animate-pulse" />
-              <span>Level Up Your Preparation</span>
-            </div>
-            <h2 className="text-5xl font-black text-primary tracking-tighter mb-4 uppercase leading-none select-none">
-              FINISHED READING? <br/> 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-600 italic">EXPERIENCE IT LIVE.</span>
-            </h2>
-            <p className="text-slate-500 max-w-xl mx-auto font-semibold text-sm">
-              Downloading notes is just the beginning. Book a free demo class to see how these concepts are applied by our master faculty.
-            </p>
-         </div>
+      <div className="pt-6 border-t border-slate-200/60 mt-8 bg-[#FAF9F6]">
 
          <DemoBenefits />
          <DemoExperience />

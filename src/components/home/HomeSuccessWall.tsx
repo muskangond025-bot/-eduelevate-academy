@@ -85,7 +85,7 @@ export const HomeSuccessWall = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Row */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-[48px] gap-8">
            <div>
 
               <h2 className="text-5xl md:text-7xl font-black leading-tight text-slate-900 uppercase tracking-tighter mb-8 font-sans overflow-visible py-1">
@@ -114,7 +114,7 @@ export const HomeSuccessWall = () => {
         </div>
 
         {/* Toppers Cards Spotlight Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {TOPPERS.map((t, i) => {
             const isHovered = hoveredIndex === i;
             const isAnyHovered = hoveredIndex !== null;
@@ -128,7 +128,7 @@ export const HomeSuccessWall = () => {
                 transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`relative p-32 rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[460px] ${
+                className={`relative p-[32px] rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[460px] ${
                   isHovered 
                     ? 'border-slate-200 bg-white shadow-[0_30px_60px_rgba(15,23,42,0.06)]' 
                     : isAnyHovered 
@@ -152,7 +152,7 @@ export const HomeSuccessWall = () => {
                       className="flex flex-col items-center text-center h-full justify-between"
                     >
                       {/* Portrait image container */}
-                      <div className="w-[88px] h-[88px] rounded-full border-4 border-slate-100 overflow-hidden shadow-md mb-24">
+                      <div className="w-[88px] h-[88px] rounded-full border-4 border-slate-100 overflow-hidden shadow-md mb-6">
                         <img src={t.img} alt={t.name} className="w-full h-full object-cover" />
                       </div>
                       

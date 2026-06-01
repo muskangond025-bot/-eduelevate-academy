@@ -120,92 +120,97 @@ const FrostedBranchCard = ({
   };
 
   return (
-    <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, x: -30 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }}
-      className={`p-10 rounded-[3.5rem] border transition-all duration-500 relative overflow-hidden backdrop-blur-xl cursor-pointer ${
-        isHovered
-          ? 'scale-[1.03] bg-white border-orange-500/30 shadow-[0_30px_70px_rgba(251,146,60,0.08)] z-20'
-          : isSiblingHovered
-          ? 'bg-white/30 border-slate-200/40 opacity-45 blur-[0.5px]'
-          : 'bg-white/80 border-slate-200/50 shadow-md'
-      }`}
-      style={{
-        transform: isHovered
-          ? `perspective(1000px) rotateX(${-tilt.y * 6}deg) rotateY(${tilt.x * 6}deg) translateZ(10px)`
-          : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)',
-        transformStyle: "preserve-3d"
-      }}
+    <a 
+      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.area + ", " + branch.address + ", " + branch.city)}`}
+      target="_blank"
+      rel="noreferrer"
+      className="block w-full"
     >
-      {/* Border laser sweep highlight trailing cursor inside card */}
-      <div
-        className="absolute inset-0 rounded-[3.5rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: index * 0.1, type: "spring", stiffness: 100 }}
+        className={`p-10 rounded-[3.5rem] border transition-all duration-500 relative overflow-hidden backdrop-blur-xl cursor-pointer ${
+          isHovered
+            ? 'scale-[1.03] bg-white border-orange-500/30 shadow-[0_30px_70px_rgba(251,146,60,0.08)] z-20'
+            : isSiblingHovered
+            ? 'bg-white/30 border-slate-200/40 opacity-45 blur-[0.5px]'
+            : 'bg-white/80 border-slate-200/50 shadow-md'
+        }`}
         style={{
-          background: `radial-gradient(150px circle at ${coords.x}px ${coords.y}px, rgba(251, 146, 60, 0.4), transparent 80%)`,
-          padding: '1.2px',
-          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'xor',
-          maskComposite: 'exclude'
+          transform: isHovered
+            ? `perspective(1000px) rotateX(${-tilt.y * 6}deg) rotateY(${tilt.x * 6}deg) translateZ(10px)`
+            : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)',
+          transformStyle: "preserve-3d"
         }}
-      />
+      >
+        {/* Border laser sweep highlight trailing cursor inside card */}
+        <div
+          className="absolute inset-0 rounded-[3.5rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"
+          style={{
+            background: `radial-gradient(150px circle at ${coords.x}px ${coords.y}px, rgba(251, 146, 60, 0.4), transparent 80%)`,
+            padding: '1.2px',
+            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+            WebkitMaskComposite: 'xor',
+            maskComposite: 'exclude'
+          }}
+        />
 
-      {/* Sparks Trail */}
-      <SparkParticlesTrail coords={coords} colorClass="bg-orange-400" />
+        {/* Sparks Trail */}
+        <SparkParticlesTrail coords={coords} colorClass="bg-orange-400" />
 
-      <div className="flex justify-between items-start mb-8">
-        {/* Animated concentric HUD circles around MapPin */}
-        <div 
-          className={`w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center transition-all relative ${
-            isHovered ? 'bg-orange-500 text-white scale-110 shadow-md' : 'text-slate-700'
-          }`}
-          style={{ transform: isHovered ? 'translateZ(20px)' : 'translateZ(0px)' }}
-        >
+        <div className="flex justify-between items-start mb-8">
+          {/* Animated concentric HUD circles around MapPin */}
           <div 
-            className="absolute inset-[-4px] border border-dashed border-slate-200 rounded-full animate-spin pointer-events-none transition-colors" 
-            style={{ 
-              animationDuration: '8s',
-              borderColor: isHovered ? 'rgba(251, 146, 60, 0.4)' : ''
-            }} 
-          />
-          {isHovered && (
+            className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all relative ${
+              isHovered ? 'bg-orange-500 text-white scale-110 shadow-md' : 'bg-slate-50 text-slate-700'
+            }`}
+            style={{ transform: isHovered ? 'translateZ(20px)' : 'translateZ(0px)' }}
+          >
             <div 
-              className="absolute inset-[-8px] border border-dotted border-cyan-400 rounded-full animate-spin pointer-events-none" 
+              className="absolute inset-[-4px] border border-dashed border-slate-200 rounded-full animate-spin pointer-events-none transition-colors" 
               style={{ 
-                animationDuration: '4s',
-                animationDirection: 'reverse'
+                animationDuration: '8s',
+                borderColor: isHovered ? 'rgba(251, 146, 60, 0.4)' : ''
               }} 
             />
-          )}
-          <MapPin size={24} className="relative z-10" />
-        </div>
-
-        {/* Magnetic explorer arrow */}
-        <div style={{ transform: isHovered ? 'translateZ(15px)' : 'translateZ(0px)' }}>
-          <MagneticExplorerArrow globalMouse={globalMouse} isParentHovered={isHovered} />
-        </div>
-      </div>
-      
-      <div style={{ transform: "translateZ(10px)" }}>
-        <div className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-1">{branch.city}</div>
-        <h3 className="text-2xl font-black text-slate-800 mb-4 tracking-tight">{branch.area}</h3>
-        <p className="text-slate-500 text-sm font-medium leading-relaxed mb-6 h-12">{branch.address}</p>
-        
-        <div className="pt-6 border-t border-slate-100 flex justify-between items-end">
-          <div>
-            <div className="text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-widest">Helpline Phone</div>
-            <div className="text-sm font-black text-slate-700">{branch.phone}</div>
+            {isHovered && (
+              <div 
+                className="absolute inset-[-8px] border border-dotted border-cyan-400 rounded-full animate-spin pointer-events-none" 
+                style={{ 
+                  animationDuration: '4s',
+                  animationDirection: 'reverse'
+                }} 
+              />
+            )}
+            <MapPin size={24} className="relative z-10" />
           </div>
-          <span className="font-mono text-[5px] text-slate-350 select-none">
-            [SYNC_LOC_HUB_0{index + 1}]
-          </span>
+
+          {/* Magnetic explorer arrow */}
+          <div style={{ transform: isHovered ? 'translateZ(15px)' : 'translateZ(0px)' }}>
+            <MagneticExplorerArrow globalMouse={globalMouse} isParentHovered={isHovered} />
+          </div>
         </div>
-      </div>
-    </motion.div>
+        
+        <div style={{ transform: "translateZ(10px)" }}>
+          <div className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-1">{branch.city}</div>
+          <h3 className="text-2xl font-black text-slate-800 mb-4 tracking-tight">{branch.area}</h3>
+          <p className="text-slate-500 text-sm font-medium leading-relaxed mb-6 h-12">{branch.address}</p>
+          
+          <div className="pt-6 border-t border-slate-100 flex justify-between items-end">
+            <div>
+              <div className="text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-widest">Helpline Phone</div>
+              <div className="text-sm font-black text-slate-700">{branch.phone}</div>
+            </div>
+
+          </div>
+        </div>
+      </motion.div>
+    </a>
   );
 };
 
@@ -245,7 +250,7 @@ export const ContactBranches = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setIsHovered(false)}
-      className="py-28 bg-[#FAF9F6] relative overflow-hidden select-none border-b border-slate-200/50"
+      className="pt-12 pb-8 bg-[#FAF9F6] relative overflow-hidden select-none"
     >
       {/* Light blueprint coordinates canvas backdrop */}
       <div
@@ -293,15 +298,7 @@ export const ContactBranches = () => {
         {/* Editorial Section Header */}
         <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-slate-200/40 pb-8">
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 bg-orange-50 border border-orange-100 px-4 py-1.5 rounded-full text-orange-650 font-black text-[9px] uppercase tracking-widest mb-4"
-            >
-              <Navigation size={10} className="text-orange-500 animate-pulse" />
-              <span>National Footprint</span>
-            </motion.div>
+
             <h2 className="text-4xl font-black text-slate-800 tracking-tighter uppercase italic leading-none">
               Network <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-indigo-500 not-italic">Hubs.</span>
             </h2>
@@ -310,9 +307,7 @@ export const ContactBranches = () => {
             </p>
           </div>
 
-          <span className="font-mono text-[7px] text-slate-400 select-none hidden md:block">
-            [SYS_REGIONAL_COMPLIANCE_AXIS: ONLINE // CENTERS_COUNT: 03]
-          </span>
+
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

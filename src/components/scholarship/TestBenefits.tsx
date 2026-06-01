@@ -241,7 +241,7 @@ export const TestBenefits = () => {
   ];
 
   return (
-    <section className="py-32 bg-[#FAF9F6] relative overflow-hidden">
+    <section className="pt-12 pb-24 bg-[#FAF9F6] relative overflow-hidden">
       {/* Dotted Grid Pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.25]"
         style={{
@@ -255,16 +255,7 @@ export const TestBenefits = () => {
       <div className="absolute bottom-[20%] right-[-10%] w-[40%] h-[50%] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-5 shadow-sm"
-          >
-            <Sparkles size={11} className="text-indigo-500 animate-bounce" />
-            <span>Academic Triumphs</span>
-          </motion.div>
+        <div className="text-center mb-12">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

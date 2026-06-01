@@ -233,7 +233,7 @@ export const ResultsHero = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="pt-24 pb-24 bg-[#03050C] relative overflow-hidden border-b border-white/5"
+      className="pt-12 pb-24 flex items-center bg-[#03050C] relative overflow-hidden border-b border-white/5"
     >
       {/* Dotted Grid Backdrop pattern overlay */}
       <div
@@ -272,15 +272,13 @@ export const ResultsHero = () => {
 
 
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Split Grid for Title + 4K Image (No Overlay, Zero Text overlap) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center text-left mb-8">
           
           {/* Left Column: Clean text and typography */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Concentric Trophy HUD badge */}
-            <TrophyHUDBadge />
             
             {/* Cinematic headline reveal */}
             <h1 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter select-none leading-none uppercase">
@@ -330,11 +328,6 @@ export const ResultsHero = () => {
                 alt="Academic Graduation Ceremony Stage" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105"
               />
-
-              {/* Corner tech badge indicating 4K authenticity */}
-              <span className="absolute bottom-4 right-6 font-mono text-[5px] text-white bg-slate-950/60 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded uppercase tracking-wider z-20">
-                [NODE_FOCAL: 4K_UHD // CALIBRATED]
-              </span>
             </div>
           </motion.div>
         </div>

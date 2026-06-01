@@ -3,10 +3,52 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Play, Sparkles, Target, TrendingUp, Users, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import teacherClassroomVideo from '../../assets/teacher_classroom.mp4';
+import campusLibraryVideo from '../../assets/campus_library.mp4';
+import { cn } from '../../lib/utils';
 
 export const HomeHero = () => {
   const navigate = useNavigate();
   const [isVideoOpen, setIsVideoOpen] = React.useState(false);
+  const [activeVideoTab, setActiveVideoTab] = React.useState<'classroom' | 'campus'>('campus');
+
+  // Background video playlist settings to combine both videos sequentially
+  const bgVideos = [
+    teacherClassroomVideo,
+    campusLibraryVideo
+  ];
+  const [bgVideoIdx, setBgVideoIdx] = React.useState(0);
+  const videoRef0 = React.useRef<HTMLVideoElement>(null);
+  const videoRef1 = React.useRef<HTMLVideoElement>(null);
+
+  React.useEffect(() => {
+    const v0 = videoRef0.current;
+    const v1 = videoRef1.current;
+    
+    if (bgVideoIdx === 0) {
+      if (v0) {
+        v0.play().catch(() => {});
+      }
+      const timer = setTimeout(() => {
+        if (v1) {
+          v1.pause();
+          v1.currentTime = 0;
+        }
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else {
+      if (v1) {
+        v1.play().catch(() => {});
+      }
+      const timer = setTimeout(() => {
+        if (v0) {
+          v0.pause();
+          v0.currentTime = 0;
+        }
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [bgVideoIdx]);
+
   const [bookState, setBookState] = React.useState<'closed' | 'open' | 'zoomed' | 'fullscreen'>('closed');
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
   const [tilt, setTilt] = React.useState({ x: 0, y: 0 });
@@ -29,13 +71,9 @@ export const HomeHero = () => {
     setTilt({ x: 0, y: 0 });
   };
 
-  const handleVideoEnded = () => {
-    // Smooth scroll to the second section if user has not scrolled manually
-    if (window.scrollY < 50) {
-      const sections = document.querySelectorAll('section');
-      if (sections && sections.length > 1) {
-        sections[1].scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+  const handleVideoEnded = (idx: number) => {
+    if (bgVideoIdx === idx) {
+      setBgVideoIdx((prev) => (prev + 1) % bgVideos.length);
     }
   };
 
@@ -64,7 +102,7 @@ export const HomeHero = () => {
     <section 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-[calc(100vh-5rem)] flex items-center bg-black text-white overflow-hidden pt-24 pb-16"
+      className="relative min-h-[calc(100vh-5rem)] flex items-start bg-black text-white overflow-hidden pt-[128px] pb-16"
     >
       {/* Golden Book Cinematic Entrance Overlay */}
       {bookState !== 'fullscreen' && (
@@ -152,14 +190,31 @@ export const HomeHero = () => {
         </motion.div>
       )}
 
-      {/* Full-screen background video triggers auto-scroll on completion */}
+      {/* Full-screen background video playlist loop with seamless crossfade */}
       <video 
-        src={teacherClassroomVideo}
+        ref={videoRef0}
+        src={bgVideos[0]}
         autoPlay
+        preload="auto"
         muted
         playsInline
-        onEnded={handleVideoEnded}
-        className="absolute inset-0 w-full h-full object-cover opacity-95 pointer-events-none z-0"
+        onEnded={() => handleVideoEnded(0)}
+        className={cn(
+          "absolute inset-0 w-full h-full object-cover pointer-events-none z-0 transition-opacity duration-1000 ease-in-out",
+          bgVideoIdx === 0 ? "opacity-90" : "opacity-0"
+        )}
+      />
+      <video 
+        ref={videoRef1}
+        src={bgVideos[1]}
+        preload="auto"
+        muted
+        playsInline
+        onEnded={() => handleVideoEnded(1)}
+        className={cn(
+          "absolute inset-0 w-full h-full object-cover pointer-events-none z-0 transition-opacity duration-1000 ease-in-out",
+          bgVideoIdx === 1 ? "opacity-90" : "opacity-0"
+        )}
       />
       {/* Cinematic dark overlays to guarantee legibility */}
       <div className="absolute inset-0 bg-black/15 pointer-events-none z-0" />
@@ -173,16 +228,7 @@ export const HomeHero = () => {
           
           {/* Left Column: Text & CTAs (Left Aligned) */}
           <div className="max-w-3xl text-left flex flex-col items-start">
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider text-primary-light mb-8 shadow-lg"
-            >
-              <Sparkles size={14} className="text-accent animate-spin-slow" />
-              <span>Admissions Open 2026-27</span>
-              <span className="w-1.5 h-1.5 bg-accent rounded-full animate-ping ml-1" />
-            </motion.div>
+
             
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -282,9 +328,35 @@ export const HomeHero = () => {
               exit={{ scale: 0.95, y: 15 }}
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-slate-900 border border-white/10 rounded-[2.5rem] w-full max-w-4xl aspect-video overflow-hidden shadow-2xl relative"
+              className="bg-slate-900 border border-white/10 rounded-[2.5rem] w-full max-w-4xl aspect-video overflow-hidden shadow-2xl relative flex flex-col justify-end"
             >
-              {/* Close Button */}
+              {/* Video Selection Tabs (Top Left) */}
+              <div className="absolute top-4 left-6 z-50 flex items-center gap-2">
+                <button
+                  onClick={() => setActiveVideoTab('classroom')}
+                  className={cn(
+                    "px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all cursor-pointer",
+                    activeVideoTab === 'classroom'
+                      ? "bg-primary text-white shadow-lg shadow-primary/20"
+                      : "bg-slate-950/70 border border-white/10 text-slate-300 hover:text-white hover:bg-slate-900/70"
+                  )}
+                >
+                  Classroom Tour
+                </button>
+                <button
+                  onClick={() => setActiveVideoTab('campus')}
+                  className={cn(
+                    "px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-full transition-all cursor-pointer",
+                    activeVideoTab === 'campus'
+                      ? "bg-primary text-white shadow-lg shadow-primary/20"
+                      : "bg-slate-950/70 border border-white/10 text-slate-300 hover:text-white hover:bg-slate-900/70"
+                  )}
+                >
+                  Campus Life
+                </button>
+              </div>
+
+              {/* Close Button (Top Right) */}
               <button 
                 onClick={() => setIsVideoOpen(false)}
                 className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-slate-950/85 border border-white/15 flex items-center justify-center text-slate-400 hover:text-white hover:border-white/30 transition-all duration-300 shadow-xl"
@@ -292,12 +364,14 @@ export const HomeHero = () => {
                 <X size={18} />
               </button>
 
-              {/* Local HTML5 Video Player playing local stock video */}
+              {/* HTML5 Video Player playing active tab video source */}
               <video 
-                src={teacherClassroomVideo}
+                key={activeVideoTab}
+                src={activeVideoTab === 'classroom' ? teacherClassroomVideo : campusLibraryVideo}
                 autoPlay
+                preload="auto"
                 controls
-                className="w-full h-full object-contain bg-slate-950 z-10"
+                className="w-full h-full object-contain bg-slate-950 z-10 pt-16"
               />
             </motion.div>
           </motion.div>

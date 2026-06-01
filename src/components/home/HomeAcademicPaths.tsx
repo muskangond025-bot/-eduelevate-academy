@@ -314,7 +314,8 @@ export const HomeAcademicPaths = () => {
                     onMouseEnter={() => setHoveredIndex(i)}
                     onMouseLeave={() => setHoveredIndex(null)}
                     onClick={() => navigate('/portal/student')}
-                    className={`relative w-[280px] shrink-0 p-[24px] rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[420px] ${
+                    data-cursor-text="EXPLORE"
+                    className={`relative w-[280px] shrink-0 p-[24px] rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[420px] gpu-accelerated ${
                       isHovered 
                         ? 'border-slate-200 bg-white shadow-[0_30px_60px_rgba(15,23,42,0.06)]' 
                         : isAnyHovered 
@@ -340,7 +341,7 @@ export const HomeAcademicPaths = () => {
                     <div className="relative z-10">
                       <div className="flex justify-between items-start mb-[20px]">
                         <div 
-                          className={`w-64 h-64 rounded-2xl flex items-center justify-center transition-all duration-500 ${
+                          className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 ${
                             isHovered ? 'bg-white text-white' : `${path.iconBg} ${path.iconColor}`
                           }`}
                           style={{
@@ -485,7 +486,8 @@ export const HomeAcademicPaths = () => {
                   onMouseEnter={() => setHoveredIndex(i)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   onClick={() => navigate('/portal/student')}
-                  className={`relative p-32 rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[460px] ${
+                  data-cursor-text="EXPLORE"
+                  className={`relative p-[32px] rounded-[2.5rem] border backdrop-blur-xl transition-all duration-500 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[460px] gpu-accelerated ${
                     isHovered 
                       ? 'border-slate-200 bg-white shadow-[0_30px_60px_rgba(15,23,42,0.06)]' 
                       : isAnyHovered 
@@ -504,9 +506,9 @@ export const HomeAcademicPaths = () => {
                   />
 
                   <div className="relative z-10">
-                    <div className="flex justify-between items-start mb-32">
+                    <div className="flex justify-between items-start mb-[20px]">
                       <div 
-                        className={`w-64 h-64 rounded-2xl flex items-center justify-center transition-all duration-500 ${
+                        className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 ${
                           isHovered ? 'bg-white text-white' : `${path.iconBg} ${path.iconColor}`
                         }`}
                         style={{
@@ -534,7 +536,7 @@ export const HomeAcademicPaths = () => {
                       {path.desc}
                     </p>
 
-                    <div className="space-y-3 mb-32">
+                    <div className="space-y-3 mb-[20px]">
                       {path.highlights.map((highlight, hIdx) => (
                         <div key={hIdx} className="flex items-center gap-2.5 text-xs text-slate-600 font-medium">
                           <span 

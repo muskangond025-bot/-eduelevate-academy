@@ -421,7 +421,7 @@ export const AboutHero = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="relative pt-24 pb-24 overflow-hidden bg-[#FAF9F6] text-slate-800 border-b border-slate-200/50"
+      className="relative pt-0 pb-24 overflow-hidden bg-[#FAF9F6] text-slate-800 border-b border-slate-200/50"
     >
       {/* Light blueprint coordinates canvas backdrop */}
       <div
@@ -482,18 +482,7 @@ export const AboutHero = () => {
           {/* Left Column: Clean text and typography */}
           <div className="lg:col-span-7 flex flex-col items-start">
             {/* Visual Badge Header with spin */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-5 py-2.5 rounded-full text-indigo-650 font-black text-[10px] uppercase tracking-widest mb-8 shadow-sm relative overflow-hidden"
-            >
-              <div className="w-5 h-5 rounded-full border border-indigo-300 relative flex items-center justify-center shrink-0">
-                <div className="absolute -inset-0.5 border border-dashed border-indigo-400/40 rounded-full animate-spin" style={{ animationDuration: '10s' }} />
-                <History size={10} className="text-indigo-600" />
-              </div>
-              <span>Our Institute Story</span>
-            </motion.div>
+
             
             {/* Main Title with Awwwards-tier 3D flip-down typography reveal */}
             <motion.h1
@@ -512,7 +501,7 @@ export const AboutHero = () => {
               <div className="overflow-hidden block mt-2" style={{ transformStyle: "preserve-3d" }}>
                 <motion.span
                   variants={wordVariants}
-                  className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-emerald-400 italic font-black origin-top whitespace-nowrap overflow-visible py-1 px-1"
+                  className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-500 to-emerald-400 italic font-black origin-top overflow-visible py-1 px-1"
                 >
                   Academic Brilliance.
                 </motion.span>

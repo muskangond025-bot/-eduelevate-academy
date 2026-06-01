@@ -128,7 +128,7 @@ export const RecommendedCourses = () => {
     <section 
       ref={containerRef}
       onMouseMove={handleGlobalMouseMove}
-      className="py-36 bg-[#F8FAFC] text-slate-900 relative overflow-hidden"
+      className="pt-12 pb-24 bg-[#F8FAFC] text-slate-900 relative overflow-hidden"
     >
       {/* Light Slate Matrix Grid Backdrop */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.02)_1px,transparent_1px)] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
@@ -146,10 +146,6 @@ export const RecommendedCourses = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-28 gap-10">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 text-sm font-semibold tracking-wider uppercase mb-6 shadow-inner select-none">
-              <Compass size={14} className="animate-spin-slow" />
-              Syllabus Blueprints
-            </div>
             <h2 className="text-5xl lg:text-7xl font-black text-slate-900 tracking-tighter mb-4 leading-tight select-none uppercase overflow-visible py-1">
               Recommended <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 italic px-1">Programs</span>
             </h2>

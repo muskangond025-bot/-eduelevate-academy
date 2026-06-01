@@ -68,7 +68,7 @@ export const StudyMethodology = () => {
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="py-32 bg-white relative overflow-hidden"
+      className="pt-12 pb-12 bg-white relative overflow-hidden"
     >
       {/* Background blueprint grid overlay */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.15]"
@@ -102,9 +102,6 @@ export const StudyMethodology = () => {
         <div className="flex flex-col lg:flex-row gap-20 items-start">
           {/* Left Sticky Panel */}
           <div className="w-full lg:w-1/3 lg:sticky lg:top-32">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-100 text-slate-500 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm">
-              The Engine Room
-            </div>
             <h2 className="text-5xl font-black text-primary tracking-tighter leading-tight mb-8 uppercase overflow-visible py-1">
               Study{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-600 italic px-1">Methodology</span>

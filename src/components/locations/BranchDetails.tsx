@@ -287,7 +287,7 @@ export const BranchDetails = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/50"
+      className="pt-12 pb-32 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/50"
     >
       {/* Light blueprint coordinates canvas backdrop */}
       <div
@@ -393,10 +393,7 @@ export const BranchDetails = () => {
                       <MapPin size={42} className="text-indigo-400 mx-auto animate-bounce relative z-10" />
                     </div>
 
-                    {/* Telemetry coords indicators */}
-                    <span className="absolute bottom-3 right-6 font-mono text-[5px] text-slate-500 tracking-wider">
-                      [LAT_LNG: 18.5089° N // 73.8078° E // ACTIVE]
-                    </span>
+
                   </div>
                 </div>
               </div>
@@ -470,13 +467,13 @@ export const BranchDetails = () => {
                           className="w-full px-8 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none text-slate-800 font-bold text-sm transition-all focus:bg-white" 
                         />
                         <label 
-                          className={`absolute left-8 top-1/2 -translate-y-1/2 font-mono text-[9px] uppercase tracking-widest transition-all pointer-events-none select-none ${
+                          className={`absolute left-8 top-1/2 -translate-y-1/2 font-sans text-xs font-semibold tracking-wide transition-all pointer-events-none select-none ${
                             focusedField === 'studentName' || studentName 
-                              ? 'text-indigo-600 translate-y-[-235%] bg-[#fafaf9] px-2 scale-90 border border-indigo-500/20 rounded-md font-bold' 
+                              ? 'text-indigo-650 translate-y-[-235%] bg-[#FAF9F6] px-2 scale-90 border border-indigo-500/10 rounded-md font-bold' 
                               : 'text-slate-400'
                           }`}
                         >
-                          [Student Name // Input]
+                          Student Name
                         </label>
                         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-indigo-500 transition-all duration-300" 
                           style={{ width: focusedField === 'studentName' ? '100%' : '0%' }}
@@ -495,13 +492,13 @@ export const BranchDetails = () => {
                           className="w-full px-8 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none text-slate-800 font-bold text-sm transition-all focus:bg-white" 
                         />
                         <label 
-                          className={`absolute left-8 top-1/2 -translate-y-1/2 font-mono text-[9px] uppercase tracking-widest transition-all pointer-events-none select-none ${
+                          className={`absolute left-8 top-1/2 -translate-y-1/2 font-sans text-xs font-semibold tracking-wide transition-all pointer-events-none select-none ${
                             focusedField === 'phoneNumber' || phoneNumber 
-                              ? 'text-indigo-600 translate-y-[-235%] bg-[#fafaf9] px-2 scale-90 border border-indigo-500/20 rounded-md font-bold' 
+                              ? 'text-indigo-650 translate-y-[-235%] bg-[#FAF9F6] px-2 scale-90 border border-indigo-500/10 rounded-md font-bold' 
                               : 'text-slate-400'
                           }`}
                         >
-                          [Phone Number // Input]
+                          Phone Number
                         </label>
                         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-indigo-500 transition-all duration-300" 
                           style={{ width: focusedField === 'phoneNumber' ? '100%' : '0%' }}
@@ -524,8 +521,8 @@ export const BranchDetails = () => {
                         <option>Foundation (8th-10th)</option>
                         <option>Scholarship Inquiry</option>
                       </select>
-                      <label className="absolute left-8 top-[-9px] font-mono text-[9px] uppercase tracking-widest text-indigo-650 bg-[#fafaf9] px-2 scale-90 border border-indigo-500/20 rounded-md font-bold select-none">
-                        [Interested Program // Select]
+                      <label className="absolute left-8 top-[-9px] font-sans text-[11px] tracking-wide text-indigo-650 bg-[#FAF9F6] px-2 scale-90 border border-indigo-500/10 rounded-md font-bold select-none">
+                        Interested Program
                       </label>
                     </div>
 
@@ -540,8 +537,8 @@ export const BranchDetails = () => {
                         className="w-full px-8 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none text-slate-800 font-bold text-sm transition-all focus:bg-white resize-none" 
                         placeholder="Ask about batches, fees or faculty..."
                       />
-                      <label className="absolute left-8 top-[-9px] font-mono text-[9px] uppercase tracking-widest text-indigo-650 bg-[#fafaf9] px-2 scale-90 border border-indigo-500/20 rounded-md font-bold select-none">
-                        [Your Query // Textarea]
+                      <label className="absolute left-8 top-[-9px] font-sans text-[11px] tracking-wide text-indigo-650 bg-[#FAF9F6] px-2 scale-90 border border-indigo-500/10 rounded-md font-bold select-none">
+                        Your Query
                       </label>
                     </div>
 
@@ -551,7 +548,7 @@ export const BranchDetails = () => {
                       className="w-full py-5.5 bg-slate-900 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-cyan-400 text-white font-black hover:scale-[1.02] shadow-xl"
                       laserColor="rgba(255, 255, 255, 0.45)"
                     >
-                      <span>{isSubmitting ? "Compiling Handshake..." : "Send Inquiry"}</span>
+                      <span>{isSubmitting ? "Sending Inquiry..." : "Send Inquiry"}</span>
                       {!isSubmitting && <Send size={14} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform text-white shrink-0" />}
                     </MagneticSubmitButton>
 
@@ -579,30 +576,20 @@ export const BranchDetails = () => {
                   </div>
 
                   <h3 className="text-3xl font-black text-slate-800 mb-2 tracking-tight uppercase" style={{ transform: "translateZ(20px)" }}>
-                    Handshake Complete
+                    Inquiry Submitted
                   </h3>
-                  <p className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-8">
-                    [ENQUIRY_STATUS: RECORDED // PORTAL: SECURE]
+                  <p className="text-xs font-semibold text-emerald-500 tracking-wide mb-8">
+                    Your inquiry has been successfully recorded.
                   </p>
 
                   <p className="text-slate-500 leading-relaxed font-semibold max-w-sm text-sm mb-10" style={{ transform: "translateZ(10px)" }}>
-                    Thank you, **{studentName}**! Your inquiry regarding **{program}** has been securely synced. A branch coordinator will reach out to you shortly.
+                    Thank you, **{studentName}**! Your inquiry regarding **{program}** has been received. A branch coordinator will reach out to you shortly.
                   </p>
-
-                  {/* Monospaced secure audit transaction logs */}
-                  <div className="bg-slate-900 border border-white/5 p-4 rounded-xl font-mono text-[8px] text-emerald-400/90 leading-relaxed max-w-xs text-left w-full shadow-md select-none">
-                    <div>[0.00s] ESTABLISHING COUNSEL_SECURE...</div>
-                    <div>[0.28s] DATA RECORDED: {studentName} // {phoneNumber}</div>
-                    <div>[0.64s] STATUS: SYNCED // COMPILATION STABLE</div>
-                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* Corner technical indicators */}
-            <span className="absolute bottom-4 right-6 font-mono text-[6px] text-slate-400 pointer-events-none select-none">
-              [FORM_REF: ENQ_AXIS]
-            </span>
+
           </motion.div>
         </motion.div>
 

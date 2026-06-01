@@ -60,7 +60,7 @@ export const CoursesOverview = () => {
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="py-32 bg-slate-50/50 relative overflow-hidden"
+      className="pt-12 pb-12 bg-slate-50/50 relative overflow-hidden"
     >
       {/* Background blueprint grid overlay */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.15]"
@@ -92,14 +92,6 @@ export const CoursesOverview = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-24 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block px-3 py-1 bg-white border border-slate-100 text-slate-500 text-[10px] font-black uppercase tracking-widest rounded-full mb-4 shadow-sm"
-          >
-            Academic Scope
-          </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -164,38 +156,7 @@ export const CoursesOverview = () => {
                   <p className="text-xs text-slate-500 leading-relaxed font-medium mb-6">{item.desc}</p>
                 </div>
 
-                {/* Sliding metrics drawer on hover */}
-                <div className="h-10 overflow-hidden relative mt-4">
-                  <AnimatePresence mode="wait">
-                    {isHovered ? (
-                      <motion.div
-                        key="ach"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -20, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="flex items-center gap-1.5"
-                      >
-                        <Sparkles size={11} className="text-amber-500 animate-pulse" />
-                        <span className="text-[10px] font-black uppercase tracking-widest text-indigo-600">
-                          {item.achievement}
-                        </span>
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        key="arrow"
-                        initial={{ y: -20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: 20, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="flex items-center gap-1 text-[9px] font-bold text-slate-400"
-                      >
-                        <span>Learn More</span>
-                        <ChevronRight size={10} />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+
               </motion.div>
             );
           })}

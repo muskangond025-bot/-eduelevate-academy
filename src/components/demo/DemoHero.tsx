@@ -101,7 +101,7 @@ export const DemoHero = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative pt-24 pb-24 overflow-hidden bg-[#FAF9F6] transition-all duration-300 border-b border-indigo-50"
+      className="relative pt-12 pb-12 overflow-hidden bg-[#FAF9F6] transition-all duration-300 border-b border-indigo-50"
       style={{ perspective: 1200 }}
     >
       {/* Background Spotlight Glows */}
@@ -126,19 +126,7 @@ export const DemoHero = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        {/* Glassmorphic Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-md border border-indigo-100 px-6 py-3 rounded-full text-indigo-600 font-black text-[10px] uppercase tracking-widest mb-10 shadow-lg shadow-indigo-100/20 relative group cursor-pointer overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />
-          <div className="relative z-10 flex items-center gap-2">
-            <Play size={10} fill="currentColor" className="text-indigo-600 animate-pulse" />
-            <span>Experience Academic Supremacy</span>
-            <Sparkles size={11} className="text-amber-500 animate-bounce" />
-          </div>
-        </motion.div>
+
         
         {/* Main Title with Staggered Word Reveal */}
         <div className="mb-10 max-w-4xl mx-auto">

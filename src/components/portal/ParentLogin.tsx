@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { LogIn, Users } from 'lucide-react';
 
-export const ParentLogin = ({ onLogin }: { onLogin: () => void }) => {
+export const ParentLogin = ({ onLogin, onSupportClick }: { onLogin: () => void; onSupportClick: () => void }) => {
   return (
     <div className="min-h-screen bg-indigo-900 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(251,146,60,0.1),transparent_50%)]" />
@@ -26,6 +26,7 @@ export const ParentLogin = ({ onLogin }: { onLogin: () => void }) => {
               <input 
                 type="text" 
                 placeholder="+91 98XXX XXXXX" 
+                required
                 className="w-full px-8 py-5 bg-slate-50 border border-transparent focus:border-secondary transition-all outline-none rounded-2xl font-bold text-primary" 
               />
            </div>
@@ -34,6 +35,7 @@ export const ParentLogin = ({ onLogin }: { onLogin: () => void }) => {
               <input 
                 type="password" 
                 placeholder="••••••••" 
+                required
                 className="w-full px-8 py-5 bg-slate-50 border border-transparent focus:border-secondary transition-all outline-none rounded-2xl font-bold text-primary" 
               />
            </div>
@@ -47,7 +49,7 @@ export const ParentLogin = ({ onLogin }: { onLogin: () => void }) => {
         </form>
 
         <div className="mt-8 text-center text-xs font-bold text-slate-400">
-           Forgot credentials? <a href="#" className="text-secondary uppercase cursor-pointer">Contact Support</a>
+           Forgot credentials? <button type="button" onClick={onSupportClick} className="text-secondary uppercase cursor-pointer hover:underline font-black bg-transparent border-0 ml-1">Contact Support</button>
         </div>
       </motion.div>
     </div>

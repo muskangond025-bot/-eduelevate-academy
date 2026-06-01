@@ -369,7 +369,7 @@ export const ResultsByCourse = () => {
     <section 
       ref={containerRef}
       onMouseMove={handleGlobalMouseMove}
-      className="py-36 bg-[#04060E] text-white relative overflow-hidden"
+      className="pt-6 pb-24 bg-[#04060E] text-white relative overflow-hidden"
     >
       {/* Global CSS Gradients and styling values */}
       <SVGStylesAndGradients />
@@ -384,10 +384,6 @@ export const ResultsByCourse = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-28 gap-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-semibold tracking-wider uppercase mb-6 shadow-inner">
-              <Sparkles size={14} className="animate-pulse" />
-              Empirical Excellence
-            </div>
             <h2 className="text-5xl lg:text-7xl font-black text-white tracking-tighter mb-8 leading-none">
               Course-Wise <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-indigo-400 italic">Excellence</span>
             </h2>
@@ -458,10 +454,6 @@ export const ResultsByCourse = () => {
                 
                 {/* Top Section */}
                 <div className="p-8 pb-0">
-                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-bold tracking-wider mb-6 uppercase select-none ${item.badgeColor}`}>
-                    <Activity size={10} className="animate-pulse" />
-                    Telemetry System
-                  </span>
                   
                   <div className="text-3xl font-black text-white tracking-tighter mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-indigo-300 transition-colors">
                     {item.course}
@@ -475,27 +467,7 @@ export const ResultsByCourse = () => {
 
                 {/* Bottom Section & Telemetry Drawer */}
                 <div className="relative p-8">
-                  {/* Sliding Telemetry Typewriter Panel */}
-                  <AnimatePresence>
-                    {isHovered && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 15 }}
-                        transition={{ duration: 0.3 }}
-                        className="mb-5 bg-black/40 border border-white/5 rounded-2xl p-4 backdrop-blur-md"
-                      >
-                        <div className="flex items-center justify-between text-[10px] font-mono font-black tracking-widest text-indigo-400 uppercase mb-2">
-                          <span>SYSTEM LOG STREAM</span>
-                          <span className="flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
-                            Live
-                          </span>
-                        </div>
-                        <TypewriterTerminal logs={item.telemetry} active={isHovered} />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+
 
                   <div className="flex items-end justify-between gap-4">
                     <div className="flex flex-col gap-1">

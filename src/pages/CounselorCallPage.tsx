@@ -240,7 +240,7 @@ export const CounselorCallPage = () => {
                         {voipLogs.map((log, idx) => (
                           <div key={idx} className="flex gap-2">
                             <span className="text-indigo-400 font-bold">&gt;&gt;</span>
-                            <span className={idx === voipLogs.length - 1 ? "text-slate-350 font-extrabold" : ""}>{log}</span>
+                            <span className={idx === voipLogs.length - 1 ? "text-slate-300 font-extrabold" : ""}>{log}</span>
                           </div>
                         ))}
                       </div>

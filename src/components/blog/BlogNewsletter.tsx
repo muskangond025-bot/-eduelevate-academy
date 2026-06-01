@@ -428,10 +428,7 @@ export const BlogNewsletter = () => {
             )}
           </AnimatePresence>
 
-          {/* Fixed corner technical coordinates tracker indicators */}
-          <span className="absolute bottom-4 right-6 font-mono text-[7px] text-slate-500 select-none">
-            [RADAR_COORD: SECURE // INDEX: NEWS_AXIS]
-          </span>
+
         </motion.div>
       </motion.div>
     </div>

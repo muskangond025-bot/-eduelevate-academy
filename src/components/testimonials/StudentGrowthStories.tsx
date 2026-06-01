@@ -162,13 +162,6 @@ const GrowthStoryCard = ({
             {/* Scanline laser */}
             <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-cyan-500/20 shadow-[0_0_8px_rgba(6,182,212,0.4)] animate-pulse pointer-events-none" style={{ animationDuration: '3s' }} />
 
-            {/* macOS browser control dots */}
-            <div className="flex items-center gap-1 absolute top-4 right-5 opacity-40">
-              <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
-              <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            </div>
-
             <div className={`text-2xl font-black tracking-tight ${themeConfig.afterTextColor}`}>
               {story.after}
             </div>
@@ -243,7 +236,7 @@ export const StudentGrowthStories = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#FAF9F6] text-slate-800 relative overflow-hidden border-b border-slate-200/50"
+      className="pt-12 pb-24 bg-[#FAF9F6] text-slate-800 relative overflow-hidden border-b border-slate-200/50"
     >
       {/* Light blueprint coordinates canvas backdrop */}
       <div
@@ -275,16 +268,7 @@ export const StudentGrowthStories = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Title with premium badging console */}
-        <div className="text-center mb-24 relative select-none">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-5 border border-indigo-100 text-indigo-650 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm"
-          >
-            <Shield size={11} className="text-indigo-500 animate-pulse" />
-            <span>Outcomes Verification Console</span>
-          </motion.div>
+        <div className="text-center mb-12 relative select-none">
 
           <h2 className="text-5xl md:text-6xl font-black text-slate-800 tracking-tighter mb-4 uppercase leading-none">
             Before &{' '}

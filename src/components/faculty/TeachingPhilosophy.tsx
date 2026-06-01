@@ -393,7 +393,7 @@ export const TeachingPhilosophy = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#FAF9F6] text-primary relative overflow-hidden border-b border-slate-200/60"
+      className="pt-12 pb-24 bg-[#FAF9F6] text-primary relative overflow-hidden border-b border-slate-200/60"
     >
       {/* Gravity mesh coordinate canvas warp grid */}
       {renderWarpGrid()}
@@ -428,17 +428,7 @@ export const TeachingPhilosophy = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Title with cinematic staggered clip-mask details */}
-        <div className="text-center mb-24 relative select-none">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm"
-          >
-            <Star size={11} className="text-indigo-500 animate-spin" style={{ animationDuration: '4s' }} />
-            <span>Academic values</span>
-          </motion.div>
-
+        <div className="text-center mb-12 relative select-none">
           <h2 className="text-5xl md:text-6xl font-black text-primary tracking-tighter mb-4 uppercase leading-none">
             Our Teaching{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-650 italic font-black">

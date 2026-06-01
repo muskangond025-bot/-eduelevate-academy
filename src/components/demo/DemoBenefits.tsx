@@ -146,18 +146,7 @@ const ProblemSolvingWidget = () => {
       {/* Matrix scanning bar */}
       <div className="absolute left-0 right-0 h-1 bg-indigo-500/10 scan-bar pointer-events-none blur-[1px]" />
 
-      {/* Console Header */}
-      <div className="flex items-center justify-between border-b border-white/5 pb-3">
-        <div className="flex gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-rose-500/90" />
-          <span className="w-2.5 h-2.5 rounded-full bg-amber-500/90" />
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/90" />
-        </div>
-        <span className="text-[8px] uppercase tracking-widest text-slate-500 font-black flex items-center gap-1">
-          <Terminal size={10} />
-          <span>AcademyPro_Terminal v3</span>
-        </span>
-      </div>
+
 
       {/* Console Body */}
       <div className="flex-1 py-4 space-y-3 flex flex-col justify-center">
@@ -334,7 +323,7 @@ const TimeStrategyWidget = () => {
 
 export const DemoBenefits = () => {
   return (
-    <section className="py-32 bg-white relative overflow-hidden">
+    <section className="pt-12 pb-12 bg-white relative overflow-hidden">
       {/* Background Dot Pattern Backdrop */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.2]"
         style={{
@@ -344,15 +333,6 @@ export const DemoBenefits = () => {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-24 relative">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6"
-          >
-            <Sparkles size={11} className="text-indigo-500 animate-bounce" />
-            <span>Interactive Framework</span>
-          </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

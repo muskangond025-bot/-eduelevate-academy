@@ -116,7 +116,7 @@ export const CourseCTA = () => {
   const warpedPaths = getWarpedGridPaths();
 
   return (
-    <section className="py-36 bg-white text-center relative overflow-hidden">
+    <section className="pt-12 pb-24 bg-white text-center relative overflow-hidden">
       {/* Subtle outer grid lines background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.01)_1px,transparent_1px)] bg-[size:40px_40px] opacity-70 pointer-events-none" />
 
@@ -129,7 +129,7 @@ export const CourseCTA = () => {
             setIsHovered(false);
             handleButtonLeave();
           }}
-          className="relative group bg-[#05070F] rounded-[3.5rem] p-16 lg:p-32 overflow-hidden text-white shadow-2xl border border-white/10 transition-all duration-700 select-none"
+          className="relative group bg-[#05070F] rounded-[3.5rem] px-6 py-8 lg:px-20 lg:py-12 overflow-hidden text-white shadow-2xl border border-white/10 transition-all duration-700 select-none"
         >
           {/* INTERACTIVE SHIFTING COORDINATES WARP CANVAS GRID */}
           <svg 
@@ -174,13 +174,13 @@ export const CourseCTA = () => {
           )}
 
           {/* Constant ambient color flares */}
-          <div className="absolute -top-12 -left-12 w-96 h-96 bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
-          <div className="absolute -bottom-12 -right-12 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute -top-12 -left-12 w-96 h-96 bg-indigo-50/10 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute -bottom-12 -right-12 w-96 h-96 bg-amber-50/10 rounded-full blur-[100px] pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl mx-auto">
             
             {/* Core Icon with Concentric Orbiting HUD Vector Rings */}
-            <div className="relative w-28 h-28 mx-auto mb-10 flex items-center justify-center">
+            <div className="relative w-20 h-20 mx-auto mb-4 flex items-center justify-center">
               {/* Concentric HUD orbits */}
               <svg className="absolute inset-0 w-full h-full transform -rotate-12 pointer-events-none" viewBox="0 0 100 100">
                 {/* Outer dashed HUD orbit */}
@@ -220,11 +220,11 @@ export const CourseCTA = () => {
               </svg>
 
               {/* Pulsing Backglow */}
-              <div className="absolute inset-4 rounded-[2rem] bg-gradient-to-br from-indigo-500/20 to-amber-500/20 opacity-40 group-hover:opacity-100 group-hover:scale-110 blur-md transition-all duration-700" />
+              <div className="absolute inset-2 rounded-[1.2rem] bg-gradient-to-br from-indigo-500/20 to-amber-500/20 opacity-40 group-hover:opacity-100 group-hover:scale-110 blur-sm transition-all duration-700" />
               
               {/* Icon Container */}
-              <div className="relative z-10 w-20 h-20 bg-white/5 rounded-[1.8rem] flex items-center justify-center border border-white/10 group-hover:scale-105 group-hover:rotate-6 group-hover:border-amber-500/30 transition-all duration-500">
-                <Calendar size={36} className="text-amber-400 animate-pulse" />
+              <div className="relative z-10 w-14 h-14 bg-white/5 rounded-[1.2rem] flex items-center justify-center border border-white/10 group-hover:scale-105 group-hover:rotate-6 group-hover:border-amber-500/30 transition-all duration-500">
+                <Calendar size={24} className="text-amber-400 animate-pulse" />
               </div>
 
               {/* Decorative side sparkles */}
@@ -233,11 +233,11 @@ export const CourseCTA = () => {
               </div>
             </div>
 
-            <h2 className="text-5xl lg:text-8xl font-black tracking-tighter mb-8 leading-[0.9] text-white select-none">
+            <h2 className="text-4xl lg:text-5xl font-black tracking-tighter mb-4 leading-[0.95] text-white select-none">
               Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-indigo-400 italic">Academic</span> Odyssey.
             </h2>
             
-            <p className="text-lg lg:text-xl text-indigo-100/70 mb-16 max-w-xl mx-auto leading-relaxed font-medium">
+            <p className="text-sm lg:text-base text-indigo-100/70 mb-8 max-w-xl mx-auto leading-relaxed font-medium">
               Don't leave your potential to chance. Partner with India's most analytical, high-results academic incubator.
             </p>
             
@@ -255,7 +255,7 @@ export const CourseCTA = () => {
                   transform: `translate3d(${btn1Pos.x}px, ${btn1Pos.y}px, 0)`,
                   transition: btn1Pos.x === 0 ? 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)' : 'none'
                 }}
-                className="relative overflow-hidden bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 px-14 py-6 rounded-2xl text-lg font-black uppercase tracking-widest flex items-center gap-3 w-full sm:w-auto justify-center group shadow-2xl shadow-amber-500/20 border border-amber-300/30 hover:scale-105 active:scale-95 transition-all duration-300"
+                className="relative overflow-hidden bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 px-8 py-4 rounded-xl text-sm font-black uppercase tracking-widest flex items-center gap-3 w-full sm:w-auto justify-center group shadow-2xl shadow-amber-500/20 border border-amber-300/30 hover:scale-105 active:scale-95 transition-all duration-300"
               >
                 {/* Laser Sweep cursor overlay inside button */}
                 {btn1Hover && (
@@ -284,7 +284,7 @@ export const CourseCTA = () => {
                   transform: `translate3d(${btn2Pos.x}px, ${btn2Pos.y}px, 0)`,
                   transition: btn2Pos.x === 0 ? 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)' : 'none'
                 }}
-                className="relative overflow-hidden bg-white/5 hover:bg-white/10 text-white px-14 py-6 rounded-2xl text-lg font-black uppercase tracking-widest flex items-center gap-3 w-full sm:w-auto justify-center border border-white/10 hover:border-white/25 hover:scale-105 active:scale-95 transition-all duration-300 animate-none"
+                className="relative overflow-hidden bg-white/5 hover:bg-white/10 text-white px-8 py-4 rounded-xl text-sm font-black uppercase tracking-widest flex items-center gap-3 w-full sm:w-auto justify-center border border-white/10 hover:border-white/25 hover:scale-105 active:scale-95 transition-all duration-300 animate-none"
               >
                 {/* Laser Sweep cursor overlay inside button */}
                 {btn2Hover && (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Globe, Terminal, Compass } from 'lucide-react';
+import { MapPin, Compass } from 'lucide-react';
 
 export const ContactMap = () => {
   const [coords, setCoords] = useState({ x: 0, y: 0 });
@@ -18,7 +18,7 @@ export const ContactMap = () => {
   };
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden select-none border-b border-slate-200/50">
+    <section className="pt-0 pb-8 bg-[#FAF9F6] relative overflow-hidden select-none">
       {/* Light blueprint coordinates canvas backdrop */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.08]"
@@ -37,27 +37,6 @@ export const ContactMap = () => {
           onMouseLeave={() => setIsHovered(false)}
           className="rounded-[3rem] overflow-hidden border border-slate-200/80 shadow-3xl bg-slate-900 relative h-[550px] flex flex-col"
         >
-          {/* macOS Chrome Bezel Title Bar */}
-          <div className="h-12 bg-slate-950 px-6 border-b border-white/5 flex items-center justify-between shrink-0 select-none">
-            {/* Red, Yellow, Green window dots */}
-            <div className="flex gap-2">
-              <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-              <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-              <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
-            </div>
-
-            {/* Address Bar URL Endpoint */}
-            <div className="hidden sm:flex items-center gap-2 bg-white/5 border border-white/5 rounded-lg px-6 py-1.5 font-mono text-[8px] text-slate-400 select-none">
-              <Globe size={10} className="text-slate-500 animate-spin" style={{ animationDuration: '8s' }} />
-              <span>http://academy.central.hub/map_coordinates_calibration?lat=18.5204&lng=73.8567</span>
-            </div>
-
-            {/* Diagnostics details */}
-            <div className="font-mono text-[7px] text-slate-500 flex items-center gap-1">
-              <Terminal size={10} className="text-emerald-500 animate-pulse" />
-              <span>[LIVE_FEED: CALIBRATED]</span>
-            </div>
-          </div>
 
           {/* Map Viewport Container */}
           <div className="flex-1 relative overflow-hidden bg-slate-950">
@@ -82,21 +61,7 @@ export const ContactMap = () => {
               />
             )}
 
-            {/* Coordinates Stats HUD Overlay next to cursor inside map container */}
-            {isHovered && (
-              <div 
-                className="absolute pointer-events-none bg-slate-950/95 text-orange-400 font-mono text-[7px] px-2 py-1 rounded border border-orange-500/25 shadow-lg z-30 flex flex-col gap-0.5"
-                style={{ 
-                  left: coords.x + 20, 
-                  top: coords.y + 20,
-                  transform: 'translate3d(0,0,0)'
-                }}
-              >
-                <span>[MAP_COORD_X: {Math.round(coords.x)}px]</span>
-                <span>[MAP_COORD_Y: {Math.round(coords.y)}px]</span>
-                <span>[LOC: PUNE_HQ // MAIN_HUB]</span>
-              </div>
-            )}
+
 
             {/* Spotlight neon glow following cursor */}
             <div
@@ -143,7 +108,7 @@ export const ContactMap = () => {
               <div className="p-8 bg-slate-950/90 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white/10 w-80 select-none">
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse shrink-0" />
-                  <span className="font-mono text-[7px] text-orange-400 uppercase tracking-widest">[SYS_LOCATION_SYNCRONIZER]</span>
+                  <span className="font-sans text-[10px] text-orange-500 uppercase tracking-widest font-bold">HQ Location</span>
                 </div>
                 <h4 className="text-lg font-black text-white mb-2 italic uppercase">Visit our HQ</h4>
                 <p className="text-xs text-slate-400 mb-6 font-medium leading-relaxed">
@@ -161,10 +126,7 @@ export const ContactMap = () => {
               </div>
             </div>
 
-            {/* Technical monospaced grid location indices */}
-            <span className="absolute bottom-4 right-6 font-mono text-[7px] text-slate-600 select-none">
-              [LAT_COORD: 18.5204° N // LNG_COORD: 73.8567° E]
-            </span>
+
           </div>
 
         </div>

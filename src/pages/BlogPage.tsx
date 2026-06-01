@@ -290,13 +290,11 @@ export const BlogPage = () => {
                         <CheckCircle2 size={24} className="animate-pulse" />
                       </div>
                       <div>
-                        <span className="block text-[8px] font-mono text-slate-500">[ACADEMIC_SEAL // RET_OK]</span>
+
                         <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">Verified Study Strategy</span>
                       </div>
                     </div>
-                    <span className="font-mono text-[7px] text-slate-650">
-                      [EDUELEVATE JOURNAL NODE: #EE_J_0{Math.floor(Math.random() * 900) + 100}]
-                    </span>
+
                   </div>
                 </div>
               </div>

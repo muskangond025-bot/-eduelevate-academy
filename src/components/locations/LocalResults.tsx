@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Award, Star, Cpu, Sparkles, Trophy } from 'lucide-react';
+import { Award, Star, Sparkles, Trophy } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const SparkParticlesTrail = ({ coords, colorClass }: { coords: { x: number; y: number }; colorClass: string }) => {
@@ -213,10 +213,7 @@ const LocalResultCard = ({
 
       </div>
 
-      {/* Monospaced technical indicators */}
-      <span className="absolute bottom-4 right-6 font-mono text-[5px] text-slate-400 select-none pointer-events-none">
-        [{result.badgeCode}]
-      </span>
+
     </motion.div>
   );
 };
@@ -276,7 +273,7 @@ export const LocalResults = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/50"
+      className="pt-12 pb-32 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/50"
     >
       {/* Light blueprint coordinates canvas backdrop */}
       <div
@@ -310,15 +307,7 @@ export const LocalResults = () => {
         {/* Header entrance reveal */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8 select-none">
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 px-5 py-2.5 rounded-full text-indigo-650 font-black text-[10px] uppercase tracking-widest mb-6 shadow-sm animate-pulse"
-            >
-              <Cpu size={10} className="text-indigo-650" />
-              <span>Diagnostic Victories</span>
-            </motion.div>
+
 
             <h2 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tighter uppercase leading-none mb-4">
               Kothrud <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500 italic">Pride.</span>

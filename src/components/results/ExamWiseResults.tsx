@@ -370,7 +370,7 @@ export const ExamWiseResults = () => {
       ref={sectionRef}
       onMouseMove={handleSectionMouseMove}
       onMouseLeave={() => setIsSectionHovered(false)}
-      className="py-32 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/60"
+      className="pt-12 pb-24 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/60"
     >
       {/* Light Dotted Matrix Coordinates Canvas Backdrop */}
       <div
@@ -404,17 +404,7 @@ export const ExamWiseResults = () => {
           
           {/* Navigation Side Panel */}
           <div className="lg:w-1/3 w-full">
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm"
-            >
-              <Cpu size={11} className="text-indigo-500 animate-pulse" />
-              <span>Metrics Stream</span>
-            </motion.div>
-
-            <h2 className="text-5xl font-black text-primary tracking-tighter mb-12 uppercase leading-none select-none">
+            <h2 className="text-5xl font-black text-primary tracking-tighter mb-6 uppercase leading-none select-none">
               Exam Wise <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-650 italic font-black">
                 Excellence.

@@ -144,7 +144,7 @@ export const DataVisualization = () => {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setIsHovered(false)}
-      className="py-32 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/60"
+      className="pt-12 pb-24 bg-[#FAF9F6] relative overflow-hidden border-b border-slate-200/60"
     >
       {/* Dotted Grid Pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.25]"
@@ -167,15 +167,6 @@ export const DataVisualization = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-50 border border-indigo-100 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6 shadow-sm"
-            >
-              <Sparkles size={11} className="text-indigo-500 animate-bounce" />
-              <span>Growth Vectors</span>
-            </motion.div>
             <h2 className="text-5xl font-black text-primary tracking-tighter mb-6 uppercase leading-tight select-none overflow-visible py-1">
               Progress{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-indigo-600 italic font-black px-1">Trajectory.</span>
@@ -217,22 +208,6 @@ export const DataVisualization = () => {
             transition={{ duration: 0.7 }}
             className="bg-[#060813] border border-white/10 rounded-[4rem] shadow-2xl h-[470px] relative overflow-hidden flex flex-col justify-between"
           >
-            {/* macOS Chrome Header dots */}
-            <div className="flex gap-1.5 py-3.5 px-6 border-b border-white/5 bg-white/[0.02] flex items-center justify-between select-none">
-              <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80 border border-rose-600/10" />
-                <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80 border border-amber-600/10" />
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 border border-emerald-600/10" />
-              </div>
-              
-              <div className="bg-white/5 border border-white/10 rounded-lg px-5 py-1 text-[8px] font-mono text-slate-400 uppercase tracking-widest flex items-center gap-1.5 shrink-0">
-                <span className="w-1 h-1 bg-amber-400 rounded-full animate-ping" />
-                <span>[ACCURACY: 94% // MATRIX_CALIB]</span>
-              </div>
-              
-              <div className="w-12" /> {/* spacer */}
-            </div>
-
             <div className="flex-1 flex flex-col justify-between p-6">
               <h4 className="text-white font-black text-[10px] font-mono uppercase tracking-[0.35em] mb-6 text-center select-none opacity-60">Mock Test Performance (2025-26)</h4>
               <div className="flex-1 pb-4 relative z-10">

@@ -137,7 +137,7 @@ export const HomeGlobalAlumni = () => {
   const ryTransforms = [ry0, ry1, ry2, ry3];
 
   return (
-    <section ref={sectionRef} className="relative py-32 bg-slate-50/40 overflow-hidden text-slate-800 border-t border-b border-slate-100">
+    <section ref={sectionRef} className="relative pt-12 pb-32 bg-slate-50/40 overflow-hidden text-slate-800 border-b border-slate-100">
       <div 
         className="absolute inset-0 opacity-[0.04] pointer-events-none" 
         style={{
@@ -162,15 +162,7 @@ export const HomeGlobalAlumni = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-24">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-[0_2px_10px_rgba(15,23,42,0.02)] backdrop-blur-md mb-6"
-          >
-            <Sparkles size={14} className="text-indigo-600 animate-pulse" />
-            <span className="text-[10px] font-bold tracking-widest uppercase text-slate-600">GLOBAL SUCCESS NETWORK</span>
-          </motion.div>
+
 
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -317,10 +309,7 @@ export const HomeGlobalAlumni = () => {
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
           
-          <div className="flex items-center gap-2 mb-4 justify-center">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">LIVE ALUMNI SUCCESS NETWORK STREAM</span>
-          </div>
+
 
           <div className="w-full relative py-3 overflow-hidden select-none">
             <motion.div 
@@ -521,7 +510,7 @@ export const HomeScholarshipDrive = () => {
   };
 
   return (
-    <section className="relative py-32 bg-slate-50/40 overflow-hidden text-slate-800 border-t border-b border-slate-100">
+    <section className="relative pt-12 pb-32 bg-slate-50/40 overflow-hidden text-slate-800 border-b border-slate-100">
       <div 
         className="absolute inset-0 opacity-[0.04] pointer-events-none" 
         style={{
@@ -548,15 +537,7 @@ export const HomeScholarshipDrive = () => {
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
           
           <div className="w-full lg:w-7/12">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-[0_2px_10px_rgba(15,23,42,0.02)] backdrop-blur-md mb-6"
-            >
-              <Gift size={14} className="text-indigo-600 animate-bounce" />
-              <span className="text-[10px] font-bold tracking-widest uppercase text-slate-600">NATIONAL SCHOLARSHIP DRIVE 2026</span>
-            </motion.div>
+
 
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
@@ -1012,7 +993,7 @@ export const HomeMobileApp = () => {
   };
 
   return (
-    <section className="relative py-32 bg-slate-50/40 overflow-hidden text-slate-800 border-t border-b border-slate-100">
+    <section className="relative pt-12 pb-32 bg-slate-50/40 overflow-hidden text-slate-800 border-b border-slate-100">
       <div 
         className="absolute inset-0 opacity-[0.04] pointer-events-none" 
         style={{
@@ -1329,15 +1310,7 @@ export const HomeMobileApp = () => {
 
           {/* Right Side: Features Selector Accordion */}
           <div className="w-full lg:w-1/2">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200/80 shadow-[0_2px_10px_rgba(15,23,42,0.02)] backdrop-blur-md mb-6"
-            >
-              <Smartphone size={14} className="text-indigo-600 animate-pulse" />
-              <span className="text-[10px] font-bold tracking-widest uppercase text-slate-600">ACADEMYPRO MOBILE COMPANION</span>
-            </motion.div>
+
 
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}

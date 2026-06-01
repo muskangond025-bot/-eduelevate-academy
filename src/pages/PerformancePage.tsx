@@ -237,7 +237,7 @@ export const PerformancePage = () => {
         ref={sectionRef}
         onMouseMove={handleSectionMouseMove}
         onMouseLeave={() => setIsSectionHovered(false)}
-        className="py-32 bg-[#FAF9F6] overflow-hidden relative text-primary border-t border-slate-200/60"
+        className="pt-12 pb-24 bg-[#FAF9F6] overflow-hidden relative text-primary border-t border-slate-200/60"
       >
         {/* Light Dotted Matrix Grid Backdrop */}
         <div
@@ -311,17 +311,6 @@ export const PerformancePage = () => {
             <SparkParticlesTrail coords={consoleCoords} colorClass="bg-indigo-500" />
 
             <div className="relative z-10 flex flex-col items-center justify-between" style={{ transform: 'translateZ(25px)' }}>
-              
-              {/* Technical Monospace Cyber Badges */}
-              <div className="flex gap-4 items-center justify-center mb-8 select-none">
-                <div className="font-mono text-[8px] font-black text-slate-500 bg-slate-100 border border-slate-200/80 px-3 py-1.5 rounded-lg shadow-sm">
-                  [AUDIT_ID: AC-409]
-                </div>
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse shadow-lg shadow-emerald-500/20" />
-                <div className="font-mono text-[8px] font-black text-slate-500 bg-slate-100 border border-slate-200/80 px-3 py-1.5 rounded-lg shadow-sm">
-                  [SYSTEM: ROADMAP_CALIB]
-                </div>
-              </div>
 
               {/* Title & Subtitle reveals */}
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary mb-6 uppercase tracking-tighter leading-none select-none">
